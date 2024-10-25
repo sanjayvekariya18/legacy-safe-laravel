@@ -15,17 +15,17 @@
     <link rel="stylesheet" href="https://use.typekit.net/nan6ioj.css">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/select2.min.js'])
 </head>
 
 <body>
     <main>
         <section class="modal-box-section h-vh position-relative w-100">
-            <img src="assets/images/hero-img.jpg" class="w-100 h-100 object-cover" alt="">
+            <img src="images/hero-img.jpg" class="w-100 h-100 object-cover" alt="">
             <div class="position-fixed bottom-0 end-0 d-flex align-items-center me-5 mb-4">
                 <div class="tk-basic-sans fw-normal font13 leading19 space-0_13 text-white me-1">Powered by</div>
                 <div class="legacy-logo">
-                    <img src="assets/images/user.svg" class="w-100" alt="">
+                    <img src="images/user.svg" class="w-100" alt="">
                 </div>
             </div>
             <div class="position-absolute top-left-center w-100">
