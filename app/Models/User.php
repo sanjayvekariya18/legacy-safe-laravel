@@ -12,6 +12,27 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    const ROLE_ADMIN = "Admin";
+    const ROLE_CUSTOMER = "Customer";
+    const ROLE_PROFESSIONAL = "Professional";
+    const ROLE_USER = "User";
+
+    const PROFESSIONAL_TYPE_SOLICITOR = "Solicitor";
+    const PROFESSIONAL_TYPE_PROFESSIONAL = "Professional";
+
+    public const ROLES = [
+        self::ROLE_ADMIN,
+        self::ROLE_CUSTOMER,
+        self::ROLE_PROFESSIONAL,
+        self::ROLE_USER,
+    ];
+
+    // Define a static array
+    public const PROFESSIONAL_TYPES = [
+        self::PROFESSIONAL_TYPE_SOLICITOR => 'Solicitor',
+        self::PROFESSIONAL_TYPE_PROFESSIONAL => 'Professional',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
