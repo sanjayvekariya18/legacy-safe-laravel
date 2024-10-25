@@ -1,0 +1,53 @@
+.admin-sidebar {
+    width: 20%;
+    border-radius: 0 30px 30px 0;
+    padding: 30px 24px 24px;
+
+    .admin-user-box {
+        height: 32px;
+        width: 32px;
+    }
+
+    .admin-menu {
+        padding: 12px 0px;
+        &.active {
+            background-color: $color-F0F0F0;
+            border-radius: 7px;
+        }
+
+        .admin-menu-icon {
+            width: 19px;
+        }
+
+        &:last-child{
+            margin-bottom: 0 !important;
+        }
+    }
+
+    .dashboard-logo {
+        width: 90px;
+    }
+}
+
+.admin-wrapper {
+    width: 80%;
+
+    .admin-menu-bar {
+        .notification-menu {
+            height: 44px;
+            width: 44px;
+            border: 1px solid $color-DEDEDE;
+
+            img {
+                max-width: 17px;
+            }
+
+            .notification-count {
+                height: 17px;
+                width: 17px;
+                top: 2px;
+                right: 5px;
+            }
+        }
+    }
+}

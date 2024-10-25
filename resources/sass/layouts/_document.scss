@@ -1,0 +1,277 @@
+.admin {
+  .admin-wrapper {
+    .title-icon {
+      width: 44px;
+      height: 44px;
+
+      img {
+        height: 22px;
+      }
+    }
+
+    .title-icon-back {
+      height: 29px;
+      width: 29px;
+      border: 1px solid $color-DEDEDE;
+
+      img {
+        width: 7px;
+        height: 13px;
+      }
+    }
+  }
+}
+
+.table {
+  &.common-table {
+    font-family: "basic-sans", sans-serif;
+    border-collapse: separate;
+    table-layout: fixed;
+    border-spacing: 0 0;
+    border: 0px solid transparent;
+
+    tr {
+      outline: 1px solid #dee2e6;
+      border-radius: $radius5;
+    }
+
+    thead {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+
+      tr {
+        outline: 0px;
+
+        th {
+          color: $black;
+          font-size: $font12;
+          line-height: $leading14;
+          letter-spacing: $space-0_12;
+          background-color: transparent;
+          text-align: left;
+          padding: 0px;
+          border: 0px;
+        }
+      }
+    }
+
+    tbody {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+      border-spacing: 0 10px;
+
+      tr {
+        td {
+          font-size: $font16;
+          line-height: $leading22;
+          letter-spacing: $space-0_16;
+          color: $color-0F0F0F;
+          padding: 14px 0px;
+
+          &:first-child {
+            padding-left: 18px !important;
+          }
+
+          &:last-child {
+            padding: 10px 10px 10px 0px !important;
+          }
+        }
+      }
+    }
+
+    &.document-table {
+      tbody {
+        tr {
+          td {
+            span {
+              margin-left: 35px;
+            }
+            img{
+              max-width: 24px;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    &.user-table {
+      tbody {
+        tr {
+          td {
+            padding: 15px 0px;
+          }
+        }
+      }
+    }
+
+    &.ready-table {
+      tr {
+        outline: 0px;
+        border: 1px solid $color-DEDEDE;
+
+        &:last-child {
+          border: 1px solid $white;
+        }
+      }
+
+      thead {
+        tr {
+          th {
+            color: $color-0F0F0F;
+            opacity: 60%;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            padding: 20px 0px;
+
+            &:first-child {
+              padding-left: 0px !important;
+            }
+
+            &:last-child {
+              padding: 20px 0px !important;
+            }
+          }
+        }
+      }
+    }
+    &.log-table{
+      tbody{
+        tr{
+          td{
+            &:last-child{
+              padding: 14px 0px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+.tables {
+  max-height: 445px;
+  overflow-y: scroll;
+  padding: 1px;
+}
+
+.delete-icon {
+  height: 18px;
+}
+
+.pagination {
+  .pagination-arrow {
+    width: 29px;
+    height: 29px;
+    border: 1px solid $color-DEDEDE;
+    img{
+      width: 7px;
+      height: 13px;
+    }
+  }
+}
+
+.back-all {
+  div {
+    width: 29px;
+    height: 29px;
+    border: 1px solid $color-DEDEDE;
+    img{
+      width: 7px;
+      height: 13px;
+    }
+  }
+}
+
+.search-icon {
+  width: 37px;
+  height: 37px;
+
+  img {
+    height: 28px;
+  }
+}
+
+.star-icon {
+  height: 14px;
+}
+
+.message-area,
+.accordion-section {
+  border: 1px solid $color-DEDEDE;
+}
+
+.message-area {
+  padding-left: 30px;
+  padding-right: 60px;
+
+  .textarea-input {
+    margin-left: 46px;
+
+    textarea {
+      height: 105px;
+      border: 1px solid $color-3C3C3C;
+    }
+  }
+
+  .message-files {
+    button {
+      height: 33px;
+      border: 1px solid $color-EBEBEB;
+      
+      input#file-upload-button {
+        background-color: transparent !important;
+      }
+    }
+  }
+}
+
+.alphbet-icon {
+  max-width: 24px;
+  width: 100%;
+  height: 24px;
+  margin-right: 20px;
+}
+
+.accordion-section {
+  .accordion-content {
+    display: none;
+
+    .three-dot {
+      width: 20px;
+      z-index: 9999;
+    }
+  }
+
+  .accordion-item {
+    .accordion-header {
+      .close-arrow {
+        display: none;
+        width: 30px;
+        height: 30px;
+        img{
+          height: 10px;
+          width: 10px;
+        }
+      }
+
+      &.active {
+        .accordion-header-btn {
+          display: none;
+        }
+
+        .close-arrow {
+          display: block;
+        }
+      }
+    }
+  }
+}

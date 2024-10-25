@@ -1,0 +1,74 @@
+button,
+[type=button],
+[type=reset],
+[type=submit] {
+    appearance: none !important;
+    -moz-appearance: none !important;
+    -webkit-appearance: none !important;
+}
+
+
+.large-btn {
+    height: 64px;
+    max-width: 348px;
+
+    &.blue-btn {
+        background-color: $color-224598;
+        color: $white;
+        border: 1px solid $color-224598;
+
+        // &:hover {
+        //     background-color: $white;
+        //     color: $black;
+        // }
+    }
+
+    &.blue-btn2 {
+        background-color: $color-224598;
+        color: $white;
+        border: 1px solid $color-224598;
+
+        // &:hover {
+        //     background-color: transparent;
+        //     color: $black;
+        // }
+    }
+
+    &.btn-808080 {
+        background-color: $white;
+        color: $black;
+        border: 1px solid $color-808080;
+
+        // &:hover {
+        //     background-color: $color-808080;
+        //     color: $white;
+        // }
+    }
+    &.w-248{
+        min-width: 248px;
+    }
+}
+
+.btnB {
+    height: 64px;
+    padding: 0px 35px;
+
+    &.blue-btn {
+        background-color: $color-224598;
+        color: $white;
+        // &:hover {
+        //     background-color: $white;
+        //     color: $black;
+        // }
+    }
+
+    &.DEDEDE-bg-btn {
+        background-color: $color-DEDEDE;
+        color: $color-808080;
+
+        // &:hover {
+        //     background-color: $color-808080;
+        //     color: $white;
+        // }
+    }
+}

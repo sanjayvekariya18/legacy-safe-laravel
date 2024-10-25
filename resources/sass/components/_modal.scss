@@ -1,0 +1,186 @@
+.close-div {
+  top: 10px;
+  right: 10px;
+
+  @include media-breakpoint-down(lg) {
+    top: 40px;
+    right: 20px;
+  }
+
+  .modal-close {
+    width: 30px;
+    height: 30px;
+
+    img {
+      width: 10px;
+    }
+  }
+}
+
+.modal {
+  .modal-dialog {
+    @include media-breakpoint-down(lg) {
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .modal-content {
+      @include media-breakpoint-down(lg) {
+        height: 100vh !important;
+        overflow-y: auto;
+      }
+    }
+  }
+
+  &.remove-user-modal {
+    .modal-dialog {
+      max-width: 456px;
+
+      @include media-breakpoint-down(md) {
+        max-width: 100%;
+        margin: 0px;
+      }
+
+      .modal-content {
+        padding: 45px 40px 55px;
+        height: fit-content;
+
+        @include media-breakpoint-down(md) {
+          padding: 162px 37px 25px !important;
+          height: 100vh;
+          overflow-y: auto;
+        }
+      }
+    }
+  }
+
+  &.solicitor-modal {
+    .modal-dialog {
+      max-width: 368px;
+
+      @include media-breakpoint-down(md) {
+        max-width: 100%;
+        margin: 0px;
+      }
+
+      .modal-content {
+        padding: 35px 20px;
+        height: fit-content;
+
+        ul {
+          li {
+            &:last-child {
+              margin-bottom: 0px;
+            }
+          }
+        }
+        
+        @include media-breakpoint-down(md) {
+          padding: 162px 37px 25px !important;
+          height: 100vh;
+          overflow-y: auto;
+        }
+      }
+    }
+  }
+
+  &.invite-user-modal {
+    .modal-dialog {
+      max-width: 784px;
+      min-width: 576px;
+      width: fit-content;
+
+      @include media-breakpoint-down(md) {
+        max-width: 100%;
+        margin: 0px;
+      }
+
+      .modal-content {
+        padding: 45px 35px 55px;
+        height: fit-content;
+
+        @include media-breakpoint-down(md) {
+          padding: 162px 37px 25px !important;
+          height: 100vh;
+          overflow-y: auto;
+        }
+
+        .tab-content {
+          .input {
+            min-width: 348px;
+            max-width: 455px;
+          }
+        }
+      }
+    }
+  }
+
+  &.notification-modal {
+    .modal-dialog {
+      max-width: 364px;
+      margin-right: 24px;
+      margin-top: 80px;
+
+      @include media-breakpoint-down(md) {
+        max-width: 100%;
+        margin: 0px;
+      }
+
+      .modal-content {
+        padding: 30px 40px;
+        height: fit-content;
+        border: 1px solid $color-DEDEDE;
+
+        ul {
+          li {
+            &:last-child {
+              margin-bottom: 0px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.user-modal {
+    .modal-dialog {
+      max-width: 137px;
+      top: 38%;
+      left: 38%;
+
+      @include media-breakpoint-down(md) {
+        max-width: 100%;
+        margin: 0px;
+      }
+
+      .modal-content {
+        padding: 20px;
+        height: fit-content;
+        border: 1px solid $color-DEDEDE;
+
+        ul {
+          li {
+            &:last-child {
+              margin-bottom: 0px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.modal-backdrop {
+  background-color: rgba($color: $black, $alpha: 0.1);
+  opacity: 100% !important;
+  @include generate-backdrop-filter(blur(4px));
+}
+
+body {
+  &.modal-open {
+    .notification-menu {
+      background-color: $white;
+      z-index: 9999;
+    }
+  }
+}

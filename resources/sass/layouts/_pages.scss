@@ -1,0 +1,73 @@
+.modal-bg-layer {
+    background-color: rgba($color: $white, $alpha: 0.1);
+    backdrop-filter: blur(30px);
+}
+
+.legacy-logo {
+    width: 108px;
+}   
+
+.modal-box-section {
+    .modal-box-data {
+        padding-left: 42px;
+        padding-right: 42px;
+    }
+
+    .create-account-box {
+        padding-left: 20px;
+        padding-right: 20px;
+
+        .tab-content {
+            .input-row>* {
+                padding: 0 8px !important;
+            }
+        }
+    }
+}
+
+.user-permission {
+    padding-right: 72px;
+
+    .delete-icon {
+        height: 15px;
+    }
+}
+
+.user-permission-edit-post {
+    height: 64px;
+    border: 1px solid $color-DEDEDE;
+}
+
+.user-permission-box {
+    height: 95px;
+    border: 1px solid $color-DEDEDE;
+}
+
+.user-permission-btn {
+    height: 64px;
+    padding: 0px 35px;
+
+    .permission-box-user-logo {
+        width: 20px;
+    }
+}
+
+.select-box {
+    border: 1px solid $color-DEDEDE;
+}
+
+
+.create-account-tabs {
+    height: 40px;
+
+    .nav-item {
+        .nav-link {
+            &.active {
+                background-color: $color-224598;
+                color: $white !important;
+            }
+        }
+    }
+}
+
+

@@ -1,0 +1,44 @@
+.card-hover {
+  .img {
+    transform: scale(1);
+    transition: 0.3s all ease-in-out;
+  }
+
+  &:hover {
+    .img {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.dashboard-cards {
+  height: calc(100% - 109px);
+}
+
+.dashboard-card {
+  border: 1px solid $color-DEDEDE;
+
+  .dashboard-icon {
+    max-width: 54px;
+    height: 54px;
+    width: 100%;
+
+    img {
+      height: 24px;
+    }
+  }
+}
+
+.upgrade-cards {
+  border: 1px solid $color-DEDEDE;
+  padding-left: 28px;
+  padding-right: 28px;
+
+  .upgrade-brand-logo {
+    height: 30px;
+  }
+
+  .correct-arrow {
+    width: 9px;
+  }
+}
