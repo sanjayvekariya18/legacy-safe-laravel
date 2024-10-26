@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\InvoiceController;
@@ -29,6 +30,8 @@ Route::group(['middleware' => ['auth','role:'.User::ROLE_ADMIN]], function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/activity-logs', ActivityLogController::class);
 });
 
 Route::group(['middleware' => ['auth','role:'.User::ROLE_PROFESSIONAL]], function () {
@@ -41,7 +44,7 @@ Route::group(['middleware' => ['auth','role:'.User::ROLE_PROFESSIONAL]], functio
     Route::post('invoices/{invoice}/pay', [InvoiceController::class, 'pay'])->name('invoices.pay'); // Pay invoice
 });
 
-Route::group(['middleware' => ['auth','role:'.User::ROLE_CUSTOMER]], function () {
+Route::group(['middleware' => ['auth','role:'.User::ROLE_CLIENT]], function () {
     Route::resource('documents', DocumentController::class);
     Route::get('plans', [SubscriptionController::class, 'index'])->name('plans.index'); // View Shared Users
     Route::get('sharedUsers', [SharedUserController::class, 'index'])->name('sharedUsers.index'); // View Shared Users

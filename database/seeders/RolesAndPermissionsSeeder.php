@@ -28,12 +28,12 @@ class RolesAndPermissionsSeeder extends Seeder
         $adminRole = Role::findByName(User::ROLE_ADMIN);
         $adminRole->givePermissionTo(Permission::all()); // Admin has all permissions
 
-        $customerRole = Role::findByName('Customer');
-        $customerRole->givePermissionTo('view documents'); // Customers can view articles
-        $customerRole->givePermissionTo('create documents'); // Customers can view articles
-        $customerRole->givePermissionTo('edit documents'); // Customers can view articles
-        $customerRole->givePermissionTo('delete documents'); // Customers can view articles
-        $customerRole->givePermissionTo('can message'); // Customers can view articles
+        $clientRole = Role::findByName(User::ROLE_CLIENT);
+        $clientRole->givePermissionTo('view documents'); // Clients can view documents
+        $clientRole->givePermissionTo('create documents'); // Clients can view documents
+        $clientRole->givePermissionTo('edit documents'); // Clients can view documents
+        $clientRole->givePermissionTo('delete documents'); // Clients can view documents
+        $clientRole->givePermissionTo('can message'); // Clients can view documents
 
         $professionalRole = Role::findByName('Professional');
         $professionalRole->givePermissionTo(['view documents', 'edit documents', 'can message']); // Professionals can view and edit documents

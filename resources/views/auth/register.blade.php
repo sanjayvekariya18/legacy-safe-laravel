@@ -106,7 +106,7 @@
                                                 <x-input-error :message="$errors->first('postcode')" />
                                             </div>
                                         </div>
-                                        <input type="hidden" name="role" value="{{ \App\Models\User::ROLE_CUSTOMER }}">
+                                        <input type="hidden" name="role" value="{{ \App\Models\User::ROLE_CLIENT }}">
                                         <x-primary-button class="large-btn blue-btn">Sign up</x-primary-button>
                                     </form>
                                 </div>

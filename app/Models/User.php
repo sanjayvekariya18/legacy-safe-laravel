@@ -15,7 +15,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable, SoftDeletes, HasRoles; // Include HasRoles trait
 
     const ROLE_ADMIN = "Admin";
-    const ROLE_CUSTOMER = "Customer";
+    const ROLE_CLIENT = "Client";
     const ROLE_PROFESSIONAL = "Professional";
     const ROLE_USER = "User";
 
@@ -24,7 +24,7 @@ class User extends Authenticatable
 
     public const ROLES = [
         self::ROLE_ADMIN,
-        self::ROLE_CUSTOMER,
+        self::ROLE_CLIENT,
         self::ROLE_PROFESSIONAL,
         self::ROLE_USER,
     ];

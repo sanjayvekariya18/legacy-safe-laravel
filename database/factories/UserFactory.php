@@ -30,6 +30,15 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'mobile_number' => $this->faker->phoneNumber,
+            'status' => 1, // Assuming 1 is active
+            'address1' => $this->faker->address,
+            'address2' => $this->faker->address,
+            'country' => $this->faker->country,
+            'postcode' => $this->faker->postcode,
+            'invited_by' => null, // Adjust as needed
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 
