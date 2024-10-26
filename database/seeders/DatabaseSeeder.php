@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,12 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'first_name' => 'Jack',
-            'last_name' => 'Simmons',
-            'email' => 'jack@customer.com',
-        ]);
+        // Call the RolesAndPermissionsSeeder
+        $this->call(UserSeeder::class);
+        // Call the RolesAndPermissionsSeeder
+        $this->call(RolesAndPermissionsSeeder::class);
     }
 }
