@@ -5,7 +5,7 @@
 
 .legacy-logo {
     width: 108px;
-}   
+}
 
 .modal-box-section {
     .modal-box-data {
@@ -33,14 +33,18 @@
     }
 }
 
-.user-permission-edit-post {
-    height: 64px;
+.user-permission-edit-post,
+.user-permission-box,
+.select-box {
     border: 1px solid $color-DEDEDE;
-}
 
-.user-permission-box {
-    height: 95px;
-    border: 1px solid $color-DEDEDE;
+    .user-permission-check {
+        margin-right: 55px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
 }
 
 .user-permission-btn {
@@ -50,10 +54,6 @@
     .permission-box-user-logo {
         width: 20px;
     }
-}
-
-.select-box {
-    border: 1px solid $color-DEDEDE;
 }
 
 
@@ -69,5 +69,3 @@
         }
     }
 }
-
-

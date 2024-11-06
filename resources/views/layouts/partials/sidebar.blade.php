@@ -16,36 +16,74 @@
             </form>
         </div>
         <div>
-            <a href="" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 active">
+            <a href="{{ route('dashboard') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('dashboard') ? 'active' : '' }}">
                 <div class="me-2 ms-3 admin-menu-icon d-flex">
                     <img src="{{ asset('images/home.svg') }}" class="w-100" alt="">
                 </div>
                 <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Dashboard</div>
             </a>
-            <a href="" class="text-decoration-none d-flex align-items-center admin-menu dmb-10">
-                <div class="me-2 ms-3 admin-menu-icon d-flex">
-                    <img src="{{ asset('images/file.svg') }}" class="w-100" alt="">
-                </div>
-                <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">File manager</div>
-            </a>
-            <a href="" class="text-decoration-none d-flex align-items-center admin-menu dmb-10">
-                <div class="me-2 ms-3 admin-menu-icon d-flex">
-                    <img src="{{ asset('images/document.svg') }}" class="w-100" alt="">
-                </div>
-                <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Documents</div>
-            </a>
-            <a href="" class="text-decoration-none d-flex align-items-center admin-menu dmb-10">
-                <div class="me-2 ms-3 admin-menu-icon d-flex">
-                    <img src="{{ asset('images/user-icon.svg') }}" class="w-100" alt="">
-                </div>
-                <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Users & Permissions</div>
-            </a>
-            <a href="" class="text-decoration-none d-flex align-items-center admin-menu dmb-10">
-                <div class="me-2 ms-3 admin-menu-icon d-flex">
-                    <img src="{{ asset('images/star.svg') }}" class="w-100" alt="">
-                </div>
-                <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Upgrade your plan</div>
-            </a>
+            @if (Auth::user()->hasRole(\App\Models\User::ROLE_CLIENT))
+                <a href="{{ route('documents.create') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('documents*') ? 'active' : '' }}">
+                    <div class="me-2 ms-3 admin-menu-icon d-flex">
+                        <img src="{{ asset('images/file.svg') }}" class="w-100" alt="">
+                    </div>
+                    <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">File manager</div>
+                </a>
+            @endif
+            @if (Auth::user()->hasRole(\App\Models\User::ROLE_CLIENT) || Auth::user()->hasRole(\App\Models\User::ROLE_PROFESSIONAL))
+                <a href="{{ route('documents.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('documents*') ? 'active' : '' }}">
+                    <div class="me-2 ms-3 admin-menu-icon d-flex">
+                        <img src="{{ asset('images/document.svg') }}" class="w-100" alt="">
+                    </div>
+                    <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Documents</div>
+                </a>
+            @endif
+            @if (Auth::user()->hasRole(\App\Models\User::ROLE_USER))
+                <a href="{{ route('shared.documents.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('shared*') ? 'active' : '' }}">
+                    <div class="me-2 ms-3 admin-menu-icon d-flex">
+                        <img src="{{ asset('images/document.svg') }}" class="w-100" alt="">
+                    </div>
+                    <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Documents</div>
+                </a>
+            @endif
+            @if (Auth::user()->hasRole(\App\Models\User::ROLE_ADMIN))
+                <a href="{{ route('users.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('users*') ? 'active' : '' }}">
+                    <div class="me-2 ms-3 admin-menu-icon d-flex">
+                        <img src="{{ asset('images/user-icon.svg') }}" class="w-100" alt="">
+                    </div>
+                    <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Users & Permissions</div>
+                </a>
+            @endif
+            @if (Auth::user()->hasRole(\App\Models\User::ROLE_ADMIN) || Auth::user()->hasRole(\App\Models\User::ROLE_PROFESSIONAL))
+                <a href="{{ route('invoices.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('invoices*') ? 'active' : '' }}">
+                    <div class="me-2 ms-3 admin-menu-icon d-flex">
+                        <img src="{{ asset('images/star.svg') }}" class="w-100" alt="">
+                    </div>
+                    <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Invoices</div>
+                </a>
+            @endif
+            @if (Auth::user()->hasRole(\App\Models\User::ROLE_CLIENT))
+                <a href="{{ route('shared.users.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('users*') ? 'active' : '' }}">
+                    <div class="me-2 ms-3 admin-menu-icon d-flex">
+                        <img src="{{ asset('images/user-icon.svg') }}" class="w-100" alt="">
+                    </div>
+                    <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Shared Users</div>
+                </a>
+                <a href="{{ route('subscriptions.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('subscptions*') ? 'active' : '' }}">
+                    <div class="me-2 ms-3 admin-menu-icon d-flex">
+                        <img src="{{ asset('images/star.svg') }}" class="w-100" alt="">
+                    </div>
+                    <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Upgrade your plan</div>
+                </a>
+            @endif
+            @if (Auth::user()->hasRole(\App\Models\User::ROLE_ADMIN))
+                <a href="{{ route('activity.logs') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('activity*') ? 'active' : '' }}">
+                    <div class="me-2 ms-3 admin-menu-icon d-flex">
+                        <img src="{{ asset('images/star.svg') }}" class="w-100" alt="">
+                    </div>
+                    <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Activity Logs</div>
+                </a>
+            @endif
         </div>
         <div class="d-flex align-items-center">
             <div class="tk-basic-sans fw-normal font12 leading14 space-0_12 text-808080 opacity60 me-1">Powered by

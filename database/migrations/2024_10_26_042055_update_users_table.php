@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('country')->nullable()->after('password');
             $table->string('address2')->nullable()->after('password');
             $table->string('address1')->nullable()->after('password');
+            $table->string('company_name')->nullable()->after('password');
             $table->string('professional_type')->nullable()->after('password');
             $table->string('mobile_number')->nullable()->after('password');
             $table->timestamp('deleted_at')->nullable();

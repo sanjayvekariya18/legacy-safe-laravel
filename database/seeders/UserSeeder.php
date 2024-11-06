@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'last_name' => 'Simmons',
             'email' => 'jack@example.com',
         ]);
-        $admin->assignRole(User::ROLE_CLIENT);
+        $client->assignRole(User::ROLE_CLIENT);
 
         // Create Professional
         $professional = User::factory()->create([

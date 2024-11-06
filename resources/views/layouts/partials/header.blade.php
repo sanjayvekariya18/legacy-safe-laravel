@@ -1,11 +1,18 @@
 <div class="admin-menu-bar d-flex align-items-center justify-content-between dpt-25 dpb-40">
     <div class="breadcrumb-menu tk-basic-sans font12 leading14 space-0_12 fw-normal">
-        <a href="#" class="text-808080 d-inline-block text-decoration-none">
-            Dashboard /
-        </a>
-        <a href="#" class="text-black d-inline-block text-decoration-none">
-            Documents
-        </a>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                @foreach ($breadcrumbs as $breadcrumb)
+                    <li class="breadcrumb-item">
+                        @if ($breadcrumb['url'])
+                            <a class="text-808080 d-inline-block text-decoration-none" href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['title'] }}</a>
+                        @else
+                            {{ $breadcrumb['title'] }}
+                        @endif
+                    </li>
+                @endforeach
+            </ol>
+        </nav>
     </div>
     <a href="#" data-bs-toggle="modal" data-bs-target="#notificationModal"
         class="notification-menu radius4 overflow-hidden d-flex align-items-center justify-content-center position-relative">

@@ -25,7 +25,25 @@
 
         &::placeholder {
             font-family: "basic-sans", sans-serif;
-            font-size: $font14;
+            font-size: $font16;
+            line-height: $leading24;
+            letter-spacing: $space-0_16;
+            color: $black;
+        }
+    }
+}
+
+.textarea {
+    padding: 0px 19px;
+    border-radius: $radius7;
+
+    &.white-b-textarea {
+        color: $black;
+        border: 1px solid $color-DEDEDE;
+
+        &::placeholder {
+            font-family: "basic-sans", sans-serif;
+            font-size: $font16;
             line-height: $leading24;
             letter-spacing: $space-0_16;
             color: $black;
@@ -114,9 +132,9 @@
 }
 
 .checkbox-container {
-    &.black-checkbox-container {
-        margin-right: 60px;
-    }
+    // &.black-checkbox-container {
+    //     margin-right: 60px;
+    // }
 
     input {
         cursor: pointer;
@@ -138,11 +156,11 @@
     }
 
     .check-box {
-        &.white-checkbox {
-            height: 30px;
-            width: 30px;
-            background-color: $white;
+        height: 30px;
+        width: 30px;
+        background-color: $white;
 
+        &.white-checkbox {
             &::after {
                 content: "";
                 position: absolute;
@@ -158,9 +176,6 @@
         }
 
         &.black-checkbox {
-            height: 29px;
-            width: 29px;
-            background-color: $white;
             border: 1px solid $color-DEDEDE;
 
             &::after {
@@ -183,8 +198,9 @@
                 border-radius: 2px;
                 background-color: $black;
                 position: absolute;
-                top: 2.5px;
-                left: 2.5px;
+                top: 50%;
+                transform: translate(-50% , -50%);
+                left: 50%;
                 display: none;
             }
         }
@@ -314,9 +330,10 @@
 }
 
 .switch-container {
-    input{
+    input {
         z-index: 9999;
     }
+
     .input2 {
         &:checked~.switch {
             background-color: $black;

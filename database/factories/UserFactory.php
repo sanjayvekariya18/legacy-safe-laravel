@@ -31,6 +31,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
             'mobile_number' => $this->faker->phoneNumber,
+            'company_name' => $this->faker->company(),
             'status' => 1, // Assuming 1 is active
             'address1' => $this->faker->address,
             'address2' => $this->faker->address,

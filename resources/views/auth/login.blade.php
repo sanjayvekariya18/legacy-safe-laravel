@@ -38,14 +38,14 @@
                                     in
                                 </div>
                                 <div class="position-relative dmb-20">
-                                    <x-text-input type="text" name="email"
+                                    <x-text-input class="white-input border-0" type="text" name="email"
                                         placeholder="Email address…" :value="old('email')" required autofocus
                                         autocomplete="email" />
                                     <x-input-error :message="$errors->first('email')" />
                                 </div>
 
                                 <div class="position-relative dmb-20">
-                                    <x-text-input type="password" name="password" placeholder="Password…"
+                                    <x-text-input class="white-input border-0" type="password" name="password" placeholder="Password…"
                                         :value="old('password')" required autofocus autocomplete="password" />
                                     <x-input-error :message="$errors->first('password')" />
 
@@ -63,7 +63,7 @@
                                     <span class="check-box white-checkbox radius7 position-relative me-2"></span>
                                     Click to remember me
                                 </div>
-                                <x-primary-button class="large-btn blue-btn">Sign me in</x-primary-button>
+                                <x-primary-button class="large-btn blue-btn w-100 fw-normal">Sign me in</x-primary-button>
                             </div>
                         </form>
                         <div class="bg-white dpt-30 dpb-30">

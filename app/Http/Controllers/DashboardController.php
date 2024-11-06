@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\BreadcrumbsService;
 use Illuminate\Http\Request;
 
-class SharedUserController extends Controller
+class DashboardController extends Controller
 {
     protected $breadcrumbs;
 
@@ -21,10 +21,8 @@ class SharedUserController extends Controller
     {
         $this->breadcrumbs->reset();
         $this->breadcrumbs->add('Dashboard', route('dashboard'));
-        $this->breadcrumbs->add('Users', route('shared.users.index'));
 
-
-        return view('shared-users.index', [
+        return view('dashboard', [
             'breadcrumbs' => $this->breadcrumbs->get(),
         ]);
     }

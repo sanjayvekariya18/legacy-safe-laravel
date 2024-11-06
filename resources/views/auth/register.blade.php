@@ -63,51 +63,73 @@
                                         @csrf
                                         <div class="row input-row">
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="first_name" placeholder="First Name…" :value="old('first_name')" required autofocus autocomplete="first_name" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="first_name" placeholder="First Name…" :value="old('first_name')"
+                                                    required autofocus autocomplete="first_name" />
                                                 <x-input-error :message="$errors->first('first_name')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="last_name" placeholder="Last Name…" :value="old('last_name')" required autocomplete="last_name" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="last_name" placeholder="Last Name…" :value="old('last_name')" required
+                                                    autocomplete="last_name" />
                                                 <x-input-error :message="$errors->first('last_name')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="email" placeholder="Email……" :value="old('email')" required autocomplete="email" />
+                                                <x-text-input class="white-input border-0" type="text" name="email"
+                                                    placeholder="Email……" :value="old('email')" required
+                                                    autocomplete="email" />
                                                 <x-input-error :message="$errors->first('email')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="mobile" placeholder="Mobile Number (+44)" :value="old('mobile')" required autocomplete="mobile" />
-                                                <x-input-error :message="$errors->first('mobile')" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="mobile_number" placeholder="Mobile Number (+44)"
+                                                    :value="old('mobile_number')" required autocomplete="mobile_number" />
+                                                <x-input-error :message="$errors->first('mobile_number')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="password" name="password" placeholder="Password…" :value="old('password')" required autocomplete="new-password" />
+                                                <x-text-input class="white-input border-0" type="password"
+                                                    name="password" placeholder="Password…" :value="old('password')" required
+                                                    autocomplete="new-password" />
                                                 <x-input-error :message="$errors->first('password')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="password" name="password_confirmation" placeholder="Confirm Password…" required autocomplete="new-password" />
+                                                <x-text-input class="white-input border-0" type="password"
+                                                    name="password_confirmation" placeholder="Confirm Password…"
+                                                    required autocomplete="new-password" />
                                             </div>
                                         </div>
                                         <div class="tk-basic-sans font30 leading34 space-0_3 text-white dmt-45 dmb-35">
                                             Billing details</div>
                                         <div class="row input-row">
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="address1" placeholder="First line of address…" :value="old('address1')" required autocomplete="address1" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="address1" placeholder="First line of address…"
+                                                    :value="old('address1')" required autocomplete="address1" />
                                                 <x-input-error :message="$errors->first('address1')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="address2" placeholder="Second line of address…" :value="old('address2')" required autocomplete="address2" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="address2" placeholder="Second line of address…"
+                                                    :value="old('address2')" required autocomplete="address2" />
                                                 <x-input-error :message="$errors->first('address2')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="country" placeholder="Country…" :value="old('country')" required autocomplete="country" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="country" placeholder="Country…" :value="old('country')" required
+                                                    autocomplete="country" />
                                                 <x-input-error :message="$errors->first('country')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="postcode" placeholder="Postcode…" :value="old('postcode')" required autocomplete="postcode" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="postcode" placeholder="Postcode…" :value="old('postcode')"
+                                                    required autocomplete="postcode" />
                                                 <x-input-error :message="$errors->first('postcode')" />
                                             </div>
                                         </div>
-                                        <input type="hidden" name="role" value="{{ \App\Models\User::ROLE_CLIENT }}">
-                                        <x-primary-button class="large-btn blue-btn">Sign up</x-primary-button>
+                                        <input type="hidden" name="role"
+                                            value="{{ \App\Models\User::ROLE_CLIENT }}">
+                                        <x-primary-button class="large-btn blue-btn w-100 fw-normal">Sign
+                                            up</x-primary-button>
                                     </form>
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel"
@@ -116,65 +138,91 @@
                                         @csrf
                                         <div class="row input-row">
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="first_name" placeholder="First Name…" :value="old('first_name')" required autofocus autocomplete="first_name" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="first_name" placeholder="First Name…" :value="old('first_name')"
+                                                    required autofocus autocomplete="first_name" />
                                                 <x-input-error :message="$errors->first('first_name')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="last_name" placeholder="Last Name…" :value="old('last_name')" required autocomplete="last_name" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="last_name" placeholder="Last Name…" :value="old('last_name')"
+                                                    required autocomplete="last_name" />
                                                 <x-input-error :message="$errors->first('last_name')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="email" placeholder="Email……" :value="old('email')" required autocomplete="email" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="email" placeholder="Email……" :value="old('email')" required
+                                                    autocomplete="email" />
                                                 <x-input-error :message="$errors->first('email')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="mobile" placeholder="Mobile Number (+44)" :value="old('mobile')" required autocomplete="mobile" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="mobile_number" placeholder="mobile_number Number (+44)"
+                                                    :value="old('mobile')" required autocomplete="mobile_number" />
                                                 <x-input-error :message="$errors->first('mobile')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <select name="professional_type" class="js-select3 d-none" data-placeholder="Professional Type (Please select)">
+                                                <select name="professional_type" class="js-select3 d-none"
+                                                    data-placeholder="Professional Type (Please select)">
                                                     <option></option>
                                                     @foreach (\App\Models\User::PROFESSIONAL_TYPES as $professionalType)
-                                                        <option value="{{ $professionalType }}" {{ $professionalType == old('professional_type') ? 'selected' : '' }}>
+                                                        <option value="{{ $professionalType }}"
+                                                            {{ $professionalType == old('professional_type') ? 'selected' : '' }}>
                                                             {{ $professionalType }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="company_name" placeholder="Company Name…" :value="old('company_name')" required autocomplete="company_name" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="company_name" placeholder="Company Name…" :value="old('company_name')"
+                                                    required autocomplete="company_name" />
                                                 <x-input-error :message="$errors->first('company_name')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="password" name="password" placeholder="Password…" :value="old('password')" required autocomplete="new-password" />
+                                                <x-text-input class="white-input border-0" type="password"
+                                                    name="password" placeholder="Password…" :value="old('password')"
+                                                    required autocomplete="new-password" />
                                                 <x-input-error :message="$errors->first('password')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="password" name="password_confirmation" placeholder="Confirm Password…" required autocomplete="new-password" />
+                                                <x-text-input class="white-input border-0" type="password"
+                                                    name="password_confirmation" placeholder="Confirm Password…"
+                                                    required autocomplete="new-password" />
                                             </div>
                                         </div>
                                         <div class="tk-basic-sans font30 leading34 space-0_3 text-white dmt-45 dmb-35">
                                             Billing details</div>
                                         <div class="row input-row">
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="address1" placeholder="First line of address…" :value="old('address1')" required autocomplete="address1" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="address1" placeholder="First line of address…"
+                                                    :value="old('address1')" required autocomplete="address1" />
                                                 <x-input-error :message="$errors->first('address1')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="address2" placeholder="Second line of address…" :value="old('address2')" required autocomplete="address2" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="address2" placeholder="Second line of address…"
+                                                    :value="old('address2')" required autocomplete="address2" />
                                                 <x-input-error :message="$errors->first('address2')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="country" placeholder="Country…" :value="old('country')" required autocomplete="country" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="country" placeholder="Country…" :value="old('country')" required
+                                                    autocomplete="country" />
                                                 <x-input-error :message="$errors->first('country')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <x-text-input type="text" name="postcode" placeholder="Postcode…" :value="old('postcode')" required autocomplete="postcode" />
+                                                <x-text-input class="white-input border-0" type="text"
+                                                    name="postcode" placeholder="Postcode…" :value="old('postcode')"
+                                                    required autocomplete="postcode" />
                                                 <x-input-error :message="$errors->first('postcode')" />
                                             </div>
                                         </div>
-                                        <input type="hidden" name="role" value="{{ \App\Models\User::ROLE_PROFESSIONAL }}">
-                                        <x-primary-button class="large-btn blue-btn">Sign up</x-primary-button>
+                                        <input type="hidden" name="role"
+                                            value="{{ \App\Models\User::ROLE_PROFESSIONAL }}">
+                                        <x-primary-button class="large-btn blue-btn w-100 fw-normal">Sign
+                                            up</x-primary-button>
                                     </form>
                                 </div>
                             </div>
@@ -185,4 +233,5 @@
         </section>
     </main>
 </body>
+
 </html>

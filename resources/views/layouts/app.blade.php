@@ -102,5 +102,9 @@
         </main>
     </div> --}}
 </body>
-
+<!-- Page Specific Scripts
+============================================= -->
+@stack('page-specific-scripts')
+<!-- end of Page Specific Scripts
+============================================= -->
 </html>
