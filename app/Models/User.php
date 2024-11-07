@@ -20,7 +20,9 @@ class User extends Authenticatable
     const ROLE_USER = "User";
 
     const PROFESSIONAL_TYPE_SOLICITOR = "Solicitor";
-    const PROFESSIONAL_TYPE_PROFESSIONAL = "Professional";
+    const PROFESSIONAL_TYPE_FINANCIAL_ADVISER = "Financial Adviser";
+    const PROFESSIONAL_TYPE_ACCOUNTANT = "Accountant";
+    const PROFESSIONAL_TYPE_EXECUTOR = "Executor";
 
     public const ROLES = [
         self::ROLE_ADMIN,
@@ -32,7 +34,9 @@ class User extends Authenticatable
     // Define a static array
     public const PROFESSIONAL_TYPES = [
         self::PROFESSIONAL_TYPE_SOLICITOR => 'Solicitor',
-        self::PROFESSIONAL_TYPE_PROFESSIONAL => 'Professional',
+        self::PROFESSIONAL_TYPE_FINANCIAL_ADVISER => 'Financial Adviser',
+        self::PROFESSIONAL_TYPE_ACCOUNTANT => 'Accountant',
+        self::PROFESSIONAL_TYPE_EXECUTOR => 'Executor',
     ];
 
     /**

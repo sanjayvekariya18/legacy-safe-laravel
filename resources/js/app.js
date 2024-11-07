@@ -1,9 +1,13 @@
-import './bootstrap';
 import $ from 'jquery';
-import 'bootstrap';
+// Import Bootstrap's JS (this provides the modal functionality)
+import * as bootstrap from 'bootstrap';
+// Optionally, if you need Popper.js for tooltips, popovers, etc.
+import { createPopper } from '@popperjs/core';
 import { Select } from './custom/Select.js';
 
 window.$ = window.jQuery = $;
+// Expose bootstrap globally on the window object
+window.bootstrap = bootstrap;
 
 
 window.windowWidth = $(window).width();

@@ -38,8 +38,8 @@ export class Select {
             placeholder: "Select a state",
             allowClear: false,
             minimumResultsForSearch: Infinity,
-            dropdownCssClass: "user-select2",
-            dropdownParent: $('#invite-user')
+            dropdownCssClass: "manager-select2",
+            dropdownParent: $('#invite-user-modal')
         });
     }
 }

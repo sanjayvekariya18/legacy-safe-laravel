@@ -56,7 +56,6 @@
                                     </button>
                                 </li>
                             </ul>
-                            {{ var_dump($errors) }}
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home" role="tabpanel"
                                     aria-labelledby="home-tab">

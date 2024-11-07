@@ -14,13 +14,17 @@
         </div>
         <div class="col-5 ps-3">
             <div class="position-relative w-100">
-                <input type="text" placeholder="Who are you looking for?.."
-                    class="input white-b-input height-50 w-100 tk-basic-sans font16 leading19 pe-5">
-                <div class="position-absolute h-100 top-0 end-0 d-flex align-items-center justify-content-end pe-2">
-                    <div class="bg-224598 search-icon radius4 d-flex align-items-center justify-content-center">
-                        <img src="{{ asset('images/search-icon.svg') }}" alt="">
+                <form action="{{ route('users.index') }}" method="GET" class="d-flex mb-3">
+                    <input name="search" value="{{ request()->get('search') }}" type="text"
+                        placeholder="Who are you looking for?.."
+                        class="input white-b-input height-50 w-100 tk-basic-sans font16 leading19 pe-5">
+                    <div class="position-absolute h-100 top-0 end-0 d-flex align-items-center justify-content-end pe-2">
+                        <button type="submit"
+                            class="bg-224598 search-icon radius4 d-flex align-items-center justify-content-center">
+                            <img src="{{ asset('images/search-icon.svg') }}" alt="">
+                        </button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -37,50 +41,49 @@
     <div class="tables pe-3 dmb-45">
         <table class="table common-table user-table mb-0">
             <tbody>
-                <tr>
-                    <td>
-                        John Doe
-                    </td>
-                    <td>
-                        example123.@email.com
-                    </td>
-                    <td>
-                        John Doe Company
-                    </td>
-                    <td>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <span class="me-3"> User</span>
-                            <div class="d-flex align-items-center">
-                                <a href="{{ route('users.create') }}"
-                                    class="text-decoration-none border-0 bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
-                                <a href="#remove-user" data-bs-toggle="modal" data-bs-target="#remove-user"
-                                    class="delete-icon ms-3 d-inline-flex">
-                                    <img src="{{ asset('images/delet.svg') }}" alt="" class="h-100">
-                                </a>
+                @forelse ($users as $user)
+                    <tr>
+                        <td>
+                            {{ $user->name }}
+                        </td>
+                        <td>
+                            {{ $user->email }}
+                        </td>
+                        <td>
+                            {{ $user->company_name }}
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <span class="me-3">
+                                    {{ implode(',', $user->getRoleNames()->toArray()) }}
+                                </span>
+                                <div class="d-flex align-items-center">
+                                    <a href="{{ route('users.edit', ['user' => $user->id]) }}"
+                                        class="text-decoration-none border-0 bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
+                                    <a href="#remove-user-modal" data-user-id="{{ $user->id }}"
+                                        data-user-name="{{ $user->name }}" data-bs-toggle="modal"
+                                        data-bs-target="#remove-user-modal"
+                                        class="delete-icon ms-3 d-inline-flex delete-user">
+                                        <img src="{{ asset('images/delet.svg') }}" alt="" class="h-100">
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="4" class="text-center">No users found.</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
     <div class="d-flex align-items-center justify-content-between dmb-50">
         <div class="pagination d-flex align-items-center">
-            <a href="#"
-                class="pagination-item text-decoration-none tk-basic-sans font13 leading22 space-0_13 text-808080 fw-normal me-3">
-                <span class="text-black">
-                    1 - 50</span> of 100</a>
-            <a href="#"
-                class="text-decoration-none pagination-arrow  text-black d-flex align-items-center justify-content-center radius4 me-3 prev">
-                <img src="{{ asset('images/left.svg') }}" alt="">
-            </a>
-            <a href="#"
-                class="text-decoration-none pagination-arrow  text-black d-flex align-items-center justify-content-center radius4 me-3 next">
-                <img src="{{ asset('images/right.svg') }}" alt="">
-            </a>
+            {{ $users->links('vendor.pagination.bootstrap-5') }}
         </div>
         <div>
-            <a href="#invite-user" data-bs-toggle="modal" data-bs-target="#invite-user"
+            <a href="#invite-user-modal" data-bs-toggle="modal" data-bs-target="#invite-user-modal"
                 class="text-decoration-none large-btn blue-btn tk-basic-sans font16 leading22 space-0_16 fw-normal d-inline-flex align-items-center justify-content-center px-5 radius7">
                 <img src="{{ asset('images/plus-circle.svg') }}" alt="" class="me-2">
                 Invite new user
@@ -88,7 +91,7 @@
         </div>
     </div>
     <!-- remove-user-modal -->
-    <div class="modal remove-user-modal fade" id="remove-user" data-bs-backdrop="static" data-bs-keyboard="false"
+    <div class="modal remove-user-modal fade" id="remove-user-modal" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="remove-userLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div
@@ -102,13 +105,19 @@
                 </div>
                 <div class="">
                     <div class="tk-basic-sans font26 leading30 space-0_26 text-0F0F0F text-center dmb-25 col-8 mx-auto">
-                        Are you sure you want to remove John Doe
+                        Are you sure you want to remove <span id="user-name"></span>
                     </div>
                     <div class="d-flex align-items-center row6">
                         <div class="col-6">
-                            <button
-                                class="large-btn blue-btn2 w-100 d-inline-flex align-items-center justify-content-center tk-basic-sans fw-normal font16 leading19 space-0_16 radius7 transition">Yes,
-                                remove</button>
+                            <!-- Confirm Delete Button -->
+                            <form id="delete-user-form" action="" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit"
+                                    class="large-btn blue-btn2 w-100 d-inline-flex align-items-center justify-content-center tk-basic-sans fw-normal font16 leading19 space-0_16 radius7 transition">Yes,
+                                    remove</button>
+                            </form>
+
                         </div>
                         <div class="col-6">
                             <button
@@ -122,7 +131,7 @@
     </div>
 
     <!-- invite-user-modal -->
-    <div class="modal invite-user-modal fade" id="invite-user" data-bs-backdrop="static" data-bs-keyboard="false"
+    <div class="modal invite-user-modal fade" id="invite-user-modal" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="invite-userLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div
@@ -162,43 +171,99 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade w-100 show active" id="home" role="tabpanel"
                             aria-labelledby="home-tab">
-                            <div class="d-flex w-100 justify-content-center">
-                                <div class="w-100 d-flex justify-content-center">
-                                    <input type="email" name="" placeholder="Email…"
-                                        class="input white-b-input tk-basic-sans font16 leading19 bg-white w-100">
+                            <form method="POST" action="{{ route('shared.users.invite') }}">
+                                @csrf
+                                <div class="w-100 d-flex justify-content-center dmb-20">
+                                    <x-text-input class="white-b-input" type="email" name="email"
+                                        placeholder="Email…" value="{{ $errors->hasBag(\App\Models\User::ROLE_CLIENT) ? old('email') : ''  }}" required autocomplete="email" />
                                 </div>
-                            </div>
+                                <x-input-error class="d-flex justify-content-center" :message="$errors->getBag(\App\Models\User::ROLE_CLIENT)->first('email')" />
+                                <input type="hidden" name="role" value="{{ \App\Models\User::ROLE_CLIENT }}">
+                                <div class="d-flex align-items-center justify-content-center dmt-20">
+                                    <x-primary-button
+                                        class="large-btn blue-btn2 w-248 fw-normal">Register</x-primary-button>
+                                </div>
+                            </form>
                         </div>
                         <div class="tab-pane fade w-100" id="profile">
-                            <div class="d-flex justify-content-center row8">
-                                <div class="col-6">
-                                    <div class="user-select d-inline-flex w-100">
-                                        <select class="js-select4 d-none" data-placeholder="Select an option">
-                                            <option></option>
-                                            <option value="Solicitor">Solicitor
-                                            </option>
-                                            <option value="Financial Adviser">Financial Adviser
-                                            </option>
-                                            <option value="Accountant">Accountant
-                                            </option>
-                                            <option value="Executor">Executor
-                                            </option>
-                                        </select>
+                            <form method="POST" action="{{ route('shared.users.invite') }}">
+                                @csrf
+                                <div class="d-flex justify-content-center row8">
+                                    <div class="col-6 position-relative dmb-20">
+                                        <div class="user-select d-inline-flex w-100">
+                                            <select name="professional_type" class="js-select4 d-none"
+                                                data-placeholder="Professional Type (Please select)">
+                                                <option></option>
+                                                @foreach (\App\Models\User::PROFESSIONAL_TYPES as $professionalType)
+                                                    <option value="{{ $professionalType }}"
+                                                        {{ $professionalType == old('professional_type') ? 'selected' : '' }}>
+                                                        {{ $professionalType }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <x-input-error :message="$errors->getBag(\App\Models\User::ROLE_PROFESSIONAL)->first('professional_type')" />
+                                    </div>
+                                    <div class="col-6 position-relative dmb-20">
+                                        <x-text-input class="white-b-input" type="email" name="email"
+                                            placeholder="Email…" value="{{ $errors->hasBag(\App\Models\User::ROLE_PROFESSIONAL) ? old('email') : ''  }}" required autocomplete="email" />
+                                        <x-input-error :message="$errors->getBag(\App\Models\User::ROLE_PROFESSIONAL)->first('email')" />
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <input type="email" name="" placeholder="Email…"
-                                        class="input white-b-input tk-basic-sans font16 leading19 bg-white w-100">
+                                <input type="hidden" name="role" value="{{ \App\Models\User::ROLE_PROFESSIONAL }}">
+                                <div class="d-flex align-items-center justify-content-center dmt-20">
+                                    <x-primary-button
+                                        class="large-btn blue-btn2 w-248 fw-normal">Register</x-primary-button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
-                    </div>
-                    <div class="d-flex align-items-center justify-content-center dmt-20">
-                        <button
-                            class="large-btn blue-btn2 w-248 d-inline-flex align-items-center justify-content-center tk-basic-sans fw-normal font16 leading19 space-0_16 radius7 transition">Register</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+@push('page-specific-scripts')
+    <script type="module">
+        // When a delete button is clicked
+        $('.delete-user').on('click', function(event) {
+            // Prevent the default action
+            event.preventDefault();
+
+            // Get the user data from the button's data attributes
+            var userId = $(this).data('user-id');
+            var userName = $(this).data('user-name');
+
+            // Update the modal content with the user's name
+            $('#user-name').text(userName);
+
+            // Update the form's action with the correct delete URL
+            var route = '{{ route('users.soft-delete', ':id') }}'.replace(':id',
+                userId); // Update the URL for the user deletion
+
+            $('#delete-user-form').attr('action', route);
+        });
+
+        // Assuming you have a modal with id #myModal
+        $('#remove-user').on('show.bs.modal', function(event) {
+            // Code to execute before modal opens
+            var button = $(event.relatedTarget); // Button that triggered the modal
+
+            var role = button.data('user'); // Assuming data-user attribute on the button
+
+            // Set the new heading
+            $(this).find('.modal-content .text-center .tk-basic-sans').text(role);
+        });
+
+        // If validation errors exist, open the modal automatically
+        @if($errors->getBag(\App\Models\User::ROLE_CLIENT)->any() || $errors->getBag(\App\Models\User::ROLE_PROFESSIONAL)->any())
+            @if ($errors->getBag(\App\Models\User::ROLE_PROFESSIONAL)->any())
+                $('#profile-tab').click();
+            @endif
+            var myModal = new bootstrap.Modal(document.getElementById('invite-user-modal'), {
+                keyboard: false
+            });
+            myModal.show();
+        @endif
+    </script>
+@endpush

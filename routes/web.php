@@ -69,6 +69,7 @@ Route::group(['middleware' => ['auth', 'role:' . User::ROLE_CLIENT]], function (
     ]);
 
     Route::get('shared-users', [SharedUserController::class, 'index'])->name('shared.users.index'); // View Shared Users
+    Route::post('shared-users/invite', [SharedUserController::class, 'sendInvite'])->name('shared.users.invite'); // View Shared Users
     Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index'); // View Subscription
 });
 //** End Client Routes */
