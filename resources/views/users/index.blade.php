@@ -100,7 +100,7 @@
                 </div>
                 <div class="">
                     <div class="tk-basic-sans font26 leading30 space-0_26 text-0F0F0F text-center dmb-25 col-8 mx-auto">
-                        Are you sure you want to remove <span id="userName"></span>
+                        Are you sure you want to remove <span id="user-name"></span>
                     </div>
                     <div class="d-flex align-items-center row6">
                         <div class="col-6">

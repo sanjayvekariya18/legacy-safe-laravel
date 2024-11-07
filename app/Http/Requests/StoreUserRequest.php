@@ -34,7 +34,7 @@ class StoreUserRequest extends FormRequest
             'country' => 'required|string|max:255',
             'postcode' => 'required|string|max:20',
             'roles' => 'required|array|min:1', // Ensure at least one role is assigned
-            'roles.*' => 'exists:roles,id',
+            'roles.*' => 'exists:roles,name',
         ];
     }
 }

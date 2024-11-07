@@ -78,7 +78,7 @@ class UserController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password),
             'mobile_number' => $request->mobile_number,
             'professional_type' => $request->professional_type ?? null,
             'address1' => $request->address1,
@@ -90,7 +90,7 @@ class UserController extends Controller
         // Assign roles to the user
         if ($request->roles) {
             // Fetch role names based on the provided IDs and assign them
-            $roleNames = Role::whereIn('id', $request->roles)->pluck('name')->toArray();
+            $roleNames = $request->roles;
             $user->assignRole($roleNames);
 
             // Retrieve and sync all permissions from the selected roles to the user directly
@@ -166,7 +166,7 @@ class UserController extends Controller
         // Assign roles to the user
         if ($request->roles) {
             // Fetch role names based on the provided IDs and assign them
-            $roleNames = Role::whereIn('id', $request->roles)->pluck('name')->toArray();
+            $roleNames = $request->roles;
             $user->assignRole($roleNames);
 
             // Retrieve and sync all permissions from the selected roles to the user directly

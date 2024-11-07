@@ -56,6 +56,7 @@
                                     </button>
                                 </li>
                             </ul>
+                            {{ var_dump($errors) }}
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="home" role="tabpanel"
                                     aria-labelledby="home-tab">
@@ -126,7 +127,7 @@
                                                 <x-input-error :message="$errors->first('postcode')" />
                                             </div>
                                         </div>
-                                        <input type="hidden" name="role"
+                                        <input type="hidden" name="roles[]"
                                             value="{{ \App\Models\User::ROLE_CLIENT }}">
                                         <x-primary-button class="large-btn blue-btn w-100 fw-normal">Sign
                                             up</x-primary-button>
@@ -219,7 +220,7 @@
                                                 <x-input-error :message="$errors->first('postcode')" />
                                             </div>
                                         </div>
-                                        <input type="hidden" name="role"
+                                        <input type="hidden" name="roles[]"
                                             value="{{ \App\Models\User::ROLE_PROFESSIONAL }}">
                                         <x-primary-button class="large-btn blue-btn w-100 fw-normal">Sign
                                             up</x-primary-button>
