@@ -67,6 +67,9 @@ Route::group(['middleware' => ['auth', 'role:' . User::ROLE_CLIENT]], function (
         'update' => 'documents.update',
         'destroy' => 'documents.destroy',
     ]);
+    Route::post('/upload-document', [DocumentController::class, 'uploadDocument'])->name('upload.document');
+    Route::get('/view-document/{document}', [DocumentController::class, 'viewDocument'])->name('view.document');
+    Route::get('/remove-document/{document}', [DocumentController::class, 'removeDocument'])->name('remove.document');
 
     Route::get('shared-users', [SharedUserController::class, 'index'])->name('shared.users.index'); // View Shared Users
     Route::post('shared-users/invite', [SharedUserController::class, 'sendInvite'])->name('shared.users.invite'); // View Shared Users

@@ -16,7 +16,7 @@ export class Select {
     }
     SelectTwo() {
         $(".js-select2").select2({
-            closeOnSelect: true,
+            closeOnSelect: false,
             placeholder: "Select a state",
             allowClear: false,
             minimumResultsForSearch: Infinity,

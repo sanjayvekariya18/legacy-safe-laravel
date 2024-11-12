@@ -4,6 +4,7 @@ import * as bootstrap from 'bootstrap';
 // Optionally, if you need Popper.js for tooltips, popovers, etc.
 import { createPopper } from '@popperjs/core';
 import { Select } from './custom/Select.js';
+import { Document } from './custom/Document.js';
 
 window.$ = window.jQuery = $;
 // Expose bootstrap globally on the window object
@@ -20,4 +21,7 @@ window.isiPod = navigator.userAgent.toLowerCase().indexOf('ipod');
 $(document).ready(function () {
     window.select = new Select();
     window.select.init();
+
+    window.documentView = new Document();
+    window.documentView.init();
 });

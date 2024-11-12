@@ -16,6 +16,8 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/select2.min.js'])
+    <!-- Inside the <head> section -->
+    @livewireStyles
 </head>
 
 <body>
@@ -101,6 +103,8 @@
             @yield('content')
         </main>
     </div> --}}
+    <!-- Before the closing </body> tag -->
+    @livewireScripts
 </body>
 <!-- Page Specific Scripts
 ============================================= -->

@@ -1,16 +1,7 @@
 export class Document {
     init() {
-        this.DocData();
         this.Switches();
         this.Accordion();
-    }
-
-    DocData() {
-        $(document).ready(function () {
-            $('.ready-view-btn').on('click', function () {
-                $('.ready-view-table').slideToggle();
-            });
-        })
     }
 
     Switches() {
@@ -28,11 +19,19 @@ export class Document {
 
     Accordion() {
         $(document).ready(function () {
-            // Handle click events for closet headers
-            $('.accordion-header').click(function () {
-                $(this).toggleClass('active').next('.accordion-content').slideToggle();
-                $('.accordion-header').not(this).removeClass('active').next('.accordion-content').slideUp();
+            $('.ready-view-btn').click(function (e) {
+                e.preventDefault();
+                $(this).closest('.accordion-header').toggleClass('active');
+                $(this).closest('.accordion-header').next('.accordion-content').slideToggle();
             });
+
+            $('.close-arrow').click(function () {
+                const $header = $(this).closest('.accordion-header');
+                const $content = $header.next('.accordion-content');
+                $header.removeClass('active');
+                $content.slideUp();
+            });
+
         });
     }
 }

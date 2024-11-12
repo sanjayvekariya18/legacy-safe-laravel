@@ -21,27 +21,57 @@ class UserSeeder extends Seeder
         ]);
         $admin->assignRole(User::ROLE_ADMIN);
 
-        $client = User::factory()->create([
+        $client1 = User::factory()->create([
             'first_name' => 'Jack',
             'last_name' => 'Simmons',
-            'email' => 'jack@example.com',
+            'email' => 'client1@example.com',
         ]);
-        $client->assignRole(User::ROLE_CLIENT);
+        $client1->assignRole(User::ROLE_CLIENT);
+
+        $client2 = User::factory()->create([
+            'email' => 'client2@example.com',
+        ]);
+        $client2->assignRole(User::ROLE_CLIENT);
+
+        $client3 = User::factory()->create([
+            'email' => 'client3@example.com',
+        ]);
+        $client3->assignRole(User::ROLE_CLIENT);
 
         // Create Professional
-        $professional = User::factory()->create([
+        $professional1 = User::factory()->create([
             'first_name' => 'Fodens',
             'last_name' => 'Solicitors',
-            'email' => 'fodens@example.com',
+            'email' => 'professional1@example.com',
         ]);
-        $professional->assignRole(User::ROLE_PROFESSIONAL);
+        $professional1->assignRole(User::ROLE_PROFESSIONAL);
+
+        $professional2 = User::factory()->create([
+            'email' => 'professional2@example.com',
+        ]);
+        $professional2->assignRole(User::ROLE_PROFESSIONAL);
+
+        $professional3 = User::factory()->create([
+            'email' => 'professional3@example.com',
+        ]);
+        $professional3->assignRole(User::ROLE_PROFESSIONAL);
 
         // Create Regular User
-        $user = User::factory()->create([
+        $user1 = User::factory()->create([
             'first_name' => 'John',
             'last_name' => 'Doe',
-            'email' => 'john@example.com',
+            'email' => 'user1@example.com',
         ]);
-        $user->assignRole(User::ROLE_USER);
+        $user1->assignRole(User::ROLE_USER);
+
+        $user2 = User::factory()->create([
+            'email' => 'user2@example.com',
+        ]);
+        $user2->assignRole(User::ROLE_USER);
+
+        $user3 = User::factory()->create([
+            'email' => 'user3@example.com',
+        ]);
+        $user3->assignRole(User::ROLE_USER);
     }
 }

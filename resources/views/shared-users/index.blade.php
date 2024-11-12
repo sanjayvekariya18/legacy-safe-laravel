@@ -78,7 +78,7 @@
             </tbody>
         </table>
     </div>
-    <div class="d-flex align-items-center justify-content-between dmb-50">
+    <div class="d-flex align-items-center justify-content-between dmb-50 pe-3">
         <div class="pagination d-flex align-items-center">
             {{ $users->links('vendor.pagination.bootstrap-5') }}
         </div>

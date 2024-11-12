@@ -34,4 +34,13 @@ class Document extends Model
     {
         return $this->hasMany(SharedWithUser::class);
     }
+
+    public function sharedWithProfessionalUsers()
+    {
+        return $this->hasMany(SharedWithUser::class)
+            ->whereHas('user.roles', function ($query) {
+                $query->where('name', User::ROLE_PROFESSIONAL);
+            });
+    }
+
 }

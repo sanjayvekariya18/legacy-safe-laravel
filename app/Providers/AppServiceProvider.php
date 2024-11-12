@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Document;
 use App\Models\Invoice;
 use App\Policies\InvoicePolicy;
+use App\Policies\DocumentPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::policy(Invoice::class, InvoicePolicy::class);
+        // Gate::policy(Invoice::class, InvoicePolicy::class);
+        // Gate::policy(Document::class, DocumentPolicy::class);
     }
 }
