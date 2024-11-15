@@ -49,7 +49,7 @@
                 @forelse ($documents as $document)
                     <tr>
                         <td colspan="2">
-                            <img src="{{ asset('images/folder.svg') }}" alt="">
+                            <img src="{{ asset('images/file-icon.svg') }}" alt="">
                             <span>
                                 {{ $document->name }}
                             </span>

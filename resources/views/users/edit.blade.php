@@ -107,7 +107,7 @@
                     </button>
                     <button type="button" data-action='hardDeleteForm'
                         class="tk-basic-sans font16 leading19 space-0_16 text-black radius7 border-1 bg-transparent user-permission-btn align-items-center">
-                        <img src="{{ asset('images/delet.svg') }}" class="permission-box-user-logo me-2" alt="">
+                        <img src="{{ asset('images/delete-icon.svg') }}" class="permission-box-user-logo me-2" alt="">
                         Remove User
                     </button>
                 </div>

@@ -63,7 +63,7 @@
                                         data-user-name="{{ $user->name }}" data-bs-toggle="modal"
                                         data-bs-target="#remove-user-modal"
                                         class="delete-icon ms-3 d-inline-flex delete-user">
-                                        <img src="{{ asset('images/delet.svg') }}" alt="" class="h-100">
+                                        <img src="{{ asset('images/delete-icon.svg') }}" alt="" class="h-100">
                                     </a>
                                 </div>
                             </div>
@@ -177,7 +177,7 @@
                             <div class="d-flex justify-content-center row8">
                                 <div class="col-6">
                                     <div class="user-select d-inline-flex w-100">
-                                        <select class="js-select4 d-none" data-placeholder="Select an option">
+                                        <select id="js-select4" class="d-none" data-placeholder="Select an option">
                                             <option></option>
                                             <option value="Solicitor">Solicitor
                                             </option>

@@ -83,7 +83,7 @@
         <div class="title dmb-20">
             <div class="d-inline-flex align-items-center">
                 <div class="title-icon bg-white radius7 d-flex align-items-center justify-content-center">
-                    <img src="{{ asset('images/mail.svg') }}" alt="">
+                    <img src="{{ asset('images/post-icon.svg') }}" alt="">
                 </div>
                 <div class="tk-basic-sans font22 leading22 space-0_22 text-0F0F0F fw-normal ms-3">
                     Message area
@@ -105,7 +105,7 @@
             <a href=""
                 class="back-all text-decoration-none tk-basic-sans font13 leading22 space-0_13 text-black fw-normal d-inline-flex align-items-center">
                 <div class="text-black d-flex align-items-center justify-content-center radius4 me-2">
-                    <img src="{{ asset('images/left.svg') }}" alt="">
+                    <img src="{{ asset('images/left-arrow.svg') }}" class="w-100" alt="">
                 </div>
                 Back to all
             </a>

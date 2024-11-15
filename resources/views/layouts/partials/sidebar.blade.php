@@ -18,14 +18,14 @@
         <div>
             <a href="{{ route('dashboard') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('dashboard') || Request::is('shared*') ? 'active' : '' }}">
                 <div class="me-2 ms-3 admin-menu-icon d-flex">
-                    <img src="{{ asset('images/home.svg') }}" class="w-100" alt="">
+                    <img src="{{ asset('images/home-icon.svg') }}" class="w-100" alt="">
                 </div>
                 <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Dashboard</div>
             </a>
             @if (Auth::user()->hasRole(\App\Models\User::ROLE_CLIENT))
                 <a href="{{ route('documents.create') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('documents/create*') ? 'active' : '' }}">
                     <div class="me-2 ms-3 admin-menu-icon d-flex">
-                        <img src="{{ asset('images/file.svg') }}" class="w-100" alt="">
+                        <img src="{{ asset('images/file-maneger.svg') }}" class="w-100" alt="">
                     </div>
                     <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">File manager</div>
                 </a>
@@ -57,7 +57,7 @@
             @if (Auth::user()->hasRole(\App\Models\User::ROLE_ADMIN) || Auth::user()->hasRole(\App\Models\User::ROLE_PROFESSIONAL))
                 <a href="{{ route('invoices.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('invoices*') ? 'active' : '' }}">
                     <div class="me-2 ms-3 admin-menu-icon d-flex">
-                        <img src="{{ asset('images/star.svg') }}" class="w-100" alt="">
+                        <img src="{{ asset('images/star-icon.svg') }}" class="w-100" alt="">
                     </div>
                     <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Invoices</div>
                 </a>
@@ -71,7 +71,7 @@
                 </a>
                 <a href="{{ route('subscriptions.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('subscptions*') ? 'active' : '' }}">
                     <div class="me-2 ms-3 admin-menu-icon d-flex">
-                        <img src="{{ asset('images/star.svg') }}" class="w-100" alt="">
+                        <img src="{{ asset('images/star-icon.svg') }}" class="w-100" alt="">
                     </div>
                     <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Upgrade your plan</div>
                 </a>
@@ -79,7 +79,7 @@
             @if (Auth::user()->hasRole(\App\Models\User::ROLE_ADMIN))
                 <a href="{{ route('activity.logs') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('activity*') ? 'active' : '' }}">
                     <div class="me-2 ms-3 admin-menu-icon d-flex">
-                        <img src="{{ asset('images/star.svg') }}" class="w-100" alt="">
+                        <img src="{{ asset('images/star-icon.svg') }}" class="w-100" alt="">
                     </div>
                     <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Activity Logs</div>
                 </a>
@@ -89,7 +89,7 @@
             <div class="tk-basic-sans fw-normal font12 leading14 space-0_12 text-808080 opacity60 me-1">Powered by
             </div>
             <div class="dashboard-logo">
-                <img src="{{ asset('images/logo.svg') }}" class="w-100" alt="">
+                <img src="{{ asset('images/legecy-black-logo.svg') }}" class="w-100" alt="">
             </div>
         </div>
     </div>

@@ -23,7 +23,7 @@
                 <tbody>
                     <tr>
                         <td colspan="2">
-                            <img src="{{ asset('images/user.svg') }}" alt="">
+                            <img src="{{ asset('images/file-icon.svg') }}" alt="">
                             <span>
                                 Document Name
                             </span>
@@ -40,7 +40,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <img src="{{ asset('images/user.svg') }}" alt="">
+                            <img src="{{ asset('images/file-icon.svg') }}" alt="">
                             <span>
                                 Document Name
                             </span>
@@ -57,7 +57,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <img src="{{ asset('images/user.svg') }}" alt="">
+                            <img src="{{ asset('images/file-icon.svg') }}" alt="">
                             <span>
                                 Document Name
                             </span>
@@ -86,7 +86,7 @@
                     <div class="d-inline-flex">
                         <div class="dashboard-icon bg-F0F0F0 radius7">
                             <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('images/user.svg') }}" alt="" class="">
+                                <img src="{{ asset('images/user-icon.svg') }}" alt="" class="">
                             </div>
                         </div>
                         <div class="ms-4 d-flex flex-column">
@@ -107,7 +107,7 @@
                     <div class="d-inline-flex">
                         <div class="dashboard-icon bg-F0F0F0 radius7">
                             <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('images/user.svg') }}" alt="" class="">
+                                <img src="{{ asset('images/document.svg') }}" alt="" class="">
                             </div>
                         </div>
                         <div class="ms-4 d-flex flex-column">
@@ -128,7 +128,7 @@
                     <div class="d-inline-flex">
                         <div class="dashboard-icon bg-F0F0F0 radius7">
                             <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('images/user.svg') }}" alt="" class="">
+                                <img src="{{ asset('images/file-maneger.svg') }}" alt="" class="">
                             </div>
                         </div>
                         <div class="ms-4 d-flex flex-column">
@@ -151,7 +151,7 @@
                     <div class="d-inline-flex">
                         <div class="dashboard-icon bg-F0F0F0 radius7">
                             <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('images/user.svg') }}" alt="" class="">
+                                <img src="{{ asset('images/file-maneger.svg') }}" alt="" class="">
                             </div>
                         </div>
                         <div class="ms-4 d-flex flex-column">
@@ -172,7 +172,7 @@
                     <div class="d-inline-flex">
                         <div class="dashboard-icon bg-F0F0F0 radius7">
                             <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('images/user.svg') }}" alt="" class="">
+                                <img src="{{ asset('images/document.svg') }}" alt="" class="">
                             </div>
                         </div>
                         <div class="ms-4 d-flex flex-column">
@@ -193,7 +193,7 @@
                     <div class="d-inline-flex">
                         <div class="dashboard-icon bg-F0F0F0 radius7">
                             <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('images/user.svg') }}" alt="" class="">
+                                <img src="{{ asset('images/user-icon.svg') }}" alt="" class="">
                             </div>
                         </div>
                         <div class="ms-4 d-flex flex-column">
@@ -216,7 +216,7 @@
                     <div class="d-inline-flex">
                         <div class="dashboard-icon bg-F0F0F0 radius7">
                             <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('images/user.svg') }}" alt="" class="">
+                                <img src="{{ asset('images/document.svg') }}" alt="" class="">
                             </div>
                         </div>
                         <div class="ms-4 d-flex flex-column">
@@ -237,7 +237,7 @@
                     <div class="d-inline-flex">
                         <div class="dashboard-icon bg-F0F0F0 radius7">
                             <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('images/user.svg') }}" alt="" class="">
+                                <img src="{{ asset('images/user-icon.svg') }}" alt="" class="">
                             </div>
                         </div>
                         <div class="ms-4 d-flex flex-column">

@@ -7,11 +7,11 @@
     @if ($paginator->onFirstPage())
         <a href="#"
             class="text-decoration-none pagination-arrow  text-black d-flex align-items-center justify-content-center radius4 me-3 prev">
-            <img src="{{ asset('images/left.svg') }}" alt="">
+            <img src="{{ asset('images/left-arrow.svg') }}" alt="">
         @else
             <a href="{{ $paginator->previousPageUrl() }}"
                 class="text-decoration-none pagination-arrow  text-black d-flex align-items-center justify-content-center radius4 me-3 prev">
-                <img src="{{ asset('images/left.svg') }}" alt="">
+                <img src="{{ asset('images/left-arrow.svg') }}" alt="">
             </a>
     @endif
 
@@ -19,12 +19,12 @@
     @if ($paginator->hasMorePages())
     <a href="{{ $paginator->nextPageUrl() }}"
         class="text-decoration-none pagination-arrow  text-black d-flex align-items-center justify-content-center radius4 me-3 next">
-        <img src="{{ asset('images/right.svg') }}" alt="">
+        <img src="{{ asset('images/right-arrow.svg') }}" class="w-100 h-100" alt="">
     </a>
     @else
     <a href="#"
         class="text-decoration-none pagination-arrow  text-black d-flex align-items-center justify-content-center radius4 me-3 next">
-        <img src="{{ asset('images/right.svg') }}" alt="">
+        <img src="{{ asset('images/right-arrow.svg') }}" class="w-100 h-100" alt="">
     </a>
     @endif
 @endif

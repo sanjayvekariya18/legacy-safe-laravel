@@ -5,19 +5,12 @@
         height: 44px;
 
         img {
-          height: 22px;
+          height:19px;
         }
       }
 
       .title-icon-back {
         height: 29px;
-        width: 29px;
-        border: 1px solid $color-DEDEDE;
-
-        img {
-          width: 7px;
-          height: 13px;
-        }
       }
     }
   }
@@ -88,11 +81,11 @@
         tbody {
           tr {
             td {
-                img{
-                    max-height: 19px;
-                    height: 100%;
-                    margin-right: 35px;
-                }
+              img{
+                margin-right: 35px;
+                max-height: 19px;
+                height: 100%;
+              }
             }
           }
         }
@@ -171,24 +164,12 @@
   .pagination {
     .pagination-arrow {
       width: 29px;
-      height: 29px;
-      border: 1px solid $color-DEDEDE;
-      img{
-        width: 7px;
-        height: 13px;
-      }
     }
   }
 
   .back-all {
     div {
       width: 29px;
-      height: 29px;
-      border: 1px solid $color-DEDEDE;
-      img{
-        width: 7px;
-        height: 13px;
-      }
     }
   }
 

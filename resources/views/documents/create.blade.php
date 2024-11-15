@@ -9,7 +9,7 @@
     @endif
     <div class="title d-flex align-items-center dmb-25">
         <div class="title-icon bg-white radius7 d-flex align-items-center justify-content-center">
-            <img src="{{ asset('images/file.svg') }}" alt="">
+            <img src="{{ asset('images/file-maneger.svg') }}" alt="">
         </div>
         <div class="tk-basic-sans font22 leading22 space-0_22 text-0F0F0F fw-normal ms-3">
             File manager
@@ -61,7 +61,7 @@
                     </div>
                     <div class="w-100 d-flex align-items-center justify-content-center position-relative h-100">
                         <div class="file-input-data">
-                            <img src="{{ asset('images/upload.svg') }}" alt="" class="upload-icon w-100 dmb-35">
+                            <img src="{{ asset('images/click-here-icon.svg') }}" alt="" class="upload-icon w-100 dmb-35">
                             <input type="file" name="document" id="document" onchange="uploadFile()"
                                 class="position-absolute top-0 start-0 w-100 h-100 cursor-pointer z-1">
                             <div class="w-100 tk-basic-sans font18 leading22 space-0_18 text-0F0F0F">

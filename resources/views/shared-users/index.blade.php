@@ -64,7 +64,7 @@
                                         data-user-name="{{ $user->name }}" data-bs-toggle="modal"
                                         data-bs-target="#remove-user-modal"
                                         class="delete-icon ms-3 d-inline-flex delete-user">
-                                        <img src="{{ asset('images/delet.svg') }}" alt="" class="h-100">
+                                        <img src="{{ asset('images/delete-icon.svg') }}" alt="" class="h-100">
                                     </a>
                                 </div>
                             </div>

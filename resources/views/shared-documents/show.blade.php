@@ -77,7 +77,7 @@
             <a href="{{ route('dashboard') }}"
                 class="back-all text-decoration-none tk-basic-sans font13 leading22 space-0_13 text-black fw-normal d-inline-flex align-items-center">
                 <div class="text-black d-flex align-items-center justify-content-center radius4 me-2">
-                    <img src="{{ asset('images/left.svg') }}" alt="">
+                    <img src="{{ asset('images/left-arrow.svg') }}" class="w-100" alt="">
                 </div>
                 Back to all
             </a>
