@@ -11,7 +11,7 @@
                         <div>
                             <div class="tk-basic-sans font16 leading22 space-0_16 text-black fw-normal dmb-15">
                                 {{ $chat->user->first_name }} -
-                                {{ $chat->user_id == auth()->id() ? 'Account holder' : $chat->user->professional_type }}
+                                {{ $chat->user_id == $chat->document->user->id ? 'Account holder' : $chat->user->professional_type }}
                             </div>
                             <div class="tk-basic-sans font16 leading22 space-0_16 text-808080 fw-normal">
                                 {{ $chat->message }}
