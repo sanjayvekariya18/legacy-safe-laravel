@@ -12,6 +12,9 @@ class DocumentMessage extends Component
 {
     use WithFileUploads;
 
+    protected $listeners = [
+        '$refresh'
+    ];
     public $documentId;
     public $message;
     public $file;
@@ -67,7 +70,7 @@ class DocumentMessage extends Component
         $this->file = null;
 
         // Refresh the component
-        $this->dispatch('messageSent');
+        $this->dispatch('$refresh')->self();
     }
 
     public function render()

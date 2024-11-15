@@ -137,7 +137,7 @@ class DocumentController extends Controller
         $this->breadcrumbs->reset();
         $this->breadcrumbs->add('Dashboard', route('dashboard'));
         $this->breadcrumbs->add('Documents', route('documents.index'));
-        $this->breadcrumbs->add($document->name, route('users.show', $document));
+        $this->breadcrumbs->add($document->name, route('documents.show', $document));
 
         return view('documents.show', [
             'document' => $document,

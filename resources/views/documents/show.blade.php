@@ -109,10 +109,10 @@
                 </div>
                 Back to all
             </a>
-            <a href=""
+            <a href="{{ route('documents.create') }}"
                 class="text-decoration-none large-btn blue-btn tk-basic-sans font16 leading22 space-0_16 fw-normal d-inline-flex align-items-center justify-content-center px-5 radius7">
                 <img src="{{ asset('images/plus-circle.svg') }}" alt="" class="me-2">
-                Invite new user
+                Add new file
             </a>
         </div>
     </div>
