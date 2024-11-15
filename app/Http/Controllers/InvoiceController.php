@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreInvoiceRequest;
 use App\Models\Invoice;
 use App\Models\User;
 use App\Services\BreadcrumbsService;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests; // Import the trait
+use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
@@ -22,7 +24,7 @@ class InvoiceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         // Both Admin and Professional can view invoices
         $this->authorize('viewAny', Invoice::class);
@@ -30,8 +32,14 @@ class InvoiceController extends Controller
         $this->breadcrumbs->add('Dashboard', route('dashboard'));
         $this->breadcrumbs->add('Invoices', route('invoices.index'));
 
+        // Get the search query from the request
+        $search = $request->input('search');
+
+        $invoices = Invoice::where('name', 'like', "%{$search}%")->paginate(10); // Paginate the results
+
         return view('invoices.index', [
             'breadcrumbs' => $this->breadcrumbs->get(),
+            'invoices' => $invoices,
         ]);
     }
 
@@ -47,18 +55,32 @@ class InvoiceController extends Controller
         $this->breadcrumbs->add('Invoices', route('invoices.index'));
         $this->breadcrumbs->add('create', '#');
 
+        $professionalUsers = User::role(User::ROLE_PROFESSIONAL)->get();
+
         return view('invoices.create', [
             'breadcrumbs' => $this->breadcrumbs->get(),
+            'professionalUsers' => $professionalUsers,
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreInvoiceRequest $request)
     {
         // Only Admin can create invoices
         $this->authorize('create', Invoice::class);
+
+        DB::beginTransaction();
+        Invoice::create([
+            'user_id' => $request->user_id,
+            'name' => $request->name,
+            'amount' => $request->amount,
+            'description' => $request->description,
+        ]);
+        DB::commit();
+        return redirect()->route('invoices.index')->with('success', 'Invoice created successfully');
+
     }
 
     /**

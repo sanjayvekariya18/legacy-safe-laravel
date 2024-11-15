@@ -7,7 +7,7 @@ export class Select {
     }
     SelectOne() {
         $("#js-select1").select2({
-            closeOnSelect: false,
+            closeOnSelect: true,
             placeholder: "Client Name (Please select)",
             allowClear: false,
             minimumResultsForSearch: Infinity,

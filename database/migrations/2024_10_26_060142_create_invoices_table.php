@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Invoice;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,11 +15,11 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id(); // Auto-incrementing ID
             $table->unsignedBigInteger('user_id'); // Foreign key for user
-            $table->string('invoice_id'); // Invoice ID from payment gateway
+            $table->string('invoice_id')->nullable(); // Invoice ID from payment gateway
             $table->string('name'); // Name associated with the invoice
             $table->decimal('amount', 10, 2); // Amount of the invoice
             $table->text('description')->nullable(); // Description of the invoice
-            $table->enum('status', ['pending', 'paid', 'canceled', 'refunded']); // Status of the invoice
+            $table->enum('status', [Invoice::STATUS_TO_BE_PAID, Invoice::STATUS_COMPLETED])->default(Invoice::STATUS_TO_BE_PAID); // Status of the invoice
             $table->timestamp('deleted_at')->nullable(); // Soft delete column
             $table->timestamp('created_at')->useCurrent(); // Created at column
             $table->timestamp('updated_at')->useCurrent(); // Updated at column
