@@ -80,6 +80,8 @@ Route::group(['middleware' => ['auth', 'role:' . User::ROLE_CLIENT]], function (
 //** Professional Routes */
 Route::group(['middleware' => ['auth', 'role:' . User::ROLE_PROFESSIONAL]], function () {
     Route::get('clients', [ClientController::class, 'index'])->name('clients.index'); // View Clients
+    Route::get('client/{client_id}/documents', [ClientController::class, 'documents'])->name('client.documents'); // View Clients
+    Route::get('client/document/{document}/show', [ClientController::class, 'show'])->name('client.document.show'); // View Clients
 });
 //** End Professional Routes */
 
@@ -87,6 +89,7 @@ Route::group(['middleware' => ['auth', 'role:' . User::ROLE_PROFESSIONAL]], func
 Route::group(['middleware' => ['auth', 'role:' . User::ROLE_USER . '|' . User::ROLE_PROFESSIONAL]], function () {
     // Shared Document Routes
     Route::get('shared-documents', [SharedDocumentController::class, 'index'])->name('shared.documents.index'); // View invoices
+    Route::get('shared-documents/{document}', [SharedDocumentController::class, 'show'])->name('shared.documents.show'); // View invoices
 });
 //** End User Routes */
 
