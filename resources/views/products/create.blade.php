@@ -12,37 +12,34 @@
             <img src="{{ asset('images/document.svg') }}" alt="">
         </div>
         <div class="tk-basic-sans font22 leading22 space-0_22 text-0F0F0F fw-normal ms-3">
-            File manager
+            Create Product
         </div>
     </div>
     <div class="col-11">
-        <form class="row row8 form-row" action="{{ route('invoices.store') }}" method="post">
+        <form class="row row8 form-row" action="{{ route('products.store') }}" method="post">
             @csrf
-            <div class="col-12 dmt-15">
-                <x-text-input class="white-b-input" type="text" name="name" placeholder="File name…"
+            <div class="col-6 dmt-15">
+                <x-text-input class="white-b-input" type="text" name="name" placeholder="Product name…"
                     :value="old('name')" required autofocus autocomplete="name" />
                 <x-input-error :message="$errors->first('name')" />
             </div>
             <div class="col-6 dmt-15">
-                <div class="manager-select d-inline-flex w-100">
-                    <select name="user_id" id="js-select1" class="d-none"
-                        data-placeholder="Client Name (Please select)">
-                        <option></option>
-                        @foreach ($professionalUsers as $user)
-                            <option value="{{ $user->id }}" {{ $user == old('user_id') ? 'selected' : '' }}>
-                                {{ $user->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <x-input-error :message="$errors->first('user')" />
+                <x-text-input class="white-b-input" type="text" name="title" placeholder="title…"
+                    :value="old('title')" required autofocus autocomplete="title" />
+                <x-input-error :message="$errors->first('title')" />
             </div>
             <div class="col-6 dmt-15">
-                <input type="number" name="amount" placeholder="£ Invoice Amount…" :value="old('amount')"
-                    class="input white-b-input tk-basic-sans font16 leading19 w-100 bg-white" required autocomplete="amount">
-                    <x-input-error :message="$errors->first('amount')" />
+                <input type="number" name="monthly_price" placeholder="£ Montly Price…" :value="old('monthly_price')"
+                    class="input white-b-input tk-basic-sans font16 leading19 w-100 bg-white" required autocomplete="monthly_price">
+                    <x-input-error :message="$errors->first('monthly_price')" />
+            </div>
+            <div class="col-6 dmt-15">
+                <input type="number" name="yearly_price" placeholder="£ Yearly Price…" :value="old('yearly_price')"
+                    class="input white-b-input tk-basic-sans font16 leading19 w-100 bg-white" required autocomplete="yearly_price">
+                    <x-input-error :message="$errors->first('yearly_price')" />
             </div>
             <div class="col-12 dmt-15">
-                <textarea name="description" placeholder="Invoice Description…" rows="8"
+                <textarea name="description" placeholder="Product Description…" rows="8"
                     class="textarea white-b-textarea tk-basic-sans font16 space-0_16 leading19 w-100 bg-white py-3" required autocomplete="description">{{ old('description') }}</textarea>
                     <x-input-error :message="$errors->first('description')" />
             </div>

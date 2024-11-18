@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Cashier\Billable;
 use Spatie\Permission\Traits\HasRoles; // Add this line
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, SoftDeletes, HasRoles; // Include HasRoles trait
+    use HasFactory, Notifiable, SoftDeletes, HasRoles, Billable; // Include HasRoles trait
 
     const ROLE_ADMIN = "Admin";
     const ROLE_CLIENT = "Client";

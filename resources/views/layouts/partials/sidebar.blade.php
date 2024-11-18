@@ -77,6 +77,12 @@
                 </a>
             @endif
             @if (Auth::user()->hasRole(\App\Models\User::ROLE_ADMIN))
+                <a href="{{ route('products.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('product*') ? 'active' : '' }}">
+                    <div class="me-2 ms-3 admin-menu-icon d-flex">
+                        <img src="{{ asset('images/star-icon.svg') }}" class="w-100" alt="">
+                    </div>
+                    <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Products</div>
+                </a>
                 <a href="{{ route('activity.logs') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('activity*') ? 'active' : '' }}">
                     <div class="me-2 ms-3 admin-menu-icon d-flex">
                         <img src="{{ asset('images/star-icon.svg') }}" class="w-100" alt="">

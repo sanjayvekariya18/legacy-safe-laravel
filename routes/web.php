@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SharedDocumentController;
 use App\Http\Controllers\SharedUserController;
@@ -37,6 +38,15 @@ Route::group(['middleware' => ['auth', 'role:' . User::ROLE_ADMIN]], function ()
     ]);
     Route::delete('users/{user}/soft-delete', [UserController::class, 'softDelete'])->name('users.soft-delete');
     Route::delete('users/{user}/hard-delete', [UserController::class, 'hardDelete'])->name('users.hard-delete');
+
+    Route::resource('products', ProductController::class)->names([
+        'index' => 'products.index',
+        'create' => 'products.create',
+        'store' => 'products.store',
+        'edit' => 'products.edit',
+        'update' => 'products.update',
+        'destroy' => 'products.destroy',
+    ]);
 
 
     // Soft delete and restore routes

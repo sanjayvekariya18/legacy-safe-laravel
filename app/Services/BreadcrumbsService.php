@@ -1,7 +1,5 @@
 <?php
 
-// app/Services/BreadcrumbsService.php
-
 namespace App\Services;
 
 class BreadcrumbsService
