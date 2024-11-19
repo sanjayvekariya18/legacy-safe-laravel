@@ -68,38 +68,43 @@ Route::group(['middleware' => ['auth', 'role:' . User::ROLE_ADMIN]], function ()
 
 //** Client Routes */
 Route::group(['middleware' => ['auth', 'role:' . User::ROLE_CLIENT]], function () {
-    Route::resource('documents', DocumentController::class)->names([
-        'index' => 'documents.index',
-        'create' => 'documents.create',
-        'store' => 'documents.store',
-        'show' => 'documents.show',
-        'edit' => 'documents.edit',
-        'update' => 'documents.update',
-        'destroy' => 'documents.destroy',
-    ]);
-    Route::post('/upload-document', [DocumentController::class, 'uploadDocument'])->name('upload.document');
-    Route::get('/view-document/{document}', [DocumentController::class, 'viewDocument'])->name('view.document');
-    Route::get('/remove-document/{document}', [DocumentController::class, 'removeDocument'])->name('remove.document');
 
-    Route::get('shared-users', [SharedUserController::class, 'index'])->name('shared.users.index'); // View Shared Users
-    Route::post('shared-users/invite', [SharedUserController::class, 'sendInvite'])->name('shared.users.invite'); // View Shared Users
-    Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index'); // View Subscription
+    Route::group(['middleware' => ['subscribed']], function () {
+        Route::resource('documents', DocumentController::class)->names([
+            'index' => 'documents.index',
+            'create' => 'documents.create',
+            'store' => 'documents.store',
+            'show' => 'documents.show',
+            'edit' => 'documents.edit',
+            'update' => 'documents.update',
+            'destroy' => 'documents.destroy',
+        ]);
+        Route::post('/upload-document', [DocumentController::class, 'uploadDocument'])->name('upload.document');
+        Route::get('/view-document/{document}', [DocumentController::class, 'viewDocument'])->name('view.document');
+        Route::get('/remove-document/{document}', [DocumentController::class, 'removeDocument'])->name('remove.document');
+    });
+
+    Route::get('shared-users', [SharedUserController::class, 'index'])->name('shared.users.index');
+    Route::post('shared-users/invite', [SharedUserController::class, 'sendInvite'])->name('shared.users.invite');
+    Route::get('choose-your-plan', [SubscriptionController::class, 'chooseYourPlan'])->name('subscriptions.index');
+    Route::get('subscribe/{product}', [SubscriptionController::class, 'getCard'])->name('subscriptions.card');
+    Route::post('subscribe/{product}', [SubscriptionController::class, 'subscribe'])->name('subscriptions.subscribe');
 });
 //** End Client Routes */
 
 //** Professional Routes */
 Route::group(['middleware' => ['auth', 'role:' . User::ROLE_PROFESSIONAL]], function () {
-    Route::get('clients', [ClientController::class, 'index'])->name('clients.index'); // View Clients
-    Route::get('client/{client_id}/documents', [ClientController::class, 'documents'])->name('client.documents'); // View Clients
-    Route::get('client/document/{document}/show', [ClientController::class, 'show'])->name('client.document.show'); // View Clients
+    Route::get('clients', [ClientController::class, 'index'])->name('clients.index');
+    Route::get('client/{client_id}/documents', [ClientController::class, 'documents'])->name('client.documents');
+    Route::get('client/document/{document}/show', [ClientController::class, 'show'])->name('client.document.show');
 });
 //** End Professional Routes */
 
 //** User Routes */
 Route::group(['middleware' => ['auth', 'role:' . User::ROLE_USER . '|' . User::ROLE_PROFESSIONAL]], function () {
     // Shared Document Routes
-    Route::get('shared-documents', [SharedDocumentController::class, 'index'])->name('shared.documents.index'); // View invoices
-    Route::get('shared-documents/{document}', [SharedDocumentController::class, 'show'])->name('shared.documents.show'); // View invoices
+    Route::get('shared-documents', [SharedDocumentController::class, 'index'])->name('shared.documents.index');
+    Route::get('shared-documents/{document}', [SharedDocumentController::class, 'show'])->name('shared.documents.show');
 });
 //** End User Routes */
 
