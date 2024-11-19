@@ -25,7 +25,7 @@
             </div>
             <div class="col-6 dmt-15">
                 <div class="manager-check-select d-inline-flex w-100">
-                    <select name="users[]" class="js-select2 d-none" multiple
+                    <select id="js-select2" name="users[]" class="d-none" multiple
                         data-placeholder="Select Users (Please select)">
                         <option></option>
                         @foreach ($inviteUsers as $user)

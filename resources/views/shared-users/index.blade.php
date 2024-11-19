@@ -191,7 +191,7 @@
                                 <div class="d-flex justify-content-center row8">
                                     <div class="col-6 position-relative dmb-20">
                                         <div class="user-select d-inline-flex w-100">
-                                            <select name="professional_type" class="js-select4 d-none"
+                                            <select name="professional_type" id="js-select5" class="d-none"
                                                 data-placeholder="Professional Type (Please select)">
                                                 <option></option>
                                                 @foreach (\App\Models\User::PROFESSIONAL_TYPES as $professionalType)

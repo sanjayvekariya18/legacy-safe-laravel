@@ -85,5 +85,14 @@ export class Select {
             dropdownCssClass: "user-select2",
             dropdownParent: $('#invite-user')
         });
+
+        $("#js-select5").select2({
+            closeOnSelect: true,
+            placeholder: "Select a state",
+            allowClear: false,
+            minimumResultsForSearch: Infinity,
+            dropdownCssClass: "user-select2",
+            dropdownParent: $('#invite-user-modal')
+        });
     }
 }
