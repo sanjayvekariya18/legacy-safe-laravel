@@ -1,47 +1,62 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+    <title>{{ config('app.name', 'Legacy Safe') }} | Sign In</title>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fuse.typekit.net">
+    <link rel="stylesheet" href="https://use.typekit.net/nan6ioj.css">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/select2.min.js'])
+</head>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+<body>
+    <main>
+        <section class="modal-box-section h-vh position-relative w-100">
+            <img src="{{ asset('images/signin-page-img.png') }}" class="w-100 h-100 object-cover" alt="">
+            <div class="position-fixed bottom-0 end-0 d-flex align-items-center me-5 mb-4">
+                <div class="tk-basic-sans fw-normal font13 leading19 space-0_13 text-white me-1">Powered by</div>
+                <div class="legacy-logo">
+                    <img src="{{ asset('images/legecy-logo.svg') }}" class="w-100" alt="">
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-@endsection
+            <div class="position-absolute top-left-center w-100">
+                <div class="col-4 mx-auto px-4">
+                    <div class="modal-bg-layer radius10 dpt-45 text-center overflow-hidden">
+                        <form method="POST" action="{{ route('password.email') }}">
+                            @csrf
+                            <div class="modal-box-data dmb-55">
+                                <div class="tk-basic-sans fw-normal font30 leading34 space-0_3 text-white dmb-35">Reset Password
+                                </div>
+                                <div class="position-relative dmb-20">
+                                    <x-text-input class="white-input border-0" type="text" name="email"
+                                        placeholder="Email address…" :value="old('email')" required autofocus
+                                        autocomplete="email" />
+                                    <x-input-error :message="$errors->first('email')" />
+                                </div>
+                                <x-primary-button class="large-btn blue-btn w-100 fw-normal">Send Password Reset Link</x-primary-button>
+                            </div>
+                        </form>
+                        @if (session('status'))
+                            <div class="bg-white dpt-30 dpb-30">
+                                <div class="tk-basic-sans fw-normal font14 leading19 space-0_14 text-3C3C3C">
+                                    {{ session('status') }}
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

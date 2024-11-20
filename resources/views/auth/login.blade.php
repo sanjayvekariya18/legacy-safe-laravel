@@ -21,11 +21,11 @@
 <body>
     <main>
         <section class="modal-box-section h-vh position-relative w-100">
-            <img src="images/signin-page-img.png" class="w-100 h-100 object-cover" alt="">
+            <img src="{{ asset('images/signin-page-img.png') }}" class="w-100 h-100 object-cover" alt="">
             <div class="position-fixed bottom-0 end-0 d-flex align-items-center me-5 mb-4">
                 <div class="tk-basic-sans fw-normal font13 leading19 space-0_13 text-white me-1">Powered by</div>
                 <div class="legacy-logo">
-                    <img src="images/legecy-logo.svg" class="w-100" alt="">
+                    <img src="{{ asset('images/legecy-logo.svg') }}" class="w-100" alt="">
                 </div>
             </div>
             <div class="position-absolute top-left-center w-100">
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="position-relative dmb-20">
                                     <x-text-input class="white-input border-0" type="text" name="email"
-                                        placeholder="Email address…" :value="old('email')" required autofocus
+                                        placeholder="Email address…" :value="old('email',Cookie::get('remembered_email') )" required autofocus
                                         autocomplete="email" />
                                     <x-input-error :message="$errors->first('email')" />
                                 </div>
@@ -59,7 +59,7 @@
                                     class="checkbox-container position-relative d-inline-flex align-items-center tk-basic-sans fw-normal font16 leading30 space-0_16 text-white dmb-20">
                                     <input type="checkbox" name="remember" id="remember"
                                         class="opacity-0 position-absolute top-0 start-0"
-                                        {{ old('remember') ? 'checked' : '' }}>
+                                        {{ old('remember') || Cookie::get('remembered_email') ? 'checked' : '' }}>
                                     <span class="check-box white-checkbox radius7 position-relative me-2"></span>
                                     Click to remember me
                                 </div>

@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -26,7 +27,16 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        $remember = $request->boolean('remember');
+
         $request->session()->regenerate();
+
+        // Set cookies for "Remember Me"
+        if ($remember) {
+            Cookie::queue('remembered_email', $request->email, 120); // Store for 2 hours
+        } else {
+            Cookie::queue(Cookie::forget('remembered_email'));
+        }
 
         return redirect()->intended(route('dashboard', absolute: false));
     }
