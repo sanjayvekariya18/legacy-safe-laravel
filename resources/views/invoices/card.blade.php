@@ -58,7 +58,7 @@
                                     <span class="tk-basic-sans fw-normal font14 leading22 space-0_14 text-808080">/mo</span>
                                 </div>
                             </div>
-                            <button class="btnB blue-btn border-0 radius7 w-100 dmb-15">Purchase this plan</button>
+                            <button class="btnB blue-btn border-0 radius7 w-100 dmb-15">Pay</button>
                         </div>
                     </form>
                 </div>
