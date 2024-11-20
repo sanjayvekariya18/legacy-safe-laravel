@@ -36,7 +36,8 @@ class ClientController extends Controller
                 $query->select(DB::raw(1))
                     ->from('shared_with_users')
                     ->whereColumn('documents.id', 'shared_with_users.document_id')
-                    ->where('shared_with_users.user_id', Auth::id());
+                    ->where('shared_with_users.user_id', Auth::id())
+                    ->whereNull('shared_with_users.deleted_at'); // Ensure only active shares
             })
             ->when($search, function ($query, $search) {
                 return $query->where(function ($query) use ($search) {

@@ -2,14 +2,23 @@
 @section('title', 'Dashboard')
 
 @section('content')
-
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="d-flex align-items-center justify-content-between dmb-35 pe-3">
         <div class="title d-flex align-items-center">
             <div class="title-icon bg-white radius7 d-flex align-items-center justify-content-center">
                 <img src="{{ asset('images/document.svg') }}" alt="">
             </div>
             <div class="tk-basic-sans font22 leading22 space-0_22 text-0F0F0F fw-normal ms-3">
-                Users & Permissions
+                Invited users
             </div>
         </div>
         <div class="col-5 ps-3">
@@ -111,7 +120,6 @@
                         <div class="col-6">
                             <!-- Confirm Delete Button -->
                             <form id="delete-user-form" action="" method="POST">
-                                @method('DELETE')
                                 @csrf
                                 <button type="submit"
                                     class="large-btn blue-btn2 w-100 d-inline-flex align-items-center justify-content-center tk-basic-sans fw-normal font16 leading19 space-0_16 radius7 transition">Yes,
@@ -175,7 +183,9 @@
                                 @csrf
                                 <div class="w-100 d-flex justify-content-center dmb-20">
                                     <x-text-input class="white-b-input" type="email" name="email"
-                                        placeholder="Email…" value="{{ $errors->hasBag(\App\Models\User::ROLE_CLIENT) ? old('email') : ''  }}" required autocomplete="email" />
+                                        placeholder="Email…"
+                                        value="{{ $errors->hasBag(\App\Models\User::ROLE_CLIENT) ? old('email') : '' }}"
+                                        required autocomplete="email" />
                                 </div>
                                 <x-input-error class="d-flex justify-content-center" :message="$errors->getBag(\App\Models\User::ROLE_CLIENT)->first('email')" />
                                 <input type="hidden" name="role" value="{{ \App\Models\User::ROLE_CLIENT }}">
@@ -202,11 +212,15 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <x-input-error :message="$errors->getBag(\App\Models\User::ROLE_PROFESSIONAL)->first('professional_type')" />
+                                        <x-input-error :message="$errors
+                                            ->getBag(\App\Models\User::ROLE_PROFESSIONAL)
+                                            ->first('professional_type')" />
                                     </div>
                                     <div class="col-6 position-relative dmb-20">
                                         <x-text-input class="white-b-input" type="email" name="email"
-                                            placeholder="Email…" value="{{ $errors->hasBag(\App\Models\User::ROLE_PROFESSIONAL) ? old('email') : ''  }}" required autocomplete="email" />
+                                            placeholder="Email…"
+                                            value="{{ $errors->hasBag(\App\Models\User::ROLE_PROFESSIONAL) ? old('email') : '' }}"
+                                            required autocomplete="email" />
                                         <x-input-error :message="$errors->getBag(\App\Models\User::ROLE_PROFESSIONAL)->first('email')" />
                                     </div>
                                 </div>
@@ -238,7 +252,7 @@
             $('#user-name').text(userName);
 
             // Update the form's action with the correct delete URL
-            var route = '{{ route('users.soft-delete', ':id') }}'.replace(':id',
+            var route = '{{ route('remove.document.access', ['user' => ':id']) }}'.replace(':id',
                 userId); // Update the URL for the user deletion
 
             $('#delete-user-form').attr('action', route);
@@ -256,7 +270,9 @@
         });
 
         // If validation errors exist, open the modal automatically
-        @if($errors->getBag(\App\Models\User::ROLE_CLIENT)->any() || $errors->getBag(\App\Models\User::ROLE_PROFESSIONAL)->any())
+        @if (
+            $errors->getBag(\App\Models\User::ROLE_CLIENT)->any() ||
+                $errors->getBag(\App\Models\User::ROLE_PROFESSIONAL)->any())
             @if ($errors->getBag(\App\Models\User::ROLE_PROFESSIONAL)->any())
                 $('#profile-tab').click();
             @endif

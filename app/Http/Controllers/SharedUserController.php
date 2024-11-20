@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InviteUserRequest;
 use App\Mail\InviteEmail;
 use App\Models\Invite;
+use App\Models\SharedWithUser;
 use App\Models\User;
 use App\Services\BreadcrumbsService;
 use Illuminate\Http\Request;
@@ -78,5 +79,17 @@ class SharedUserController extends Controller
 
         DB::commit();
         return redirect()->route('shared.users.index')->with('success', 'Invite sent successfully!');
+    }
+
+    public function removeDocumentAccess(User $user) {
+        $owner = Auth::user();
+        $documentIds = $owner->documents->pluck('id')->toarray();
+        DB::beginTransaction();
+        SharedWithUser::whereIn('document_id', $documentIds)
+            ->where('user_id', $user->id)
+            ->delete();
+        User::where('id', $user->id)->update(['invited_by' => NULL]);
+        DB::commit();
+        return redirect()->route('shared.users.index')->with('success', 'Invite user removed!');
     }
 }

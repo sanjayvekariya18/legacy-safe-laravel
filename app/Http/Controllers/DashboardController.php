@@ -26,19 +26,18 @@ class DashboardController extends Controller
         $this->breadcrumbs->add('Dashboard', route('dashboard'));
 
         $user = Auth::user();
-        $document = [];
+        $documents = [];
         if ($user->hasRole(User::ROLE_CLIENT)) {
             $documents = Document::where('user_id', $user->id)->latest()->take(3)->get();
         } else if ($user->hasRole(User::ROLE_PROFESSIONAL)) {
-            $documents = Document::whereIn('id', function ($query) use ($user) {
-                $query->select('document_id')
-                      ->from('shared_with_users')
-                      ->where('user_id', $user->id);
+            $documents = Document::whereHas('sharedWithUsers', function ($query) use ($user) {
+                $query->where('user_id', $user->id)
+                      ->whereNull('deleted_at'); // Exclude soft-deleted rows
             })->latest()->take(3)->get();
         }
 
         return view('dashboard', [
-            'documents' => isset($documents) ? $documents : [],
+            'documents' => $documents,
             'breadcrumbs' => $this->breadcrumbs->get(),
         ]);
     }
