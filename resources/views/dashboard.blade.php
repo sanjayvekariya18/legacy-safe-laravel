@@ -21,57 +21,34 @@
         <div class="tables pe-3">
             <table class="table common-table document-table mb-0">
                 <tbody>
-                    <tr>
-                        <td colspan="2">
-                            <img src="{{ asset('images/file-icon.svg') }}" alt="">
-                            <span>
-                                Document Name
-                            </span>
-                        </td>
-                        <td>Jason Bourne</td>
-                        <td>3 Users</td>
-                        <td>13/05/2024</td>
-                        <td>
-                            <div class="d-flex justify-content-end">
-                                <a href=""
-                                    class="text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <img src="{{ asset('images/file-icon.svg') }}" alt="">
-                            <span>
-                                Document Name
-                            </span>
-                        </td>
-                        <td>Jason Bourne</td>
-                        <td>3 Users</td>
-                        <td>13/05/2024</td>
-                        <td>
-                            <div class="d-flex justify-content-end">
-                                <a href=""
-                                    class="text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <img src="{{ asset('images/file-icon.svg') }}" alt="">
-                            <span>
-                                Document Name
-                            </span>
-                        </td>
-                        <td>Jason Bourne</td>
-                        <td>3 Users</td>
-                        <td>13/05/2024</td>
-                        <td>
-                            <div class="d-flex justify-content-end">
-                                <a href=""
-                                    class="text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
-                            </div>
-                        </td>
-                    </tr>
+                    @forelse ($documents as $document)
+                        <tr>
+                            <td colspan="2">
+                                <img src="{{ asset('images/file-icon.svg') }}" alt="">
+                                <span>
+                                    {{ $document->name }}
+                                </span>
+                            </td>
+                            <td>{{ $document->user->name }}</td>
+                            <td>{{ $document->sharedWithUsers->count() }} Users</td>
+                            <td>{{ $document->updated_at->format('d-m-Y') }}</td>
+                            <td>
+                                <div class="d-flex justify-content-end">
+                                    @if (Auth::user()->hasRole(\App\Models\User::ROLE_CLIENT))
+                                        <a href="{{ route('documents.show', ['document' => $document]) }}"
+                                            class="text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
+                                    @else
+                                        <a href="{{ route('shared.documents.show', ['document' => $document]) }}"
+                                            class="text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="text-center">No Document found.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
