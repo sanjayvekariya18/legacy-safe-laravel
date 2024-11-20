@@ -34,7 +34,7 @@
                         <form method="POST" action="{{ route('password.email') }}">
                             @csrf
                             <div class="modal-box-data dmb-55">
-                                <div class="tk-basic-sans fw-normal font30 leading34 space-0_3 text-white dmb-35">Reset Password
+                                <div class="tk-basic-sans fw-normal font30 leading34 space-0_3 text-white dmb-35">Forgot Password
                                 </div>
                                 <div class="position-relative dmb-20">
                                     <x-text-input class="white-input border-0" type="text" name="email"
@@ -42,16 +42,20 @@
                                         autocomplete="email" />
                                     <x-input-error :message="$errors->first('email')" />
                                 </div>
-                                <x-primary-button class="large-btn blue-btn w-100 fw-normal">Send Password Reset Link</x-primary-button>
+                                <x-primary-button class="large-btn blue-btn w-100 fw-normal">Send me a reset link</x-primary-button>
                             </div>
-                        </form>
-                        @if (session('status'))
-                            <div class="bg-white dpt-30 dpb-30">
-                                <div class="tk-basic-sans fw-normal font14 leading19 space-0_14 text-3C3C3C">
+
+                            @if (session('status'))
+                                <div class="alert alert-success">
                                     {{ session('status') }}
                                 </div>
+                            @endif
+                        </form>
+                        <div class="bg-white dpt-30 dpb-30">
+                            <div class="tk-basic-sans fw-normal font14 leading19 space-0_14 text-3C3C3C">
+                                <a href="{{ route('login') }}" class="d-inline-block text-3C3C3C">Back to sign in</a>
                             </div>
-                        @endif
+                        </div>
                     </div>
                 </div>
             </div>
