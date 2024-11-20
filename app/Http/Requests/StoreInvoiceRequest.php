@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
+use App\Rules\UserRoleCheck;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreInvoiceRequest extends FormRequest
@@ -22,7 +24,11 @@ class StoreInvoiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|exists:users,id', // Ensures user_id exists in users table and is required
+            'user_id' => [
+                'required',
+                'exists:users,id', // Ensures user_id exists in the users table
+                new UserRoleCheck(User::ROLE_PROFESSIONAL) // Ensures the user has the 'Professional' role
+            ],
             'name' => 'required|string|max:255', // Name field validation
             'amount' => 'required|numeric|min:0', // Ensures amount is numeric and non-negative
             'description' => 'nullable|string|max:1000', // Optional description with a max length

@@ -89,7 +89,6 @@ class SubscriptionController extends Controller
                         'email' => $user->email
                     ]);
             } else {
-                // Ensure the payment method ID is valid and attached to the user
                 $user->updateDefaultPaymentMethod($request->payment_method_id);
                 $subscription->swap($priceId);
             }

@@ -7,6 +7,11 @@
             {{ session('success') }}
         </div>
     @endif
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="d-flex align-items-center justify-content-between dmb-35 pe-3">
         <div class="title d-flex align-items-center">
             <div class="title-icon bg-white radius7 d-flex align-items-center justify-content-center">
@@ -58,10 +63,18 @@
                                         Paid
                                     </div>
                                 @else
-                                    <div
-                                        class="text-decoration-none d-flex align-items-center justify-content-center bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-1 radius5 small-btn">
-                                        No Paid
-                                    </div>
+                                    @if (Auth::user()->hasRole(\App\Models\User::ROLE_ADMIN))
+                                        <div
+                                            class="text-decoration-none d-flex align-items-center justify-content-center bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-1 radius5 small-btn">
+                                            No Paid
+                                        </div>
+                                    @endif
+                                    @if (Auth::user()->hasRole(\App\Models\User::ROLE_PROFESSIONAL))
+                                        <a href="{{ route("invoices.pay", ['invoice' => $invoice]) }}"
+                                            class="text-decoration-none d-flex align-items-center justify-content-center bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-1 radius5 small-btn">
+                                            Pay Invoice
+                                        </a>
+                                    @endif
                                 @endif
                             </div>
                         </td>
@@ -78,9 +91,11 @@
         <div class="pagination d-flex align-items-center">
             {{ $invoices->links('vendor.pagination.bootstrap-5') }}
         </div>
-        <a href="{{ route('invoices.create') }}"
-            class="text-decoration-none large-btn blue-btn tk-basic-sans font16 leading22 space-0_16 fw-normal d-inline-flex align-items-center justify-content-center px-5 radius7">
-            Create an invoice
-        </a>
+        @if (Auth::user()->hasRole(\App\Models\User::ROLE_ADMIN))
+            <a href="{{ route('invoices.create') }}"
+                class="text-decoration-none large-btn blue-btn tk-basic-sans font16 leading22 space-0_16 fw-normal d-inline-flex align-items-center justify-content-center px-5 radius7">
+                Create an invoice
+            </a>
+        @endif
     </div>
 @endsection

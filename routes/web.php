@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SharedDocumentController;
 use App\Http\Controllers\SharedUserController;
+use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
@@ -122,7 +123,11 @@ Route::group(['middleware' => 'auth'], function () {
             'destroy' => 'invoices.destroy',
         ]
     )->except(['pay']);
-    Route::get('invoices/{invoice}/pay', [InvoiceController::class, 'pay'])->name('invoices.pay');
+    Route::get('invoices/{invoice}/pay', [InvoiceController::class, 'getCard'])->name('invoices.card');
+    Route::post('invoices/{invoice}/pay', [InvoiceController::class, 'pay'])->name('invoices.pay');
+    Route::get('invoice/{invoice}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoices.download');
 });
+
+Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook']);
 
 require __DIR__ . '/auth.php';

@@ -37,7 +37,7 @@ class ProductSeeder extends Seeder
 
             // Create monthly price
             $stripePriceMonthly = StripePrice::create([
-                'unit_amount' => $monthlyPrices[$i], // Random price in cents
+                'unit_amount' => $monthlyPrices[$i] * 100, // Random price in cents
                 'currency' => config('cashier.currency'),
                 'product' => $stripeProduct->id,
                 'recurring' => ['interval' => 'month'],
@@ -45,7 +45,7 @@ class ProductSeeder extends Seeder
 
             // Create yearly price
             $stripePriceYearly = StripePrice::create([
-                'unit_amount' => $yearlyPrices[$i], // Random price in cents
+                'unit_amount' => $yearlyPrices[$i] * 100, // Random price in cents
                 'currency' => config('cashier.currency'),
                 'product' => $stripeProduct->id,
                 'recurring' => ['interval' => 'year'],

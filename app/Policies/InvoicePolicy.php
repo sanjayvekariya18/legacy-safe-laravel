@@ -44,7 +44,19 @@ class InvoicePolicy
         return $user->hasRole(User::ROLE_ADMIN);
     }
 
+    public function card(User $user)
+    {
+        // Only Professional can pay invoices
+        return $user->hasRole(User::ROLE_PROFESSIONAL);
+    }
+
     public function pay(User $user)
+    {
+        // Only Professional can pay invoices
+        return $user->hasRole(User::ROLE_PROFESSIONAL);
+    }
+
+    public function downloadInvoice(User $user)
     {
         // Only Professional can pay invoices
         return $user->hasRole(User::ROLE_PROFESSIONAL);
