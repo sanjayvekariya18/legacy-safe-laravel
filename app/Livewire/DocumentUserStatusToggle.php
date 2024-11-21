@@ -12,6 +12,9 @@ class DocumentUserStatusToggle extends Component
     public $document;
     public $selectedUserId = null;
     public $selectedUserName = null;
+    protected $listeners = [
+        '$refresh'
+    ];
 
     public function mount($documentId)
     {
@@ -30,6 +33,7 @@ class DocumentUserStatusToggle extends Component
         $user = SharedWithUser::find($userId);
         $user->to_be_notified = !$user->to_be_notified;
         $user->save();
+        $this->dispatch('$refresh')->self();
     }
 
     public function toBeVisibleToggleStatus($userId)
@@ -37,6 +41,7 @@ class DocumentUserStatusToggle extends Component
         $user = SharedWithUser::find($userId);
         $user->to_be_visible = !$user->to_be_visible;
         $user->save();
+        $this->dispatch('$refresh')->self();
     }
 
     public function openRemoveUserModal()
@@ -47,11 +52,7 @@ class DocumentUserStatusToggle extends Component
     public function removeSharedUser()
     {
         $this->document->sharedWithUsers()->where('id', $this->selectedUserId)->delete();
-        $this->document->refresh(); // Refresh the document to reflect the changes in the view
-
-        // Reset the user ID to remove
-        $this->selectedUserId = null;
-        $this->selectedUserName = null;
+        $this->dispatch('$refresh')->self();
     }
 
     public function render()

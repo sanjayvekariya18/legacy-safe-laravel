@@ -20,12 +20,11 @@
                             <div class="tk-basic-sans font16 leading22 space-0_16 text-black fw-normal me-2">
                                 Yes
                             </div>
-                            <input type="radio" name="to_be_notified"
-                                {{ $professionalUser->to_be_notified ? 'checked' : '' }}
+                            <input type="radio" name="to_be_notified_{{ $professionalUser->id }}"
                                 wire:click="toBeNotifiedToggleStatus({{ $professionalUser->id }})"
                                 class="position-absolute top-0 start-0 h-100 w-50 cursor-pointer opacity-0 z-5 input" />
                             <input type="radio" {{ !$professionalUser->to_be_notified ? 'checked' : '' }}
-                                name="to_be_notified" wire:click="toBeNotifiedToggleStatus({{ $professionalUser->id }})"
+                                name="to_be_notified_{{ $professionalUser->id }}" wire:click="toBeNotifiedToggleStatus({{ $professionalUser->id }})"
                                 class="position-absolute top-0 end-0 h-100 w-50 cursor-pointer opacity-0 z-5 input2" />
                             <label class="switch me-2 transition"></label>
                             <div class="tk-basic-sans font16 leading22 space-0_16 text-black fw-normal me-2">
@@ -39,11 +38,10 @@
                                 <div class="tk-basic-sans font16 leading22 space-0_16 text-black fw-normal me-2">
                                     Yes
                                 </div>
-                                <input type="radio" name="to_be_visible"
-                                    {{ $professionalUser->to_be_visible ? 'checked' : '' }}
+                                <input type="radio" name="to_be_visible_{{ $professionalUser->id }}"
                                     wire:click="toBeVisibleToggleStatus({{ $professionalUser->id }})"
                                     class="position-absolute top-0 start-0 h-100 w-50 cursor-pointer opacity-0 z-5 input">
-                                <input type="radio" name="to_be_visible"
+                                <input type="radio" name="to_be_visible_{{ $professionalUser->id }}"
                                     {{ !$professionalUser->to_be_visible ? 'checked' : '' }}
                                     wire:click="toBeVisibleToggleStatus({{ $professionalUser->id }})"
                                     class="position-absolute top-0 end-0 h-100 w-50 cursor-pointer opacity-0 z-5 input2">
@@ -70,11 +68,6 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content radius4">
                 <ul class="list-none ps-0 mb-0">
-                    <li class="dmb-15">
-                        <a href="javascript:void(0);"
-                            class="d-inline-block text-decoration-none tk-basic-sans font14 leading22 space-0_14 text-black fw-normal">View
-                            User</a>
-                    </li>
                     <li class="dmb-15">
                         <a href="javascript:void(0);" wire:click="openRemoveUserModal()"
                             class="d-inline-block text-decoration-none tk-basic-sans font14 leading22 space-0_14 text-black fw-normal">
