@@ -70,20 +70,18 @@ Route::group(['middleware' => ['auth', 'role:' . User::ROLE_ADMIN]], function ()
 //** Client Routes */
 Route::group(['middleware' => ['auth', 'role:' . User::ROLE_CLIENT]], function () {
 
-    Route::group(['middleware' => ['subscribed']], function () {
-        Route::resource('documents', DocumentController::class)->names([
-            'index' => 'documents.index',
-            'create' => 'documents.create',
-            'store' => 'documents.store',
-            'show' => 'documents.show',
-            'edit' => 'documents.edit',
-            'update' => 'documents.update',
-            'destroy' => 'documents.destroy',
-        ]);
-        Route::post('/upload-document', [DocumentController::class, 'uploadDocument'])->name('upload.document');
-        Route::get('/view-document/{document}', [DocumentController::class, 'viewDocument'])->name('view.document');
-        Route::get('/remove-document/{document}', [DocumentController::class, 'removeDocument'])->name('remove.document');
-    });
+    Route::resource('documents', DocumentController::class)->names([
+        'index' => 'documents.index',
+        'create' => 'documents.create',
+        'store' => 'documents.store',
+        'show' => 'documents.show',
+        'edit' => 'documents.edit',
+        'update' => 'documents.update',
+        'destroy' => 'documents.destroy',
+    ]);
+    Route::post('/upload-document', [DocumentController::class, 'uploadDocument'])->name('upload.document');
+    Route::get('/view-document/{document}', [DocumentController::class, 'viewDocument'])->name('view.document');
+    Route::get('/remove-document/{document}', [DocumentController::class, 'removeDocument'])->name('remove.document');
 
     Route::get('shared-users', [SharedUserController::class, 'index'])->name('shared.users.index');
     Route::post('shared-users/invite', [SharedUserController::class, 'sendInvite'])->name('shared.users.invite');

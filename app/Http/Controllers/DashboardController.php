@@ -28,7 +28,20 @@ class DashboardController extends Controller
         $user = Auth::user();
         $documents = [];
         if ($user->hasRole(User::ROLE_CLIENT)) {
-            $documents = Document::where('user_id', $user->id)->latest()->take(3)->get();
+            // Fetch user's own documents
+            $ownDocuments = Document::where('user_id', $user->id);
+
+            // Fetch documents shared with the user
+            $sharedDocuments = Document::whereHas('sharedWithUsers', function ($query) use ($user) {
+                $query->where('user_id', $user->id)
+                    ->whereNull('deleted_at'); // Exclude soft-deleted rows
+            });
+
+             // Combine and take latest 3
+            $documents = $ownDocuments->union($sharedDocuments)->latest()->take(3)->get();
+
+            // $documents = Document::where('user_id', $user->id)->latest()->take(3)->get();
+
         } else if ($user->hasRole(User::ROLE_PROFESSIONAL)) {
             $documents = Document::whereHas('sharedWithUsers', function ($query) use ($user) {
                 $query->where('user_id', $user->id)

@@ -25,12 +25,12 @@
             </div>
             <div class="col-6 dmt-15">
                 <div class="manager-check-select d-inline-flex w-100">
-                    <select id="js-select2" name="users[]" class="d-none" multiple
+                    <select id="js-select2" name="invitees[]" class="d-none" multiple
                         data-placeholder="Select Users (Please select)">
                         <option></option>
                         @foreach ($invitees as $invitee)
-                            <option value="{{ $invitee->id }}" @if (in_array($invitee->id, old('users', []))) selected @endif>
-                                {{ $invitee->name }}</option>
+                            <option value="{{ $invitee->invitee_id }}" @if (in_array($invitee->invitee_id, old('invitees', []))) selected @endif>
+                                {{ $invitee->invitee->name }}</option>
                         @endforeach
                     </select>
                 </div>

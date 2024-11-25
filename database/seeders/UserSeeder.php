@@ -45,18 +45,21 @@ class UserSeeder extends Seeder
             'first_name' => 'Fodens',
             'last_name' => 'Professional',
             'email' => 'professional1@example.com',
+            'professional_type' => User::PROFESSIONAL_TYPE_SOLICITOR
         ]);
         $professional1->assignRole(User::ROLE_PROFESSIONAL);
 
         $professional2 = User::factory()->create([
             'last_name' => 'Professional',
             'email' => 'professional2@example.com',
+            'professional_type' => User::PROFESSIONAL_TYPE_FINANCIAL_ADVISER
         ]);
         $professional2->assignRole(User::ROLE_PROFESSIONAL);
 
         $professional3 = User::factory()->create([
             'last_name' => 'Professional',
             'email' => 'professional3@example.com',
+            'professional_type' => User::PROFESSIONAL_TYPE_ACCOUNTANT
         ]);
         $professional3->assignRole(User::ROLE_PROFESSIONAL);
 

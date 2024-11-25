@@ -20,11 +20,15 @@
                 </div>
                 <div class="ps-5 ms-3">
                     <a href="{{ route('view.document', ['document' => $document]) }}"
-                        class="tk-basic-sans font12 leading22 space-0_12 text-0F0F0F fw-normal text-capitalize me-4">View
-                        File</a>
-                    <a href="{{ route('remove.document', ['document' => $document]) }}"
-                        class="tk-basic-sans font12 leading22 space-0_12 text-0F0F0F fw-normal text-capitalize me-4">Remove
-                        File</a>
+                        class="tk-basic-sans font12 leading22 space-0_12 text-0F0F0F fw-normal text-capitalize me-4">
+                        View File
+                    </a>
+                    @can('removeDocument', $document)
+                        <a href="{{ route('remove.document', ['document' => $document]) }}"
+                            class="tk-basic-sans font12 leading22 space-0_12 text-0F0F0F fw-normal text-capitalize me-4">
+                            Remove File
+                        </a>
+                    @endcan
                 </div>
             </div>
             <div class="col-6 ps-5 d-flex justify-content-between">
@@ -54,6 +58,7 @@
                 </div>
             </div>
         </div>
+        @can('removeDocument', $document)
         <div class="accordion-section bg-white radius7 dmb-45">
             <div class="accordion-item">
                 <div class="accordion-header d-flex justify-content-between px-4 py-3">
@@ -74,6 +79,7 @@
                 </div>
             </div>
         </div>
+        @endcan
         <div class="title dmb-20">
             <div class="d-inline-flex align-items-center">
                 <div class="title-icon bg-white radius7 d-flex align-items-center justify-content-center">
@@ -114,7 +120,6 @@
 @push('page-specific-scripts')
     <script type="module">
         $(document).ready(function() {
-
             Livewire.on('openUserModal', () => {
                 new bootstrap.Modal(document.getElementById('userModal'), {
                     keyboard: true

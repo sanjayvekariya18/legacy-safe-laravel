@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreDocumentRequest;
 use App\Notifications\DocumentNotification;
 use Illuminate\Http\Request;
 use App\Models\Document;
 use App\Models\User;
 use App\Services\BreadcrumbsService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class DocumentController extends Controller
+class DocumentController extends Controller implements HasMiddleware
 {
     use AuthorizesRequests;
     protected $breadcrumbs;
@@ -22,6 +25,16 @@ class DocumentController extends Controller
     public function __construct(BreadcrumbsService $breadcrumbs)
     {
         $this->breadcrumbs = $breadcrumbs;
+    }
+
+    /**
+     * Get the middleware that should be assigned to the controller.
+     */
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('subscribed', only: ['store', 'create']),
+        ];
     }
 
     /**
@@ -36,13 +49,20 @@ class DocumentController extends Controller
         // Get the search query from the request
         $search = $request->input('search');
 
-        $documents = Document::when($search, function ($query, $search) {
-            return $query->where(function ($query) use ($search) {
-                $query->orWhere('name', 'like', "%{$search}%");
-            });
-        })
-            ->where('user_id', Auth::id())
-            ->paginate(50); // Paginate the results
+        $documents = Document::
+            where(function ($query) {
+                $query->where('user_id', Auth::id()) // Fetch user's own documents
+                    ->orWhereHas('sharedWithUsers', function ($subQuery) {
+                        $subQuery->where('user_id', Auth::id()); // Fetch documents shared with the user
+                    });
+            })
+            ->when($search, function ($query, $search) {
+                return $query->where(function ($subQuery) use ($search) {
+                    $subQuery->where('name', 'like', "%{$search}%");
+                });
+            })
+            ->orderBy('created_at', 'desc') // Sort results by latest
+            ->paginate(50); // Adjust pagination limit as needed
 
         return view('documents.index', [
             'breadcrumbs' => $this->breadcrumbs->get(),
@@ -58,34 +78,24 @@ class DocumentController extends Controller
         $this->breadcrumbs->reset();
         $this->breadcrumbs->add('Dashboard', route('dashboard'));
         $this->breadcrumbs->add('File Manager', route('documents.create'));
-        $invitees = User::where('inviteer_id', Auth::id())->get();
         return view('documents.create', [
             'breadcrumbs' => $this->breadcrumbs->get(),
-            'invitees' => $invitees,
+            'invitees' => Auth::user()->invitees,
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreDocumentRequest $request)
     {
-        // Validate form inputs
-        $request->validate([
-            'name' => 'required|string',
-            'users' => 'required|array',
-            'users.*' => 'exists:users,id',
-            'document' => 'required|string',
-            'uploadedFilePath' => 'required|string', // Temporary file path from the earlier upload
-        ]);
-
         $uploadedFilePath = $request->input('uploadedFilePath');
         // Generate the relative path (UUID + file extension)
         $fileName = sprintf(
             "%s.%s",
             Str::uuid()->toString(),
             pathinfo($uploadedFilePath, PATHINFO_EXTENSION)
-        ); // Combine UUID with file extension
+        );
         $relativePath = sprintf("%s/%s", Auth::id(), basename($fileName));
 
         DB::beginTransaction();
@@ -106,12 +116,12 @@ class DocumentController extends Controller
                 $document->save();
 
                 // Attach shared users
-                $users = $request->input('users'); // Array of user IDs
-                foreach ($users as $userId) {
+                $invitees = $request->input('invitees'); // Array of user IDs
+                foreach ($invitees as $inviteeId) {
                     $document->sharedWithUsers()->create([
-                        'user_id' => $userId, // Add each user ID to the sharedWithUsers table
+                        'user_id' => $inviteeId, // Add each user ID to the sharedWithUsers table
                     ]);
-                    $recipient = User::find($userId);
+                    $recipient = User::find($inviteeId);
                     $recipient->notify(new DocumentNotification(
                         "Added you as a user to {$document->name}",
                         $document->id,
@@ -210,7 +220,7 @@ class DocumentController extends Controller
     public function viewDocument(Document $document)
     {
         // Custom authorization for this method
-        $this->authorize('viewDocument', $document);
+        $this->authorize('show', $document);
         try {
             $fileName = sprintf(
                 "%s.%s",

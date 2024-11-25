@@ -26,7 +26,7 @@ class InviteUserRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'email' => 'required|email|unique:users,email', // Ensure the email is not already taken
+            'email' => 'required|email', // Ensure the email is not already taken
         ];
         if ($this->input('role') == User::ROLE_CLIENT ) {
             $rules['professional_type'] = 'nullable|string|in:' . implode(',', User::PROFESSIONAL_TYPES);

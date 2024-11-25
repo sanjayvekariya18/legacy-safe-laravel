@@ -54,7 +54,7 @@
                                 {{ $document->name }}
                             </span>
                         </td>
-                        <td>{{ Auth::user()->name }}</td>
+                        <td>{{ $document->user->name }}</td>
                         <td>{{ $document->sharedWithUsers->count() }} Users</td>
                         <td>{{ $document->updated_at->format('d-m-Y') }}</td>
                         <td>
