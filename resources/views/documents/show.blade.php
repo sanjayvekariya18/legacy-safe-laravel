@@ -61,13 +61,7 @@
                         Ready to send the file for approval?
                     </div>
                     <div class="accordion-header-btn transition">
-                        <a href="javascript:void(0);"
-                            class="ready-view-btn tk-basic-sans font12 leading22 space-0_12 text-0F0F0F fw-normal ms-3">
-                            View/Edit the recipients
-                        </a>
-                        <a href="javascript:void(0);"
-                            class="notify-btn text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 ms-3">Notify
-                            professional</a>
+                        @livewire('notify-professional', ['documentId' => $document->id])
                     </div>
                     <div class="close-arrow bg-224598 overflow-hidden rounded-circle cursor-pointer">
                         <div class="d-flex align-items-center justify-content-center h-100">

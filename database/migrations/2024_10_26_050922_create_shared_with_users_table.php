@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('document_id'); // Foreign key for document
             $table->boolean('to_be_notified')->default(false); // Notification preference
             $table->boolean('to_be_visible')->default(false); // Visibility preference
+            $table->boolean('is_professional_notified')->default(false); // Mark as Seen preference
             $table->boolean('mark_as_seen')->default(false); // Mark as Seen preference
             $table->timestamp('deleted_at')->nullable(); // Soft delete column
             $table->timestamp('created_at')->useCurrent(); // Created at column

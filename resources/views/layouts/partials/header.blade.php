@@ -5,7 +5,8 @@
                 @foreach ($breadcrumbs as $breadcrumb)
                     <li class="breadcrumb-item">
                         @if ($breadcrumb['url'])
-                            <a class="text-808080 d-inline-block text-decoration-none" href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['title'] }}</a>
+                            <a class="text-808080 d-inline-block text-decoration-none"
+                                href="{{ $breadcrumb['url'] }}">{{ $breadcrumb['title'] }}</a>
                         @else
                             {{ $breadcrumb['title'] }}
                         @endif
@@ -14,13 +15,15 @@
             </ol>
         </nav>
     </div>
-    <a href="#" data-bs-toggle="modal" data-bs-target="#notificationModal"
+    @livewire('notifications')
+    {{-- <a href="#" data-bs-toggle="modal" data-bs-target="#notificationModal"
         class="notification-menu radius4 overflow-hidden d-flex align-items-center justify-content-center position-relative">
         <img src="{{ asset('images/bell-icon.svg') }}" alt="" class="w-100">
         <div
             class="notification-count position-absolute d-flex align-items-center justify-content-center tk-basic-sans font10 lh-1 fw-light space-0_1 text-white bg-224598 rounded-circle">
-            0</div>
-    </a>
+            {{ auth()->user()->unreadNotifications->count() }}
+        </div>
+    </a> --}}
 </div>
 <div class="modal fade notification-modal" id="notificationModal" tabindex="-1" role="dialog"
     aria-bs-labelledby="notificationModalLabel" aria-bs-hidden="true">
@@ -30,18 +33,15 @@
                 Notifications
             </div>
             <ul class="list-none ps-0 mb-0">
-                <li class="tk-basic-sans font14 leading22 space-0_14 text-black fw-normal dmb-30">
-                    Added you as a user to document name
-                </li>
-                <li class="tk-basic-sans font14 leading22 space-0_14 text-black fw-normal dmb-30">
-                    Uploaded document name for approval
-                </li>
-                <li class="tk-basic-sans font14 leading22 space-0_14 text-black fw-normal dmb-30">
-                    Submitted a message to document name
-                </li>
-                <li class="tk-basic-sans font14 leading22 space-0_14 text-black fw-normal dmb-30">
-                    Uploaded document name for approval
-                </li>
+                @forelse (auth()->user()->unreadNotifications as $notification)
+                    <li class="tk-basic-sans font14 leading22 space-0_14 text-black fw-normal dmb-30">
+                        {{ $notification->data['message'] }}
+                    </li>
+                @empty
+                    <li>
+                        <a href="#" class="dropdown-item">No new notifications</a>
+                    </li>
+                @endforelse
             </ul>
         </div>
     </div>

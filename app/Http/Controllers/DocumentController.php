@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\DocumentNotification;
 use Illuminate\Http\Request;
 use App\Models\Document;
 use App\Models\User;
@@ -110,6 +111,15 @@ class DocumentController extends Controller
                     $document->sharedWithUsers()->create([
                         'user_id' => $userId, // Add each user ID to the sharedWithUsers table
                     ]);
+                    $recipient = User::find($userId);
+                    $recipient->notify(new DocumentNotification(
+                        "Added you as a user to {$document->name}",
+                        $document->id,
+                    ));
+                    $recipient->notify(new DocumentNotification(
+                        "{$document->user->name} Uploaded {$document->name}",
+                        $document->id,
+                    ));
                 }
                 DB::commit();
                 // Redirect to the documents index page with a success message

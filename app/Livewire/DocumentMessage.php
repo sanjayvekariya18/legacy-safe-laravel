@@ -2,9 +2,12 @@
 
 namespace App\Livewire;
 
+use App\Notifications\DocumentNotification;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Chat;
+use App\Models\Document;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
@@ -68,6 +71,30 @@ class DocumentMessage extends Component
         // Reset input fields
         $this->message = '';
         $this->file = null;
+
+        // Notified the Users for new message
+        $authUser = User::find(Auth::id());
+        $document = Document::find($this->documentId);
+
+        $authUser->notify(new DocumentNotification(
+            "Submitted a message to {$document->name}",
+            $document->id,
+        ));
+
+        if ($document->user->id == $authUser->id) {
+            foreach ($document->sharedWithProfessionalUsers as $notifiedUser) {
+                $notifiedUser->user->notify(new DocumentNotification(
+                    "{$document->user->name} Submitted a message to {$document->name}",
+                    $document->id,
+                ));
+
+            }
+        } else {
+            $document->user->notify(new DocumentNotification(
+                "{$authUser->name} Submitted a message to {$document->name}",
+                $document->id,
+            ));
+        }
 
         // Refresh the component
         $this->dispatch('$refresh')->self();

@@ -43,4 +43,8 @@ class Document extends Model
             });
     }
 
+    public function notifiedUsers() {
+        return $this->hasMany(SharedWithUser::class)->where('to_be_notified', TRUE);
+    }
+
 }
