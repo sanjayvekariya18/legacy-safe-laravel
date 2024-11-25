@@ -14,15 +14,15 @@ return new class extends Migration
     {
         Schema::create('invites', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('invited_by'); // The ID of the user who invited
+            $table->unsignedBigInteger('inviteer_id'); // The ID of the user who invited
             $table->string('email'); // The email of the invited user
             $table->string('token')->unique(); // Unique token for the invite
             $table->string('professional_type')->nullable(); // Nullable professional type
             $table->enum('role', [User::ROLE_CLIENT, User::ROLE_PROFESSIONAL]); // Role of the invited user
             $table->timestamps();
 
-            // Add foreign key constraint for invited_by
-            $table->foreign('invited_by')->references('id')->on('users')->onDelete('cascade');
+            // Add foreign key constraint for inviteer_id
+            $table->foreign('inviteer_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

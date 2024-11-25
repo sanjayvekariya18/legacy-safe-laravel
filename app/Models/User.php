@@ -46,7 +46,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'invited_by',
         'first_name',
         'last_name',
         'email',
@@ -109,5 +108,10 @@ class User extends Authenticatable
     public function invoices()
     {
         return $this->hasMany(Invoice::class);
+    }
+
+    public function invitees()
+    {
+        return $this->hasMany(UserInvite::class);
     }
 }

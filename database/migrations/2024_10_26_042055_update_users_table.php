@@ -15,9 +15,7 @@ return new class extends Migration
             $table->dropColumn('name'); // Remove the name column
             $table->dropTimestamps(); // Remove default timestamps
 
-            // Add new columns if not already added
-            $table->unsignedBigInteger('invited_by')->nullable()->after('id');
-            $table->string('first_name')->nullable()->after('invited_by');
+            $table->string('first_name')->nullable()->after('id');
             $table->string('last_name')->nullable()->after('first_name');
             $table->boolean('status')->default(true)->after('password');
             $table->string('postcode')->nullable()->after('password');
@@ -30,10 +28,6 @@ return new class extends Migration
             $table->timestamp('deleted_at')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
-
-            // Set up the foreign key constraint
-            $table->foreign('invited_by')->references('id')->on('users')->onDelete('set null');
-
         });
     }
 
@@ -46,12 +40,9 @@ return new class extends Migration
             $table->string('name')->nullable(); // Add the name column back if the migration is rolled back
             $table->timestamps(); // Add default timestamps back if the migration is rolled back
 
-            // Drop the foreign key constraint before dropping the invited_by column
-            $table->dropForeign(['invited_by']);
-
             // Remove the new columns added in the up() method
             $table->dropColumn([
-                'invited_by', 'first_name', 'last_name', 'mobile_number',
+                'first_name', 'last_name', 'mobile_number',
                 'professional_type', 'status', 'address1',
                 'address2', 'country', 'postcode'
             ]);

@@ -58,10 +58,10 @@ class DocumentController extends Controller
         $this->breadcrumbs->reset();
         $this->breadcrumbs->add('Dashboard', route('dashboard'));
         $this->breadcrumbs->add('File Manager', route('documents.create'));
-        $inviteUsers = User::where('invited_by', Auth::id())->get();
+        $invitees = User::where('inviteer_id', Auth::id())->get();
         return view('documents.create', [
             'breadcrumbs' => $this->breadcrumbs->get(),
-            'inviteUsers' => $inviteUsers,
+            'invitees' => $invitees,
         ]);
     }
 

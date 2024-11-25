@@ -37,7 +37,6 @@ class UserFactory extends Factory
             'address2' => $this->faker->address,
             'country' => $this->faker->country,
             'postcode' => $this->faker->postcode,
-            'invited_by' => null, // Adjust as needed
             'created_at' => now(),
             'updated_at' => now(),
         ];

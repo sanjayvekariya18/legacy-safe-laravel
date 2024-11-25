@@ -7,6 +7,8 @@ use App\Mail\InviteEmail;
 use App\Models\Invite;
 use App\Models\SharedWithUser;
 use App\Models\User;
+use App\Models\UserInvite;
+use App\Notifications\InviteNotification;
 use App\Services\BreadcrumbsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +47,8 @@ class SharedUserController extends Controller
                     ->orWhere('company_name', 'like', "%{$search}%");
             });
         })
-            ->where('invited_by', Auth::id()) // Add condition to check invited_by
+            ->join('user_invites', 'users.id', '=', 'user_invites.invitee_id')
+            ->where('user_invites.inviteer_id', Auth::id())
             ->paginate(10); // Paginate the results
 
         return view('shared-users.index', [
@@ -60,36 +63,49 @@ class SharedUserController extends Controller
         // Generate a unique token
         $token = Str::random(32);
 
-        // Optionally set the professional type (this can be null or a value based on your logic)
+        // Optionally set the professional type
         $professionalType = $request->professional_type; // Can be null
 
-        // Create the invite record
-        Invite::create([
-            'invited_by' => Auth::id(), // Get the current logged-in user (Client)
-            'email' => $request->email,
-            'token' => $token,
-            'professional_type' => $professionalType,
-            'role' => $request->role,
-        ]);
+        $inviteer = Auth::user(); // Current logged-in user
 
-        // Send the invite email
-        $inviteLink = route('register') . '?token=' . $token;
+        if ($invitee = User::where('email', $request->email)->first()) {
 
-        Mail::to($request->email)->send(new InviteEmail($inviteLink));  // InviteEmail is a mailable class
+            if (!UserInvite::where('inviteer_id', $inviteer->id)->where('invitee_id', $invitee->id)->exists()) {
+                // If invitee exists, log the invitation
+                UserInvite::create([
+                    'inviteer_id' => $inviteer->id,
+                    'invitee_id' => $invitee->id
+                ]);
+            }
+            $invitee->notify(new InviteNotification(
+                "You have been invited as {$request->role}"
+            ));
+        } else {
+            // Create the invite record
+            Invite::create([
+                'inviteer_id' => Auth::id(),
+                'email' => $request->email,
+                'token' => $token,
+                'professional_type' => $professionalType,
+                'role' => $request->role,
+            ]);
 
+            // Send the invite email
+            $inviteLink = route('register') . '?token=' . $token;
+
+            Mail::to($request->email)->send(new InviteEmail($inviteLink));  // InviteEmail is a mailable class
+        }
         DB::commit();
         return redirect()->route('shared.users.index')->with('success', 'Invite sent successfully!');
     }
 
-    public function removeDocumentAccess(User $user) {
+    public function removeDocumentAccess(User $user)
+    {
         $owner = Auth::user();
         $documentIds = $owner->documents->pluck('id')->toarray();
-        DB::beginTransaction();
         SharedWithUser::whereIn('document_id', $documentIds)
             ->where('user_id', $user->id)
             ->delete();
-        User::where('id', $user->id)->update(['invited_by' => NULL]);
-        DB::commit();
         return redirect()->route('shared.users.index')->with('success', 'Invite user removed!');
     }
 }

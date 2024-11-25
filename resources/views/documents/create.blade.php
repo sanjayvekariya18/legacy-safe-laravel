@@ -28,9 +28,9 @@
                     <select id="js-select2" name="users[]" class="d-none" multiple
                         data-placeholder="Select Users (Please select)">
                         <option></option>
-                        @foreach ($inviteUsers as $user)
-                            <option value="{{ $user->id }}" @if (in_array($user->id, old('users', []))) selected @endif>
-                                {{ $user->name }}</option>
+                        @foreach ($invitees as $invitee)
+                            <option value="{{ $invitee->id }}" @if (in_array($invitee->id, old('users', []))) selected @endif>
+                                {{ $invitee->name }}</option>
                         @endforeach
                     </select>
                 </div>

@@ -12,7 +12,7 @@ class Invite extends Model
     protected $table = 'invites';
 
     protected $fillable = [
-        'invited_by',
+        'inviteer_id',
         'email',
         'token',
         'professional_type',
@@ -20,8 +20,8 @@ class Invite extends Model
     ];
 
     // Define the relationship with the user who sent the invite
-    public function inviter()
+    public function inviteer()
     {
-        return $this->belongsTo(User::class, 'invited_by');
+        return $this->belongsTo(User::class, 'inviteer_id');
     }
 }

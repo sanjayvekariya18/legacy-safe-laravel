@@ -7,6 +7,7 @@ use App\Http\Requests\InviteRegisterRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\Invite;
 use App\Models\User;
+use App\Models\UserInvite;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -90,7 +91,6 @@ class RegisteredUserController extends Controller
         $invite = Invite::where('token', $request->token)->firstOrFail();
 
         $user = User::create([
-            'invited_by' => $invite->invited_by,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $invite->email,
@@ -116,6 +116,13 @@ class RegisteredUserController extends Controller
 
         $user->syncPermissions($permissions);
         $invite->delete();
+
+        // If invitee does not exist, create an invitation
+        UserInvite::create([
+            'inviteer_id' => $invite->inviteer_id,
+            'invitee_id' => $user->id
+        ]);
+
         DB::commit();
         event(new Registered($user));
 
