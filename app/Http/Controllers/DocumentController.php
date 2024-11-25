@@ -131,6 +131,10 @@ class DocumentController extends Controller implements HasMiddleware
                         $document->id,
                     ));
                 }
+                activity()
+                    ->causedBy(Auth::user())
+                    ->performedOn($document)
+                    ->log('New document created');
                 DB::commit();
                 // Redirect to the documents index page with a success message
                 return redirect()->route('documents.index')->with('success', 'Document saved and file moved to S3 successfully!');

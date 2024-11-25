@@ -80,6 +80,11 @@ class SharedUserController extends Controller
             $invitee->notify(new InviteNotification(
                 "You have been invited as {$request->role}"
             ));
+
+            activity()
+                ->causedBy(Auth::user())
+                ->performedOn($invitee)
+                ->log('New user invited');
         } else {
             // Create the invite record
             Invite::create([
@@ -89,6 +94,10 @@ class SharedUserController extends Controller
                 'professional_type' => $professionalType,
                 'role' => $request->role,
             ]);
+
+            activity()
+                ->causedBy(Auth::user())
+                ->log('New user invited');
 
             // Send the invite email
             $inviteLink = route('register') . '?token=' . $token;

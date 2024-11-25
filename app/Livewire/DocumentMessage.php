@@ -9,6 +9,7 @@ use App\Models\Chat;
 use App\Models\Document;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class DocumentMessage extends Component
@@ -48,10 +49,17 @@ class DocumentMessage extends Component
         // Validate the inputs
         $this->validate();
 
+        DB::beginTransaction();
+
         $chat = new Chat();
         $chat->document_id = $this->documentId;
         $chat->user_id = Auth::id();
         $chat->message = $this->message;
+
+        activity()
+            ->causedBy(Auth::user())
+            ->performedOn($chat->document)
+            ->log('New comment added');
 
         // Handle the file upload if there's a file
         if ($this->file) {
@@ -65,6 +73,10 @@ class DocumentMessage extends Component
             // Manually remove the temporary file after upload
             $temporaryFilePath = $this->file->getRealPath();
             unlink($temporaryFilePath); // Delete the temporary file
+            activity()
+                ->causedBy(Auth::user())
+                ->performedOn($chat->document)
+                ->log('New file uploaded');
         }
         $chat->save();
 
@@ -95,6 +107,7 @@ class DocumentMessage extends Component
                 $document->id,
             ));
         }
+        DB::commit();
 
         // Refresh the component
         $this->dispatch('$refresh')->self();
