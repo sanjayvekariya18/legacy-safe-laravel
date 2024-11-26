@@ -42,7 +42,7 @@ class UserController extends Controller
                       ->orWhere('email', 'like', "%{$search}%")
                       ->orWhere('company_name', 'like', "%{$search}%");
             });
-        })->paginate(10); // Paginate the results
+        })->paginate(perPage: 50); // Paginate the results
 
         return view('users.index', [
             'users' => $users,
@@ -220,44 +220,5 @@ class UserController extends Controller
         $user = User::onlyTrashed()->findOrFail($id);
         $user->forceDelete(); // Permanently delete the user
         return redirect()->route('users.trashed')->with('success', 'User permanently deleted');
-    }
-
-    // Method to show edit form for user permissions
-    public function editUserPermission(User $user)
-    {
-        $this->breadcrumbs->reset();
-        $this->breadcrumbs->add('Dashboard', route('dashboard'));
-        $this->breadcrumbs->add('Users', route('users.index'));
-        $this->breadcrumbs->add($user->name, route('users.edit', $user));
-
-        $permissions = Permission::all();
-
-        return view('users.edit-permission', [
-            'user' => $user,
-            'permissions' => $permissions,
-            'breadcrumbs' => $this->breadcrumbs->get(),
-        ]);
-    }
-
-    // Method to update user permissions for a specific role
-    public function updateUserPermission(Request $request, int $userId)
-    {
-        // Validate incoming request
-        $request->validate([
-            'permissions' => 'array',
-            'permissions.*' => 'exists:permissions,name', // Validate by permission name
-        ]);
-
-        // Find the user
-        $user = User::findOrFail($userId);
-
-        // Get permissions by name
-        $permissions = Permission::whereIn('name', $request->permissions)->pluck('name');
-
-        // Sync permissions for the specific role
-        $user->syncPermissions($permissions);
-
-        return redirect()->route('users.edit.permission', $user->id)
-            ->with('success', "Permissions for user '{$user->name}' updated successfully!");
     }
 }

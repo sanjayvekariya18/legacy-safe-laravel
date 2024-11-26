@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SharedDocumentController;
@@ -55,9 +56,8 @@ Route::group(['middleware' => ['auth', 'role:' . User::ROLE_ADMIN]], function ()
         Route::get('trashed', [UserController::class, 'trashed'])->name('users.trashed');
         Route::post('{user}/restore', [UserController::class, 'restore'])->name('users.restore');
         Route::delete('{user}/force-delete', [UserController::class, 'forceDelete'])->name('users.forceDelete');
-        Route::get('users/{user}/permissions/edit', [UserController::class, 'editUserPermission'])->name('users.edit.permission');
-        Route::post('users/{user}/permissions/update', [UserController::class, 'updateUserPermission'])->name('users.update.permission');
     });
+    Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions');
 
     Route::get('/activity-logs', ActivityLogController::class)->name('activity.logs');
 

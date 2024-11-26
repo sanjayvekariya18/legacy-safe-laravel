@@ -49,7 +49,7 @@ class SharedUserController extends Controller
         })
             ->join('user_invites', 'users.id', '=', 'user_invites.invitee_id')
             ->where('user_invites.inviteer_id', Auth::id())
-            ->paginate(10); // Paginate the results
+            ->paginate(50); // Paginate the results
 
         return view('shared-users.index', [
             'breadcrumbs' => $this->breadcrumbs->get(),

@@ -74,9 +74,6 @@
                     User Permissions
                     <x-input-error :message="$errors->first('roles')" />
                 </div>
-                <a href="{{ route('users.edit.permission', ['user' => $user->id]) }}"
-                    class="tk-basic-sans font16 leading24 space-0_16 text-black">Edit
-                    Permissions</a>
             </div>
             <div class="user-permission-box radius5 bg-white d-flex align-items-center ps-4 dmb-30 dpt-30 dpb-30">
                 @foreach ($roles as $role)

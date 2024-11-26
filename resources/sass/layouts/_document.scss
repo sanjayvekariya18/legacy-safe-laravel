@@ -152,7 +152,7 @@
   }
 
   .tables {
-    max-height: 445px;
+    max-height: calc(100vh - 390px);
     overflow-y: scroll;
     padding: 1px;
   }

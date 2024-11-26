@@ -39,7 +39,7 @@ class InvoiceController extends Controller
         // Get the search query from the request
         $search = $request->input('search');
 
-        $invoices = Invoice::where('name', 'like', "%{$search}%")->paginate(10); // Paginate the results
+        $invoices = Invoice::where('name', 'like', "%{$search}%")->paginate(50); // Paginate the results
 
         return view('invoices.index', [
             'breadcrumbs' => $this->breadcrumbs->get(),
