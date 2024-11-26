@@ -67,8 +67,6 @@
                                     {{ implode(',', $user->getRoleNames()->toArray()) }}
                                 </span>
                                 <div class="d-flex align-items-center">
-                                    <a href="{{ route('users.edit', ['user' => $user->id]) }}"
-                                        class="text-decoration-none border-0 bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
                                     <a href="#remove-user-modal" data-user-id="{{ $user->id }}"
                                         data-user-name="{{ $user->name }}" data-bs-toggle="modal"
                                         data-bs-target="#remove-user-modal"
