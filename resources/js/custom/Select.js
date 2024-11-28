@@ -68,12 +68,12 @@ export class Select {
         });
     }
     CreateAccountSelect() {
-        $(".js-select3").select2({
+        $("#js-select3").select2({
             closeOnSelect: true,
             placeholder: "Select a state",
             allowClear: false,
             minimumResultsForSearch: Infinity,
-            dropdownCssClass: "account-select2"
+            dropdownCssClass: "user-select2"
         });
     }
     UserSelect() {

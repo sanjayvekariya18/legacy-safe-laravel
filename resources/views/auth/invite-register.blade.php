@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://use.typekit.net/nan6ioj.css">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/select2.min.js'])
+    @vite(['resources/js/app.js', 'resources/sass/app.scss'])
 </head>
 
 <body>
@@ -65,7 +65,7 @@
                                     </div>
                                     @if ($invite->role == \App\Models\User::ROLE_PROFESSIONAL)
                                         <div class="col-6 position-relative dmb-20">
-                                            <select name="professional_type" class="js-select3 d-none"
+                                            <select name="professional_type" id="js-select3" class="d-none"
                                                 data-placeholder="Professional Type (Please select)" disabled>
                                                 <option></option>
                                                 @foreach (\App\Models\User::PROFESSIONAL_TYPES as $professionalType)

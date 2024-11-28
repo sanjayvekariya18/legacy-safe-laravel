@@ -1,6 +1,10 @@
 import $ from 'jquery';
 // Import Bootstrap's JS (this provides the modal functionality)
 import * as bootstrap from 'bootstrap';
+
+import select2 from 'select2';
+select2();
+
 // Optionally, if you need Popper.js for tooltips, popovers, etc.
 import { createPopper } from '@popperjs/core';
 import { Select } from './custom/Select.js';
