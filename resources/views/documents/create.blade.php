@@ -30,7 +30,7 @@
                         <option></option>
                         @foreach ($invitees as $invitee)
                             <option value="{{ $invitee->invitee_id }}" @if (in_array($invitee->invitee_id, old('invitees', []))) selected @endif>
-                                {{ $invitee->invitee->name }}</option>
+                                {{ $invitee->invitee->name }} - {{ $invitee->invitee->email }}</option>
                         @endforeach
                     </select>
                 </div>
