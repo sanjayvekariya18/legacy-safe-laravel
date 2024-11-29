@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://use.typekit.net/nan6ioj.css">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/select2.min.js'])
+    @vite(['resources/js/app.js', 'resources/sass/app.scss'])
 </head>
 
 <body>
