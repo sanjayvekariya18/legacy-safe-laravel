@@ -37,16 +37,17 @@ class SharedUserController extends Controller
         // Get the search query from the request
         $search = $request->input('search');
 
-        $users = User::when($search, function ($query, $search) {
-            // Search in first name and last name combined
-            return $query->where(function ($query) use ($search) {
-                $query->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%{$search}%"])
-                    ->orWhere('first_name', 'like', "%{$search}%")
-                    ->orWhere('last_name', 'like', "%{$search}%")
-                    ->orWhere('email', 'like', "%{$search}%")
-                    ->orWhere('company_name', 'like', "%{$search}%");
-            });
-        })
+        $users = User::select('users.*')
+            ->when($search, function ($query, $search) {
+                // Search in first name and last name combined
+                return $query->where(function ($query) use ($search) {
+                    $query->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%{$search}%"])
+                        ->orWhere('first_name', 'like', "%{$search}%")
+                        ->orWhere('last_name', 'like', "%{$search}%")
+                        ->orWhere('email', 'like', "%{$search}%")
+                        ->orWhere('company_name', 'like', "%{$search}%");
+                });
+            })
             ->join('user_invites', 'users.id', '=', 'user_invites.invitee_id')
             ->where('user_invites.inviteer_id', Auth::id())
             ->paginate(50); // Paginate the results

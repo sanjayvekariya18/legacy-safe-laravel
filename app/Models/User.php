@@ -114,4 +114,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserInvite::class, 'inviteer_id');
     }
+
+    protected static function booted()
+    {
+        static::deleting(function ($user) {
+            // Delete invitees where the user is the invitee
+            UserInvite::where('invitee_id', $user->id)->delete();
+
+            // Delete invites where the user is the inviter
+            UserInvite::where('inviteer_id', $user->id)->delete();
+        });
+    }
 }
