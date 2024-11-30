@@ -6,6 +6,7 @@ use App\Models\Document;
 use App\Services\BreadcrumbsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class SharedDocumentController extends Controller
 {
@@ -66,5 +67,24 @@ class SharedDocumentController extends Controller
             'document' => $document,
             'breadcrumbs' => $this->breadcrumbs->get(),
         ]);
+    }
+
+    public function viewSharedDocument(Document $document)
+    {
+        try {
+            $fileName = sprintf(
+                "%s.%s",
+                $document->name,
+                pathinfo($document->url, PATHINFO_EXTENSION)
+            );
+            // Check if the file exists in the S3 bucket
+            if (!Storage::disk('s3')->exists($document->url)) {
+                return redirect()->back()->with('error', 'Document not found on S3.');
+            }
+            // Return the document as a downloadable response
+            return Storage::disk('s3')->download($document->url, $fileName);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }

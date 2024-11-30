@@ -105,6 +105,7 @@ Route::group(['middleware' => ['auth', 'role:' . User::ROLE_USER . '|' . User::R
     // Shared Document Routes
     Route::get('shared-documents', [SharedDocumentController::class, 'index'])->name('shared.documents.index');
     Route::get('shared-documents/{document}', [SharedDocumentController::class, 'show'])->name('shared.documents.show');
+    Route::get('/view-shared-document/{document}', [SharedDocumentController::class, 'viewSharedDocument'])->name('view.shared.document');
 });
 //** End User Routes */
 

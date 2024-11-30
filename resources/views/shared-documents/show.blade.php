@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="ps-5 ms-3">
-                    <a href="{{ route('view.document', ['document' => $document]) }}"
+                    <a href="{{ route('view.shared.document', ['document' => $document]) }}"
                         class="tk-basic-sans font12 leading22 space-0_12 text-0F0F0F fw-normal text-capitalize me-4">View
                         File</a>
                 </div>
