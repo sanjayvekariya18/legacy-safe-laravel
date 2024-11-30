@@ -116,6 +116,7 @@ class SharedUserController extends Controller
         SharedWithUser::whereIn('document_id', $documentIds)
             ->where('user_id', $user->id)
             ->delete();
+        $owner->invitees()->where('invitee_id', $user->id)->delete();
         return redirect()->route('shared.users.index')->with('success', 'Invite user removed!');
     }
 }
