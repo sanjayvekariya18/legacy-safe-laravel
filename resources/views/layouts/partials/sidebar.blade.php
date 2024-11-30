@@ -16,7 +16,7 @@
             </form>
         </div>
         <div>
-            <a href="{{ route('dashboard') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('dashboard') || Request::is('shared*') ? 'active' : '' }}">
+            <a href="{{ route('dashboard') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('dashboard') || Request::is('shared-documents*') ? 'active' : '' }}">
                 <div class="me-2 ms-3 admin-menu-icon d-flex">
                     <img src="{{ asset('images/home-icon.svg') }}" class="w-100" alt="">
                 </div>
@@ -63,7 +63,7 @@
                 </a>
             @endif
             @if (Auth::user()->hasRole(\App\Models\User::ROLE_CLIENT))
-                <a href="{{ route('shared.users.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('users*') ? 'active' : '' }}">
+                <a href="{{ route('shared.users.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('shared-users*') ? 'active' : '' }}">
                     <div class="me-2 ms-3 admin-menu-icon d-flex">
                         <img src="{{ asset('images/user-icon.svg') }}" class="w-100" alt="">
                     </div>

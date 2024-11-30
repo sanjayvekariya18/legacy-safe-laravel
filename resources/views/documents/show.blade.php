@@ -102,7 +102,7 @@
             @livewire('document-message', ['documentId' => $document->id])
         </div>
         <div class="d-flex align-items-center justify-content-between dpb-65">
-            <a href=""
+            <a href="{{ route('documents.index') }}"
                 class="back-all text-decoration-none tk-basic-sans font13 leading22 space-0_13 text-black fw-normal d-inline-flex align-items-center">
                 <div class="text-black d-flex align-items-center justify-content-center radius4 me-2">
                     <img src="{{ asset('images/left-arrow.svg') }}" class="w-100" alt="">

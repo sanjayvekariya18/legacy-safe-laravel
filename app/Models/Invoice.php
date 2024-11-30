@@ -45,4 +45,15 @@ class Invoice extends Model
                 return 'Unknown Status'; // In case you have other statuses in the future
         }
     }
+
+    public function scopeForUser($query, $user, $search)
+    {
+        if ($user->hasRole(User::ROLE_ADMIN)) {
+            return $query->where('name', 'like', "%{$search}%");
+        }
+
+        return $query->where('user_id', $user->id)
+            ->where('name', 'like', "%{$search}%");
+    }
+
 }

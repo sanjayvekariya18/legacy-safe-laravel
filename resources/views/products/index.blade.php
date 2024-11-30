@@ -87,8 +87,6 @@
                                     £{{ $product->monthly_price }}<span
                                         class="tk-basic-sans fw-normal font14 leading22 space-0_14 text-808080">/mo</span>
                                 </div>
-                                <button class="btnB blue-btn border-0 radius7 w-100 dmb-15">Select this
-                                    plan</button>
                                 <div class="tk-basic-sans fw-normal font13 leading19 space-0_13 text-black dmb-20">
                                     What’s included:</div>
                                 <div
@@ -106,6 +104,16 @@
                     @foreach ($products as $product)
                         <div class="col-4">
                             <div class="upgrade-cards bg-white radius5 dpt-35 dpb-45">
+                                <div class="d-flex align-items-center dmb-15">
+                                    <a href="{{ route('products.edit', ['product' => $product->id]) }}"
+                                        class="text-center flex-fill text-decoration-none border-0 bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 me-1">View</a>
+                                    <a href="#remove-user-modal" data-product-id="{{ $product->id }}"
+                                        data-product-name="{{ $product->name }}" data-bs-toggle="modal"
+                                        data-bs-target="#remove-user-modal"
+                                        class="text-center flex-fill text-decoration-none border-0 btn btn-danger tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 delete-product">
+                                        delete
+                                    </a>
+                                </div>
                                 <div class="tk-basic-sans fw-normal font22 leading22 space-0_22 text-0F0F0F dmb-15">
                                     {{ $product->name }}</div>
                                 <div class="tk-basic-sans fw-normal font13 leading19 space-0_13 text-808080 dmb-20">
@@ -114,8 +122,6 @@
                                     £{{ $product->yearly_price }}<span
                                         class="tk-basic-sans fw-normal font14 leading22 space-0_14 text-808080">/mo</span>
                                 </div>
-                                <button class="btnB blue-btn border-0 radius7 w-100 dmb-15">Select this
-                                    plan</button>
                                 <div class="tk-basic-sans fw-normal font13 leading19 space-0_13 text-black dmb-20">
                                     What’s included:</div>
                                 <div

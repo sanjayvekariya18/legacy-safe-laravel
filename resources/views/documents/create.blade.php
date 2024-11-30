@@ -34,7 +34,7 @@
                         @endforeach
                     </select>
                 </div>
-                <x-input-error :message="$errors->first('users')" />
+                <x-input-error :message="$errors->first('invitees')" />
             </div>
             <div class="col-12 dmt-15 dmb-25">
                 <div class="w-100 file-input bg-white text-center d-flex flex-column">
@@ -95,6 +95,7 @@
 @endsection
 @push('page-specific-scripts')
     <script>
+        var ajax;
         function _(el) {
             return document.getElementById(el);
         }
@@ -108,7 +109,7 @@
 
             var formdata = new FormData();
             formdata.append("document", file);
-            var ajax = new XMLHttpRequest();
+            ajax = new XMLHttpRequest();
             ajax.upload.addEventListener("progress", progressHandler, false);
             ajax.addEventListener("load", completeHandler, false);
             ajax.addEventListener("error", errorHandler, false);
@@ -164,6 +165,9 @@
         }
 
         function removeFile() {
+            if (ajax) {
+                ajax.abort();
+            }
             _("document").value = "";
             _("progressBar").value = 0;
             _("status").innerHTML = "";

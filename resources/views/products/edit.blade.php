@@ -12,7 +12,7 @@
             <img src="{{ asset('images/document.svg') }}" alt="">
         </div>
         <div class="tk-basic-sans font22 leading22 space-0_22 text-0F0F0F fw-normal ms-3">
-            Create Product
+            Edit Product
         </div>
     </div>
     <div class="col-11">
