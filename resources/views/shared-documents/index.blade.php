@@ -77,12 +77,5 @@
         <div class="pagination d-flex align-items-center">
             {{ $documents->links('vendor.pagination.bootstrap-5') }}
         </div>
-        <div>
-            <a href="{{ route('documents.create') }}"
-                class="text-decoration-none large-btn blue-btn tk-basic-sans font16 leading22 space-0_16 fw-normal d-inline-flex align-items-center justify-content-center px-5 radius7">
-                <img src="{{ asset('images/plus-circle.svg') }}" alt="Add new file" class="me-2">
-                Add new file
-            </a>
-        </div>
     </div>
 @endsection
