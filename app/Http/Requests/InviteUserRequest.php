@@ -25,12 +25,22 @@ class InviteUserRequest extends FormRequest
      */
     public function rules(): array
     {
+        $selectedRole = $this->input('role');
         $rules = [
-            'email' => 'required|email', // Ensure the email is not already taken
+            'email' => ['required', 'email', function ($attribute, $value, $fail) use($selectedRole) {
+                // Prevent inviting oneself
+                if ($value === $this->user()->email) {
+                    $fail('You cannot invite yourself.');
+                }
+                $invitedUser = User::where('email', $value)->first();
+                if ($invitedUser && !$invitedUser->hasRole($selectedRole)) {
+                    $fail("The selected email does not match the role.");
+                }
+            }]
         ];
-        if ($this->input('role') == User::ROLE_CLIENT ) {
-            $rules['professional_type'] = 'nullable|string|in:' . implode(',', User::PROFESSIONAL_TYPES);
-        } elseif ($this->input('role') == User::ROLE_PROFESSIONAL) {
+        if ($selectedRole == User::ROLE_CLIENT ) {
+            $rules['professional_type'] = 'nullable';
+        } elseif ($selectedRole == User::ROLE_PROFESSIONAL) {
             $rules['professional_type'] = 'required|string|in:' . implode(',', User::PROFESSIONAL_TYPES);
         }
         return $rules;
@@ -44,7 +54,8 @@ class InviteUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.unique' => 'The email address is already registered. Please use a different one.',
+            'email.required' => 'The email field is required.',
+            'email.email' => 'The email must be a valid email address.',
             'professional_type.string' => 'Professional type must be a valid string.',
         ];
     }
