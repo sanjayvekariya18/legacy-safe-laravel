@@ -69,7 +69,7 @@
                     </div>
                     <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Invited users</div>
                 </a>
-                <a href="{{ route('subscriptions.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('subscptions*') ? 'active' : '' }}">
+                <a href="{{ route('subscriptions.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('subscribe*') ? 'active' : '' }}">
                     <div class="me-2 ms-3 admin-menu-icon d-flex">
                         <img src="{{ asset('images/star-icon.svg') }}" class="w-100" alt="">
                     </div>

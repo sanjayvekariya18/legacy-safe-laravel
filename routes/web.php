@@ -86,7 +86,7 @@ Route::group(['middleware' => ['auth', 'role:' . User::ROLE_CLIENT]], function (
     Route::get('shared-users', [SharedUserController::class, 'index'])->name('shared.users.index');
     Route::post('shared-users/invite', [SharedUserController::class, 'sendInvite'])->name('shared.users.invite');
     Route::post('shared-users/remove-document-access/{user}', [SharedUserController::class, 'removeDocumentAccess'])->name('remove.document.access');
-    Route::get('choose-your-plan', [SubscriptionController::class, 'chooseYourPlan'])->name('subscriptions.index');
+    Route::get('subscribe/choose-your-plan', [SubscriptionController::class, 'chooseYourPlan'])->name('subscriptions.index');
     Route::get('subscribe/{product}', [SubscriptionController::class, 'getCard'])->name('subscriptions.card');
     Route::post('subscribe/{product}', [SubscriptionController::class, 'subscribe'])->name('subscriptions.subscribe');
 });
