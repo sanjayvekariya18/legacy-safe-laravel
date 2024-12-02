@@ -22,7 +22,7 @@
                 </a>
             @endif
             @if (Auth::user()->hasRole(\App\Models\User::ROLE_CLIENT))
-                <a href="{{ route('documents.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('documents*') || Request::is('documents/show') ? 'active' : '' }}">
+                <a href="{{ route('documents.index') }}" class="text-decoration-none d-flex align-items-center admin-menu dmb-10 {{ Request::is('documents') || Request::is('documents/show') ? 'active' : '' }}">
                     <div class="me-2 ms-3 admin-menu-icon d-flex">
                         <img src="{{ asset('images/document.svg') }}" class="w-100" alt="">
                     </div>
