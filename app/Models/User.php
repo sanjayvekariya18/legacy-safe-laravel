@@ -18,7 +18,6 @@ class User extends Authenticatable
     const ROLE_ADMIN = "Admin";
     const ROLE_CLIENT = "Client";
     const ROLE_PROFESSIONAL = "Professional";
-    const ROLE_USER = "User";
 
     const PROFESSIONAL_TYPE_SOLICITOR = "Solicitor";
     const PROFESSIONAL_TYPE_FINANCIAL_ADVISER = "Financial Adviser";
@@ -28,8 +27,7 @@ class User extends Authenticatable
     public const ROLES = [
         self::ROLE_ADMIN,
         self::ROLE_CLIENT,
-        self::ROLE_PROFESSIONAL,
-        self::ROLE_USER,
+        self::ROLE_PROFESSIONAL
     ];
 
     // Define a static array

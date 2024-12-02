@@ -43,11 +43,5 @@ class RolesAndPermissionsSeeder extends Seeder
             'edit documents',
             'can message'
         ]); // Professionals can view and edit documents
-
-        $userRole = Role::findByName('User');
-        $userRole->givePermissionTo([
-            'view documents',
-            'can message'
-        ]); // Professionals can view and edit documents
     }
 }

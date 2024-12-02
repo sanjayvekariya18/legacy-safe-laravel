@@ -231,28 +231,5 @@
                 </div>
             </div>
         @endif
-        @if (Auth::user()->hasRole(\App\Models\User::ROLE_USER))
-            <div class="col-4">
-                <div class="bg-white dashboard-card radius7 px-4 dpt-35 dpb-30">
-                    <div class="d-inline-flex">
-                        <div class="dashboard-icon bg-F0F0F0 radius7">
-                            <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                                <img src="{{ asset('images/user.svg') }}" alt="" class="">
-                            </div>
-                        </div>
-                        <div class="ms-4 d-flex flex-column">
-                            <div class="tk-basic-sans font22 leading30 space-0_22 text-0F0F0F fw-normal dmb-15">
-                                Documents to review
-                            </div>
-                            <div class="tk-basic-sans font13 leading22 space-0_13 text-3C3C3C fw-normal dmb-15">
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                            </div>
-                            <a href="{{ route('shared.documents.index') }}"
-                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
     </div>
 @endsection
