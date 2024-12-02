@@ -8,12 +8,27 @@
 }
 
 .modal-box-section {
+    &.register-box-section {
+        &::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba($color: $white, $alpha: 0);
+            backdrop-filter: blur(11px);
+        }
+    }
+
     .modal-box-data {
         padding-left: 42px;
         padding-right: 42px;
     }
 
     .create-account-box {
+        position: relative;
+        z-index: 99;
         padding-left: 20px;
         padding-right: 20px;
 
@@ -39,7 +54,7 @@
     border: 1px solid $color-DEDEDE;
 
     .user-permission-check {
-        margin-right: 55px;
+        margin-right: 54px;
 
         &:last-child {
             margin-right: 0;
