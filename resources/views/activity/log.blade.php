@@ -18,13 +18,13 @@
         </div>
         <div class="col-5 ps-3">
             <div class="position-relative w-100">
-                <form action="{{ route('activity.logs') }}" method="GET" class="d-flex mb-3">
+                <form action="{{ route('activity.logs') }}" method="GET" class="d-flex">
                     <input name="search" value="{{ request()->get('search') }}" type="text"
                         placeholder="Who are you looking for?.."
                         class="input white-b-input height-50 w-100 tk-basic-sans font16 leading19 pe-5">
                     <div class="position-absolute h-100 top-0 end-0 d-flex align-items-center justify-content-end pe-2">
                         <button type="submit"
-                            class="bg-224598 search-icon radius4 d-flex align-items-center justify-content-center">
+                            class="bg-224598 search-icon radius4 d-flex align-items-center justify-content-center border-0">
                             <img src="{{ asset('images/search-icon.svg') }}" alt="">
                         </button>
                     </div>

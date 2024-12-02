@@ -20,7 +20,7 @@
 
 <body>
     <main>
-        <section class="modal-box-section h-vh w-100">
+        <section class="modal-box-section register-box-section h-vh w-100 position-relative">
             <div class="position-fixed h-100 w-100 top-0 start-0">
                 <img src="{{ asset('images/signin-page-img.png') }}" class="w-100 h-100 object-cover" alt="">
             </div>
@@ -32,8 +32,8 @@
             </div>
             <div class="dpt-80 dpb-80">
                 <div class="col-8 mx-auto create-account-box h-100">
-                    <div class="modal-bg-layer radius10 dpt-50 h-100 text-center dpb-75">
-                        <div class="col-10 px-4 mx-auto dmb-45 h-100">
+                    <div class="modal-bg-layer radius10 dpt-35 h-100 text-center dpb-75">
+                        <div class="col-10 px-4 mx-auto h-100">
                             <div class="tk-basic-sans fw-normal font30 leading34 space-0_3 text-white dmb-15">Create an
                                 account
                             </div>

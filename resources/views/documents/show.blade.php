@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-content dpt-60 px-4">
+                <div class="accordion-content dpt-50 dpb-35 px-4">
                     @livewire('document-user-status-toggle', ['documentId' => $document->id])
                 </div>
             </div>

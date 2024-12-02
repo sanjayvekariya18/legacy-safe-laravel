@@ -33,7 +33,7 @@
                     <div class="modal-bg-layer radius10 dpt-45 text-center overflow-hidden">
                         <form method="POST" action="{{ route('password.email') }}">
                             @csrf
-                            <div class="modal-box-data dmb-55">
+                            <div class="modal-box-data dmb-35">
                                 <div class="tk-basic-sans fw-normal font30 leading34 space-0_3 text-white dmb-35">Forgot Password
                                 </div>
                                 <div class="position-relative dmb-20">

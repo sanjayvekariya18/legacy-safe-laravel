@@ -71,7 +71,7 @@
             <div class="col-4">
                 <div class="upgrade-cards radius5 bg-white dpt-35 dpb-45">
                     <div class="tk-basic-sans fw-normal font22 leading22 space-0_22 text-black dmb-15">{{ $product->name }}</div>
-                    <div class="tk-basic-sans fw-normal font12 leading22 space-0_22 text-black dmb-30">
+                    <div class="tk-basic-sans fw-normal font12 leading22 space-0_12 text-black dmb-30">
                         All the basics of starting a new plan
                     </div>
                     <div class="tk-basic-sans fw-normal font13 leading19 space-0_13 text-black dmb-20">

@@ -75,9 +75,9 @@
                     <x-input-error :message="$errors->first('roles')" />
                 </div>
             </div>
-            <div class="user-permission-box radius5 bg-white d-flex align-items-center ps-4 dmb-30 dpt-30 dpb-30">
+            <div class="user-permission-box radius5 bg-white d-flex flex-wrap align-items-center ps-4 dmb-30 dpt-30 dpb-30">
                 @foreach ($roles as $role)
-                    <div class="d-flex align-items-center user-permission-check">
+                    <div class="d-flex align-items-center user-permission-check dmb-10">
                         <div
                             class="checkbox-container black-checkbox-container position-relative  d-inline-flex align-items-center tk-basic-sans fw-normal font16 leading30 space-0_16 text-black">
                             <input type="checkbox" name="roles[]" value="{{ $role->name }}"
@@ -98,7 +98,7 @@
                 <div>
                     <button type="button" data-action='softDeleteForm'
                         class="tk-basic-sans font16 leading19 space-0_16 text-black radius7 border-1 bg-transparent user-permission-btn align-items-center me-2">
-                        <img src="{{ asset('images/archiv-user.svg') }}" class="permission-box-user-logo me-2"
+                        <img src="{{ asset('images/archive-icon.svg') }}" class="permission-box-user-logo me-2"
                             alt="">
                         Archive User
                     </button>

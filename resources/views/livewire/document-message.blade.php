@@ -61,7 +61,7 @@
                 </div>
                 <div>
                     <button type="submit" wire:loading.attr="disabled" wire:target="sendMessage"
-                        class="text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white dpt-10 dpb-10 px-4 radius5 ms-3">
+                        class="text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white dpt-10 dpb-10 px-4 radius5 ms-3 border-0">
                         <span wire:loading.remove wire:target="sendMessage">Submit Message</span>
                         <span wire:loading wire:target="sendMessage">
                             <div class="spinner-border spinner-border-sm" role="status">

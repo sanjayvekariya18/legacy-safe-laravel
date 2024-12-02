@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="col-11">
-        <form class="row row8 form-row" id="documentCreationForm" action="{{ route('documents.store') }}" method="post">
+        <form class="row row8 form-row fsdffsd" id="documentCreationForm" action="{{ route('documents.store') }}" method="post">
             @csrf
             <div class="col-6 dmt-15">
                 <x-text-input class="white-b-input" type="text" name="name" placeholder="Document name…"
@@ -87,7 +87,7 @@
             </div>
             <div>
                 <button type="submit"
-                    class="d-inline-flex align-items-center justify-content-center text-decoration-none tk-basic-sans fw-normal font16 leading19 space-0_16 large-btn blue-btn2 radius7 w-100 transition">Save
+                    class="d-inline-flex align-items-center justify-content-center text-decoration-none tk-basic-sans fw-normal font16 leading19 space-0_16 large-btn large-btn2 blue-btn2 radius7 w-100 transition">Save
                     changes</button>
             </div>
         </form>
