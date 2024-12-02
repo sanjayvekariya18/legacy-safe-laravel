@@ -10,7 +10,7 @@ class StripeWebhookController extends WebhookController
 {
     public function handleWebhook(Request $request)
     {
-        Log::info('Webhook received:', $request->all());
+        Log::channel('cashier')->info('Webhook received:', $request->all());
         return parent::handleWebhook($request);
     }
 }

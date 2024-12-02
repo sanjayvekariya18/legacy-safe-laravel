@@ -52,10 +52,11 @@ return [
 
     'channels' => [
 
-        'stripe' => [
+        'cashier' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/stripe.log'),
-            'level' => 'info',
+            'path' => storage_path('logs/cashier.log'),
+            'level' => 'debug', // Change this to 'debug' for more detailed logs
+            'days' => 14,      // Retain logs for 14 days (adjust as needed)
         ],
 
         'stack' => [
