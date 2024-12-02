@@ -6,7 +6,7 @@
                     <div class="d-inline-flex w-100">
                         <div
                             class="alphbet-icon bg-224598 tk-basic-sans font16 leading22 space-0_16 text-white text-uppercase fw-normal d-inline-flex align-items-center justify-content-center rounded-circle">
-                            J
+                            {{ substr($chat->user->first_name, 0, 1) }}
                         </div>
                         <div>
                             <div class="tk-basic-sans font16 leading22 space-0_16 text-black fw-normal dmb-15">
