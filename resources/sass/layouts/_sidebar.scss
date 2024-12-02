@@ -29,13 +29,14 @@
         width: 90px;
     }
 }
-
+.admin-menu-icon {
+    width: 19px;
+}
 .admin-wrapper {
     width: 80%;
 
     .breadcrumb-menu {
         .breadcrumb {
-            margin: 0 !important;
             .breadcrumb-item {
                 &:last-child {
                     a{

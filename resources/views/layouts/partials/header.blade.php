@@ -1,7 +1,7 @@
 <div class="admin-menu-bar d-flex align-items-center justify-content-between dpt-25 dpb-40">
-    <div class="breadcrumb-menu tk-basic-sans font12 leading14 space-0_12 fw-normal h-100">
+    <div class="breadcrumb-menu tk-basic-sans font12 leading14 space-0_12 fw-normal d-flex align-items-center">
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
+            <ol class="breadcrumb mb-0">
                 @foreach ($breadcrumbs as $breadcrumb)
                     <li class="breadcrumb-item">
                         @if ($breadcrumb['url'])
@@ -15,16 +15,7 @@
             </ol>
         </nav>
     </div>
-    <div class="d-flex align-items-center">
-        <a class="dropdown-item me-3 tk-basic-sans font16 leading22 text-black" href="{{ route('logout') }}"
-            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-            {{ __('Logout') }}
-        </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form>
-        @livewire('notifications')
-    </div>
+    @livewire('notifications')
 </div>
 <div class="modal fade notification-modal" id="notificationModal" tabindex="-1" role="dialog"
     aria-bs-labelledby="notificationModalLabel" aria-bs-hidden="true">
