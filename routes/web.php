@@ -123,6 +123,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('invoice/{invoice}/download', [InvoiceController::class, 'downloadInvoice'])->name('invoices.download');
 });
 
-Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook']);
+Route::post('/stripe/webhook', [StripeWebhookController::class, 'handleWebhook'])->name('cashier.webhook');
 
 require __DIR__ . '/auth.php';
