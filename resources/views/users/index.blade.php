@@ -14,7 +14,7 @@
         </div>
         <div class="col-5 ps-3">
             <div class="position-relative w-100">
-                <form action="{{ route('users.index') }}" method="GET" class="d-flex mb-3">
+                <form action="{{ route('users.index') }}" method="GET" class="d-flex">
                     <input name="search" value="{{ request()->get('search') }}" type="text"
                         placeholder="Who are you looking for?.."
                         class="input white-b-input height-50 w-100 tk-basic-sans font16 leading19 pe-5">

@@ -23,7 +23,7 @@
         <section class="modal-box-section h-vh position-relative w-100">
             <img src="{{ asset('images/signin-page-img.png') }}" class="w-100 h-100 object-cover" alt="">
             <div class="position-fixed bottom-0 end-0 d-flex align-items-center me-5 mb-4">
-                <div class="tk-basic-sans fw-normal font13 leading19 space-0_13 text-white me-1 opacity60">Powered by</div>
+                <div class="tk-basic-sans fw-normal font13 leading19 space-0_13 text-white me-1 opacity-60">Powered by</div>
                 <div class="legacy-logo">
                     <img src="{{ asset('images/legecy-logo.svg') }}" class="w-100" alt="">
                 </div>

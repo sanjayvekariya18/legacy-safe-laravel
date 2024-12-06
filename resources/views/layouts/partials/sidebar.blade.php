@@ -96,11 +96,8 @@
                 </div>
                 {{ __('Logout') }}
             </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
             <div class="d-flex align-items-center">
-                <div class="tk-basic-sans fw-normal font12 leading14 space-0_12 text-808080 opacity60 me-1">Powered by</div>
+                <div class="tk-basic-sans fw-normal font12 leading14 space-0_12 text-808080 opacity-60 me-1">Powered by</div>
                 <div class="dashboard-logo">
                     <img src="{{ asset('images/legecy-black-logo.svg') }}" class="w-100" alt="">
                 </div>
