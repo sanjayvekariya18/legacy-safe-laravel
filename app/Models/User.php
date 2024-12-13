@@ -4,16 +4,18 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Prunable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Permission\Traits\HasRoles; // Add this line
+use Spatie\Permission\Traits\HasRoles;
+
+// Add this line
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, SoftDeletes, HasRoles; // Include HasRoles trait
-
+    use HasFactory, Notifiable, SoftDeletes, HasRoles, Prunable; // Include HasRoles trait
     const ROLE_ADMIN = "Admin";
     const ROLE_CLIENT = "Client";
     const ROLE_PROFESSIONAL = "Professional";
@@ -52,6 +54,9 @@ class User extends Authenticatable
         'address2',
         'country',
         'postcode',
+        'company_name',
+
+
     ];
 
     protected $dates = ['deleted_at'];
@@ -85,10 +90,20 @@ class User extends Authenticatable
         return "{$this->first_name} {$this->last_name}";
     }
 
-    // Relationships
-    public function documents()
+    public function Prunable()
     {
-        return $this->hasMany(Document::class);
+        return User::query()->whereStatus('canceled')->where('created_at', '<=', now()->subMonth());
+    }
+
+    // Relationships
+    // public function documents()
+    // {
+    //     return $this->hasMany(Document::class);
+    // }
+
+    public function document()
+    {
+        return $this->belongsToMany(Document::class, 'shared_with_users', 'user_id', 'document_id');
     }
 
     public function chats()
@@ -105,4 +120,36 @@ class User extends Authenticatable
     {
         return $this->hasMany(Invoice::class);
     }
+
+    public function SharedWithUser()
+    {
+        return $this->hasMany(SharedWithUser::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'model_has_roles', 'model_id', 'role_id');
+    }
+
+    public function invitedBy()
+    {
+        return $this->belongsTo(User::class, 'invited_by');
+    }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
+
+    public function invitedUsers()
+    {
+        return $this->hasMany(User::class, 'invited_by');
+    }
+
+
 }

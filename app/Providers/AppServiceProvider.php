@@ -2,7 +2,12 @@
 
 namespace App\Providers;
 
+use App\Repositories\FileManagerRepositories;
+use App\Repositories\FileManagerRepositoriesInterface;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\UserRepository;
+use App\Repositories\UserRepositoryInterface;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +16,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
     }
 
     /**
@@ -19,6 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Paginator::useBootstrapFive();
     }
 }

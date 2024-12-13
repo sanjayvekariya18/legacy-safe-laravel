@@ -17,21 +17,38 @@ class Document extends Model
         'status',
     ];
 
+
+
     protected $dates = ['deleted_at'];
 
     // Relationships
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
+
 
     public function chats()
     {
         return $this->hasMany(Chat::class);
     }
 
-    public function sharedWithUsers()
+    // public function sharedWithUsers()
+    // {
+    //     return $this->hasMany(SharedWithUser::class);
+    // }
+
+    public function sharedWithUser()
     {
-        return $this->hasMany(SharedWithUser::class);
+        return $this->belongsToMany(User::class, 'shared_with_users', 'document_id', 'user_id');
     }
+
+
+
 }

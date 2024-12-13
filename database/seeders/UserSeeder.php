@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -26,7 +28,7 @@ class UserSeeder extends Seeder
             'last_name' => 'Simmons',
             'email' => 'jack@example.com',
         ]);
-        $admin->assignRole(User::ROLE_CLIENT);
+        $client->assignRole(User::ROLE_CLIENT);
 
         // Create Professional
         $professional = User::factory()->create([

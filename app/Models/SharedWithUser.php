@@ -20,13 +20,27 @@ class SharedWithUser extends Model
     protected $dates = ['deleted_at'];
 
     // Relationships
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+
+    // public function document()
+    // {
+    //     return $this->belongsTo(Document::class);
+    // }
+
 
     public function document()
     {
-        return $this->belongsTo(Document::class);
+        return $this->belongsTo(Document::class, 'document_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+
 }

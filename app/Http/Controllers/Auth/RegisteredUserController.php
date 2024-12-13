@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\RegisterUserValidate;
 use App\Models\User;
+use App\Repositories\UserRepository;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,40 +13,64 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-
+use Illuminate\Support\Str;
+ use Carbon\Carbon;
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
+    protected $UserRepository;
+
+    public function __construct(private UserRepository $userRepository){
+        $this->UserRepository = $userRepository;
+    }
+
     public function create(): View
     {
         return view('auth.register');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(Request $request): RedirectResponse
+
+    public function store(RegisterUserValidate $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        $data = $request->validated();
+        $user =$this->UserRepository->createUser($data);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        if ($user) {
+            $message = $user->professional_type == 'solicitor' || $user->professional_type == 'professional'
+                ? 'Registered successfully as a professional.'
+                : 'Registered successfully as a customer.';
 
-        event(new Registered($user));
 
-        Auth::login($user);
+            event(new Registered($user));
+            Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+            return redirect()->route('dashboard')->with(['message' => $message]);
+        }
+        return redirect()->route('register')->with(['error' => 'Registration failed. Please try again.']);
+        // return redirect(route('dashboard', absolute: false));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
