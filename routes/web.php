@@ -48,12 +48,6 @@ Route::group(['middleware' => ['auth', 'role:' . User::ROLE_CLIENT]], function (
 
 
 
-//file Manager
-
-// Route::post('file-upload', function () {
-//     return view('document.file_manager');
-// })->name('file.upload');
-
 
 
 
