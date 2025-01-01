@@ -20,30 +20,13 @@ class UserRolePermissionRepository
     }
 
 
-    public function updatePermissions(array $addedPermissions, array $removedPermissions, $id)
+    public function update($id, $isChecked)
     {
-        try {
+        $permission = Permission::findOrFail($id);
+        $permission->is_checked = $isChecked;
+        $permission->save();
 
-            $user = User::find($id);
-
-            if (!$user) {
-                Log::warning('User ID not found: ' . $id);
-                return response()->json(['message' => 'User not found.'], 404);
-            }
-
-            if (!empty($addedPermissions)) {
-                $user->permissions()->attach($addedPermissions);
-            }
-
-            if (!empty($removedPermissions)) {
-                $user->permissions()->detach($removedPermissions);
-            }
-
-            return response()->json(['message' => 'Permissions updated successfully.'], 200);
-        } catch (\Exception $e) {
-            Log::error('Error updating permissions for user ID ' . $id . ': ' . $e->getMessage());
-            return response()->json(['message' => 'Error updating permissions.'], 500);
-        }
+        return $permission;
     }
 
 

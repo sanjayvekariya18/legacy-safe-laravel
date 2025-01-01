@@ -39,23 +39,21 @@
                             </div>
                             <ul class="nav nav-tabs create-account-tabs bg-EBEBEB border-0 d-inline-flex align-items-center radius5 overflow-hidden px-1 dmb-25"
                                 id="myTab" role="tablist">
+
                                 <li class="nav-item" role="presentation">
                                     <button
-                                        class="nav-link active tk-basic-sans fw-normal font14 leading22 space-0_14 py-1 radius5 px-3 text-black"
-                                        id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
-                                        role="tab" aria-controls="home" aria-selected="true">
-                                        I’m a customer
+                                        class="nav-link tk-basic-sans fw-normal font14 leading22 space-0_14 py-1 radius5 px-3 text-black"
+                                        id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+                                        role="tab" aria-controls="profile" aria-selected="false">
+                                        I’m a professional
                                     </button>
                                 </li>
                             </ul>
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="home" role="tabpanel"
-                                    aria-labelledby="home-tab">
-                                    <form method="POST" action="{{ route('inviteUserRegister', ['id' => $id]) }}">
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <form method="POST" action="{{ route('invitProfessionalRegister', ['id' => $id]) }}">
 
                                         @csrf
-
-
                                         <div class="row input-row">
                                             <div class="col-6 position-relative dmb-20">
                                                 <x-text-input type="text" name="first_name" placeholder="First Name…"
@@ -70,12 +68,25 @@
                                             <div class="col-6 position-relative dmb-20">
                                                 <x-text-input type="text" name="email" placeholder="Email……"
                                                     value="{{ $email }}" autocomplete="email" readonly />
+
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
                                                 <x-text-input type="text" name="mobile_number"
                                                     placeholder="Mobile Number (+44)" :value="old('mobile')"
                                                     autocomplete="mobile" />
                                                 <x-input-error :message="$errors->first('mobile_number')" />
+                                            </div>
+                                            <div class="col-6 position-relative dmb-20">
+                                                <x-text-input type="text" name="professional_type"
+                                                    value="{{ $professional_type }}" class="js-select3 d-none"
+                                                    data-placeholder="Professional Type (Please select)" readonly />
+
+                                            </div>
+                                            <div class="col-6 position-relative dmb-20">
+                                                <x-text-input type="text" name="company_name"
+                                                    placeholder="Company Name…" :value="old('company_name')"
+                                                    autocomplete="company_name" />
+                                                <x-input-error :message="$errors->first('company_name')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
                                                 <x-text-input type="password" name="password" placeholder="Password…"
@@ -87,7 +98,6 @@
                                                     placeholder="Confirm Password…" autocomplete="new-password" />
                                             </div>
                                         </div>
-
                                         <div class="tk-basic-sans font30 leading34 space-0_3 text-white dmt-45 dmb-35">
                                             Billing details</div>
                                         <div class="row input-row">
@@ -115,7 +125,7 @@
                                             </div>
                                         </div>
                                         <input type="hidden" name="role"
-                                            value="{{ \App\Models\User::ROLE_CLIENT }}">
+                                            value="{{ \App\Models\User::ROLE_PROFESSIONAL }}">
                                         <x-primary-button class="large-btn blue-btn">Sign up</x-primary-button>
                                     </form>
                                 </div>

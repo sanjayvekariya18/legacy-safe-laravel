@@ -10,7 +10,7 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "*",
         "pusher/pusher-php-server": "*",
-        "spatie/laravel-permission": "^6.9",
+        "spatie/laravel-permission": "*",
         "stripe/stripe-php": "*"
     },
     "require-dev": {

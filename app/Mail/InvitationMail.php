@@ -11,16 +11,21 @@ class InvitationMail extends Mailable
     use Queueable, SerializesModels;
 
     protected $url;
+    protected $role;
 
-    public function __construct($url)
+    public function __construct($url,$role)
     {
         $this->url = $url;
+        $this->role = $role;
     }
 
     public function build()
     {
+        $view = $this->role == 0  ? 'document.professional-invitation'
+        : 'document.customer-invitation';
+
         return $this->subject('You are invited!')
-                    ->view('document.invitation')
+                    ->view($view)
                     ->with(['url' => $this->url]);
     }
 }

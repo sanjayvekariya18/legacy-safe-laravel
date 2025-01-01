@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\editUserValidate;
+use App\Http\Requests\InviteProfessionalRegister;
+use App\Http\Requests\InviteUserRegister;
 use App\Mail\InvitationMail;
 use App\Models\User;
 use App\Notifications\NewNotification;
 use App\Repositories\UserRepository;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
@@ -33,9 +36,6 @@ class UserManageController extends Controller
             'role' => 'required|in:0,1', // 0 = Professional, 1 = Customer
         ]);
 
-        $url = route('register');
-        Mail::to($request->email)->send(new InvitationMail($url));
-
         $role = $request->input('role');
         if ($role == 0) {
             $request->validate([
@@ -43,8 +43,16 @@ class UserManageController extends Controller
             ]);
         }
 
+        //url base route
+        $user = \App\Models\User::latest()->first();
+        $id = $user ? $user->id + 1 : 1;
+        $url = $role == 0 ? route('inviteProfessional', ['id' => $id]) : route('inviteUser', ['id' => $id]);
+
+        Mail::to($request->email)->send(new InvitationMail($url, $role));
+
         $data = $request->only(['email', 'invited_by']);
         $data['professional_type'] = $role == 0 ? $request->input('professional_type') : null;
+        $data['id'] = $id;
         $user = $this->userRepository->inviteUser($data);
 
         if ($user) {
@@ -77,7 +85,6 @@ class UserManageController extends Controller
 
     // Soft delete method
 
-
     public function deleteuser($id)
     {
         $deletedUser = $this->userRepository->deleteUser($id);
@@ -92,7 +99,7 @@ class UserManageController extends Controller
 
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = User::with(['roles.permissions'])->findOrFail($id);
         return view('document.edit_user', compact('user'));
     }
 
@@ -115,6 +122,54 @@ class UserManageController extends Controller
     public function show()
     {
 
+    }
+
+    public function inviteuser($id)
+    {
+        $user = User::find($id);
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found');
+        }
+        $email = $user->email;
+        return view('document.invite-user', ['id' => $id, 'email' => $email]);
+    }
+
+    public function inviteprofessional($id)
+    {
+        $user = User::find($id);
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not found');
+        }
+        $email = $user->email;
+        $professional_type = $user->professional_type;
+        return view('document.professional', ['id' => $id, 'email' => $email, 'professional_type' => $professional_type]);
+
+    }
+
+    public function inviteUserRegister(InviteUserRegister $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $validatedData = $request->except('email');
+        $user->update($validatedData);
+
+        event(new Registered($user));
+
+        Auth::login($user);
+
+        return redirect()->route('dashboard')->with('success', 'User data updated successfully!');
+    }
+
+    public function invitProfessionalRegister(InviteProfessionalRegister $request, $id)
+    {
+
+        $user = User::findOrFail($id);
+        $validatedData = $request->except('email');
+        $validatedData = $request->except('professional_type');
+        $user->update($validatedData);
+
+        event(new Registered($user));
+        Auth::login($user);
+        return redirect()->route('dashboard')->with('Register SuccessFully !');
     }
 
 }

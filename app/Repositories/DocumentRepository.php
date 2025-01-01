@@ -3,31 +3,14 @@
 namespace App\Repositories;
 
 use App\Models\Chat;
-use App\Models\User;
 use App\Models\Document;
-use App\Models\SharedWithUser;
-use Illuminate\Http\Client\Request;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class DocumentRepository
 {
-
-    // public function index($search = null)
-    // {
-    //     return Document::query()
-    //         ->with(['User', 'SharedWithUser'])
-    //         ->when($search, function (Builder $query) use ($search) {
-    //             $query->where('name', 'LIKE', '%' . $search . '%')
-    //                 ->orWhereHas('User', function ($query) use ($search) {
-    //                     $query->where('first_name', 'LIKE', '%' . $search . '%')
-    //                         ->orWhere('last_name', 'LIKE', '%' . $search . '%');
-    //                 });
-    //         })
-    //         ->orderBy('updated_at', 'desc')
-    //         ->paginate(5);
-    // }
 
     public function index($search = null, $invitedBy = null)
     {
@@ -75,26 +58,9 @@ class DocumentRepository
     public function getUserData($id)
     {
         $authId = auth()->id();
-        return User::select(
-            'users.id',
-            'users.first_name',
-            'users.company_name',
-            'users.professional_type',
-            'shared_with_users.id as shared_id',
-            'shared_with_users.to_be_notified',
-            'shared_with_users.to_be_visible'
-        )
-            ->join('shared_with_users', 'shared_with_users.user_id', '=', 'users.id')
-            ->where('users.invited_by', $authId)
-            ->get()
-
-            ->map(function ($item) {
-
-                $item->to_be_notify = ($item->to_be_notified === 'yes') ? 0 : 1;
-                $item->to_be_visible = ($item->to_be_visible === 'yes') ? 0 : 1;
-
-                return $item;
-            });
+        return User::with(['SharedWithUser' , 'roles'])
+            ->where('invited_by', $authId)
+            ->get();
     }
 
     public function chatView($id)
@@ -109,20 +75,7 @@ class DocumentRepository
             ->get();
     }
 
-
-    public function update($id, array $data)
-    {
-        try {
-            $permission = SharedWithUser::findOrFail($id);
-            $permission->update($data);
-            return $permission;
-        } catch (\Exception $e) {
-            return false;
-        }
-    }
-
-
-public function deleteDocument($id)
+    public function deleteDocument($id)
     {
         try {
             $document = Document::find($id);
@@ -138,34 +91,17 @@ public function deleteDocument($id)
         }
     }
 
-
     public function deleteUser($userId, $authUserId)
-{
-    $user = User::where('id', $userId)
-                ->where('invited_by', $authUserId)
-                ->first();
+    {
+        $user = User::where('id', $userId)
+            ->where('invited_by', $authUserId)
+            ->first();
 
+        if ($user) {
+            $user->delete();
+            return true;
+        }
 
-    if ($user) {
-        $user->delete();
-        return true;
+        return false;
     }
-
-    return false;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

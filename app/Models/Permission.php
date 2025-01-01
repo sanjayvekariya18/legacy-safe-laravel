@@ -11,7 +11,7 @@ class Permission extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'id','name','guard_name','created_at','updated_at'
+        'id','name','guard_name','is_checked','created_at','updated_at'
     ];
 
     public function roles()
@@ -22,6 +22,11 @@ class Permission extends Model
     public function roleHasPermissions()
     {
         return $this->hasMany(RoleHasPermissions::class, 'permission_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 
 }

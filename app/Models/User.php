@@ -56,7 +56,6 @@ class User extends Authenticatable
         'postcode',
         'company_name',
 
-
     ];
 
     protected $dates = ['deleted_at'];
@@ -151,5 +150,9 @@ class User extends Authenticatable
         return $this->hasMany(User::class, 'invited_by');
     }
 
+    public function roleHasPermissions()
+    {
+        return $this->hasManyThrough(Permission::class, Role::class);
+    }
 
 }

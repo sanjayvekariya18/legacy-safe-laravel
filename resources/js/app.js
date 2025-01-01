@@ -6,7 +6,7 @@ import { Select } from './custom/Select.js';
 
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
-import.meta.glob([ '../images/**', ]);
+import.meta.glob(['../images/**',]);
 
 
 window.$ = window.jQuery = $;
@@ -32,23 +32,3 @@ const echo = new Echo({
     cluster: 'ap2',
     forceTLS: true,
 });
-
-echo.channel('message.1')
-    .listen('message.sent', (event) => {
-        console.log('New message:', event.message);
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -7,19 +7,20 @@ use App\Models\User;
 class UserRepository
 {
 
+
     public function index($search = null)
     {
-        $query = User::with('roles:name');
-
-        if ($search) {
-            $query->where(function ($q) use ($search) {
-                $q->where('first_name', 'like', "%$search%")
-                    ->orWhere('email', 'like', "%$search%")
-                    ->orWhere('company_name', 'like', "%$search%");
+        $users = User::when($search, function ($query, $search) {
+            $query->where('first_name', 'like', "%$search%")
+                ->orWhere('email', 'like', "%$search%")
+                ->orWhere('company_name', 'like', "%$search%");
+        })
+            ->paginate(5)
+            ->through(function ($user) {
+                $user->roles = $user->getRoleNames();
+                return $user;
             });
-        }
 
-        $users = $query->paginate(5);
         return $users;
     }
 
@@ -29,7 +30,7 @@ class UserRepository
         if ($user) {
             $user->delete();
             return response()->json(['message' => 'User deleted successfully.'], 200);
-        }else{
+        } else {
             return response()->json(['error' => 'User not found.'], 404);
         }
 
@@ -53,7 +54,5 @@ class UserRepository
         $user->update($data);
         return $user;
     }
-
-
 
 }
