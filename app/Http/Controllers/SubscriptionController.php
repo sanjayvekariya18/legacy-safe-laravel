@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Helper\StripeHelper;
 use App\Http\Requests\PlanCreateRequest;
 use App\Http\Requests\StripeSubscriptionRequest;
-use App\Models\Plan;
 use App\Models\User;
 use App\Models\UserPlan;
 use App\Repositories\SubscriptionRepository;
 use Exception;
-use Stripe\StripeClient;
 use Illuminate\Support\Facades\DB;
+use App\Models\Plan;
+use Stripe;
 
 class SubscriptionController extends Controller
 {
@@ -113,10 +113,8 @@ class SubscriptionController extends Controller
     public function store(PlanCreateRequest $request)
     {
         try {
-
-            $stripe = new StripeClient('sk_test_51QDJA9IIWAdubTmIM1KNYh2mxDhwIjEJoVU2FLrvz4yjpUkezFQvgXSOjWBhOSFeyBIdjeNmkP3De5GVNOEInYGv00Ijs4pRlt');
-
-            $stripePlan = $stripe->plans->create([
+            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            Stripe\Plan::create ([
                 'name' => $request->name,
                 'title' => $request->title,
                 'monthly_price' => $request->monthly_price * 100,
@@ -127,24 +125,6 @@ class SubscriptionController extends Controller
                 'monthly_price_id' => $request->monthly_price_id,
                 'yearly_price_id' => $request->yearly_price_id,
             ]);
-            dd($stripe);
-
-            if ($stripePlan) {
-                Plan::create([
-                    'name' => $request->name,
-                    'title' => $request->title,
-                    'monthly_price' => $request->monthly_price * 100,
-                    'yearly_price' => $request->yearly_price * 100,
-                    'description' => $request->description,
-                    'currency' => $request->currency,
-                    'product_id' => $request->product_id,
-                    'monthly_price_id' => $request->monthly_price_id,
-                    'yearly_price_id' => $request->yearly_price_id,
-                    'stripe_plan_id' => $stripePlan->id,
-                ]);
-
-                return redirect()->back()->with('success', 'Plan created successfully!');
-            }
 
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());

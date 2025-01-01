@@ -113,28 +113,28 @@
                                                 @csrf
 
                                                 <div class="mb-3">
-                                                    <x-text-input type="text" id="name" name="name" placeholder="Plan Name…" autofocus autocomplete="name" />
+                                                    <x-text-input type="text" id="name" name="name" placeholder="Plan Name…" autofocus autocomplete="name" required />
                                                     <x-input-error :message="$errors->first('name')" />
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <x-text-input type="text" id="title" name="title" placeholder="Plan Title" autofocus autocomplete="title" />
+                                                    <x-text-input type="text" id="title" name="title" placeholder="Plan Title" autocomplete="title" required />
                                                     <x-input-error :message="$errors->first('title')" />
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <x-text-input type="number" id="yearly_price" name="yearly_price" placeholder="Yearly Price" autofocus autocomplete="yearly_price" />
+                                                    <x-text-input type="number" id="yearly_price" name="yearly_price" placeholder="Yearly Price" autocomplete="yearly_price" required />
                                                     <x-input-error :message="$errors->first('yearly_price')" />
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <x-text-input type="number" id="monthly_price" name="monthly_price" placeholder="Monthly Price" autofocus autocomplete="monthly_price" />
+                                                    <x-text-input type="number" id="monthly_price" name="monthly_price" placeholder="Monthly Price" autocomplete="monthly_price" required />
                                                     <x-input-error :message="$errors->first('monthly_price')" />
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <select name="currency" id="currency" class="form-control" required>
-                                                        <option>Select currency</option>
+                                                        <option value="">Select currency</option>
                                                         <option value="USD">USD - United States Dollar</option>
                                                         <option value="EUR">EUR - Euro</option>
                                                         <option value="GBP">GBP - British Pound</option>
@@ -145,14 +145,14 @@
                                                     <x-input-error :message="$errors->first('currency')" />
                                                 </div>
 
-
                                                 <div class="mb-3">
-                                                    <x-text-input type="text" id="description" name="description" placeholder="Description" autofocus autocomplete="description" />
+                                                    <x-text-input type="text" id="description" name="description" placeholder="Description" autocomplete="description" />
                                                     <x-input-error :message="$errors->first('description')" />
                                                 </div>
 
                                                 <button type="submit" class="btn btn-primary">Create Plan</button>
                                             </form>
+
                                         </div>
                                     </div>
                                 </div>
@@ -183,5 +183,7 @@
                 monthlyPlans.classList.remove('show', 'active');
             });
         });
+
+
     </script>
 @endpush
