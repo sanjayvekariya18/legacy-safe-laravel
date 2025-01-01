@@ -16,7 +16,6 @@ class PlanCreateRequest extends FormRequest
             'currency'=>'required',
             'monthly_price' => 'required|numeric|min:1',
             'yearly_price' => 'required|numeric|min:1',
-
         ];
     }
 }

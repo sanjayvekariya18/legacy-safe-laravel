@@ -49,7 +49,6 @@ Route::group(['middleware' => ['auth', 'role:' . User::ROLE_CLIENT]], function (
 
 
 
-
 Route::get('file-upload', [FileManagerController::class, 'index'])->name('file.upload');
 
 

@@ -118,7 +118,7 @@
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <x-text-input type="text" id="title" name="title" placeholder="Plan Title" autocomplete="title" required />
+                                                    <x-text-input type="text" id="title" name="title" placeholder="Plan Title" autofocus autocomplete="title" />
                                                     <x-input-error :message="$errors->first('title')" />
                                                 </div>
 
@@ -152,7 +152,6 @@
 
                                                 <button type="submit" class="btn btn-primary">Create Plan</button>
                                             </form>
-
                                         </div>
                                     </div>
                                 </div>
