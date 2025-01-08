@@ -3,10 +3,14 @@
 
 @section('content')
     @if (session('error'))
-        <div class="alert alert-danger">
+        <div class="alert alert-danger alert-dismissible fade show">
             {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
+    <div id="notified" class="alert alert-success" style="display: none">
+        Professional Notified
+    </div>
     <div class="pe-3">
         <div class="d-flex align-items-end justify-content-between dmb-45">
             <div class="title dmb-5">
@@ -129,6 +133,13 @@
                 new bootstrap.Modal(document.getElementById('remove-user'), {
                     keyboard: false
                 }).show();
+            });
+            Livewire.on('notified', () => {
+                $('#notified').fadeIn();
+                setTimeout(() => {
+                    $('#notified').fadeOut();
+                }, 2000);
+
             });
             //setting callback function for 'hidden.bs.modal' event
             $('#userModal, #remove-user').on('hidden.bs.modal', function() {

@@ -28,13 +28,13 @@ class DocumentMessage extends Component
     // Define the validation rules
     protected $rules = [
         'message' => 'required|string|max:500',  // Message is required and a string with max length
-        'file' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx,zip',  // Optional file upload, validate type
+        'file' => 'nullable|file|mimes:jpg,jpeg,png',  // Optional file upload, validate type
     ];
 
     // You can also add custom messages for validation
     protected $messages = [
         'message.required' => 'Message is required.',
-        'file.mimes' => 'Only image, pdf, doc, and zip files are allowed.',
+        'file.mimes' => 'Only images are allowed.',
     ];
 
     public function mount($documentId)

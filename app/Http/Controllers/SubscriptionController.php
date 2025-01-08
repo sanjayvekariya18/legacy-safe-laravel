@@ -94,7 +94,7 @@ class SubscriptionController extends Controller
             }
             DB::commit();
             // Redirect to success page or dashboard
-            return redirect()->route('dashboard')->with('message', 'Subscription successful!');
+            return redirect()->route('dashboard')->with('success', 'Subscription successful!');
 
         } catch (IncompletePayment $exception) {
             DB::rollBack();

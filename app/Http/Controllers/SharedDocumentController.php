@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use App\Services\BreadcrumbsService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -36,9 +37,20 @@ class SharedDocumentController extends Controller
                 // Check if the user has access to the document
                 $query->where('user_id', Auth::id());
             })
-            // Filter the documents by name if the search term is provided
+            // Filter the documents by name or document owner name if the search term is provided
             ->when($search, function ($query) use ($search) {
-                return $query->where('name', 'like', '%' . $search . '%');
+                return $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhereHas('user', function ($query) use ($search) {
+                        $query->where('first_name', 'like', '%' . $search . '%')
+                            ->orWhere('last_name', 'like', '%' . $search . '%');
+                    })
+                    ->orWhere(function ($query) use ($search) {
+                        if (preg_match('/^\d{2}-\d{2}-\d{4}$/', $search)) {
+                            // Check if search term is a valid date in DD-MM-YYYY format
+                            $date = Carbon::createFromFormat('d-m-Y', $search)->format('Y-m-d');
+                            $query->whereDate('updated_at', $date); // Filter by created_at
+                        }
+                    });
             })
             // Filter by document owner ID if provided
             ->when($clientId, function ($query) use ($clientId) {

@@ -2,7 +2,11 @@
 @section('title', 'Dashboard')
 
 @section('content')
-
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     @if (!Auth::user()->hasRole(\App\Models\User::ROLE_ADMIN))
         <div class="tk-basic-sans font26 leading30 space-0_26 text-black fw-semibold dmb-75">
             Hi {{ Auth::user()->name }}, welcome to your LegacySafe

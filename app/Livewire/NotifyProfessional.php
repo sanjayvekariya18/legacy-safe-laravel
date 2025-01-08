@@ -32,6 +32,7 @@ class NotifyProfessional extends Component
                 $notifiedUser->save();
             }
         }
+        $this->dispatch('notified');
     }
 
     public function render()

@@ -157,7 +157,7 @@
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
                                                 <x-text-input class="white-input border-0" type="text"
-                                                    name="mobile_number" placeholder="mobile_number Number (+44)"
+                                                    name="mobile_number" placeholder="Mobile Number (+44)"
                                                     :value="old('mobile')" required autocomplete="mobile_number" />
                                                 <x-input-error :message="$errors->first('mobile')" />
                                             </div>
