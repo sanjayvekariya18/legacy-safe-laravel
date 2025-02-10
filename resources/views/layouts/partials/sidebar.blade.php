@@ -87,18 +87,18 @@
                     <div class="tk-basic-sans fw-normal font16 leading19 space-0_16 text-black">Activity Logs</div>
                 </a>
             @endif
+            <a class="dropdown-item tk-basic-sans font16 leading19 text-black dmb-20 d-inline-flex align-items-center admin-menu" href="javascript:void(0);"
+            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            <div class="me-2 ms-3 admin-menu-icon d-inline-block">
+                <img src="{{ asset('images/logout.svg') }}" class="w-100" alt="">
+            </div>
+            {{ __('Logout') }}
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
         </div>
         <div class="">
-            <a class="dropdown-item tk-basic-sans font16 leading22 text-black dmb-20 d-inline-flex align-items-center" href="javascript:void(0);"
-                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <div class="me-2 ms-3 admin-menu-icon d-inline-block">
-                    <img src="{{ asset('images/logout.svg') }}" class="w-100" alt="">
-                </div>
-                {{ __('Logout') }}
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
             <div class="d-flex align-items-center">
                 <div class="tk-basic-sans fw-normal font12 leading14 space-0_12 text-808080 opacity-60 me-1">Powered by</div>
                 <div class="dashboard-logo">

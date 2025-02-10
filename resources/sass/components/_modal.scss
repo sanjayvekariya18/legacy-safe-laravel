@@ -74,7 +74,7 @@
             }
           }
         }
-        
+
         @include media-breakpoint-down(md) {
           padding: 162px 37px 25px !important;
           height: 100vh;
@@ -114,6 +114,7 @@
       }
     }
   }
+
 
   &.notification-modal {
     .modal-dialog {
@@ -183,4 +184,9 @@ body {
       z-index: 9999;
     }
   }
+}
+
+
+.amount-input{
+    padding: 0px 30px !important;
 }

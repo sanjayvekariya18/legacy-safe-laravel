@@ -78,7 +78,7 @@
                                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                             </div>
                             <a href="{{ route('users.index') }}"
-                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
+                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 bg-224598-btn ">View</a>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                             </div>
                             <a href="{{ route('invoices.index') }}"
-                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
+                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 bg-224598-btn ">View</a>
                         </div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                             </div>
                             <a href="{{ route('activity.logs') }}"
-                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
+                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 bg-224598-btn ">View</a>
                         </div>
                     </div>
                 </div>
@@ -143,7 +143,7 @@
                                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                             </div>
                             <a href="{{ route('documents.create') }}"
-                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
+                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 bg-224598-btn ">View</a>
                         </div>
                     </div>
                 </div>
@@ -164,7 +164,7 @@
                                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                             </div>
                             <a href="{{ route('documents.index') }}"
-                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
+                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 bg-224598-btn ">View</a>
                         </div>
                     </div>
                 </div>
@@ -185,7 +185,7 @@
                                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                             </div>
                             <a href="{{ route('shared.users.index') }}"
-                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
+                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 bg-224598-btn ">View</a>
                         </div>
                     </div>
                 </div>
@@ -208,7 +208,7 @@
                                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                             </div>
                             <a href="{{ route('shared.documents.index') }}"
-                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
+                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 bg-224598-btn ">View</a>
                         </div>
                     </div>
                 </div>
@@ -229,7 +229,7 @@
                                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                             </div>
                             <a href="{{ route('clients.index') }}"
-                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
+                                class="text-decoration-none d-inline-block w-fit bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 bg-224598-btn ">View</a>
                         </div>
                     </div>
                 </div>

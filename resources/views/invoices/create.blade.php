@@ -25,8 +25,8 @@
             </div>
             <div class="col-6 dmt-15">
                 <div class="manager-select d-inline-flex w-100">
-                    <select name="user_id" id="js-select1" class="d-none"
-                        data-placeholder="Client Name (Please select)">
+                    <select name="user_id" id="js-select1" class="d-none legacy-select"
+                        data-placeholder="Client Name">
                         <option></option>
                         @foreach ($professionalUsers as $user)
                             <option value="{{ $user->id }}" {{ $user == old('user_id') ? 'selected' : '' }}>
@@ -36,9 +36,10 @@
                 </div>
                 <x-input-error :message="$errors->first('user')" />
             </div>
-            <div class="col-6 dmt-15">
-                <input type="number" name="amount" placeholder="£ Invoice Amount…" :value="old('amount')"
-                    class="input white-b-input tk-basic-sans font16 leading19 w-100 bg-white" required autocomplete="amount">
+            <div class="col-6 dmt-15 position-relative">
+                <div class="position-absolute top-center mx-3">£ </div>
+                <input type="number" name="amount" placeholder=" Invoice Amount…" :value="old('amount')"
+                    class="input white-b-input tk-basic-sans font16 leading19 w-100 bg-white amount-input" required autocomplete="amount">
                     <x-input-error :message="$errors->first('amount')" />
             </div>
             <div class="col-12 dmt-15">

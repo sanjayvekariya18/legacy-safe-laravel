@@ -177,7 +177,7 @@
                             <div class="d-flex justify-content-center row8">
                                 <div class="col-6">
                                     <div class="user-select d-inline-flex w-100">
-                                        <select id="js-select4" class="d-none" data-placeholder="Select an option">
+                                        <select id="js-select4" class="d-none legacy-select" data-placeholder="Select an option">
                                             <option></option>
                                             <option value="Solicitor">Solicitor
                                             </option>

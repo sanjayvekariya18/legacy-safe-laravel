@@ -25,8 +25,8 @@
             </div>
             <div class="col-6 dmt-15">
                 <div class="manager-check-select d-inline-flex w-100">
-                    <select id="js-select2" name="invitees[]" class="d-none" multiple
-                        data-placeholder="Select Users (Please select)">
+                    <select id="js-select2" name="invitees[]" class="d-none legacy-select" multiple
+                        data-placeholder="Select Users">
                         <option></option>
                         @foreach ($invitees as $invitee)
                             <option value="{{ $invitee->invitee_id }}" @if (in_array($invitee->invitee_id, old('invitees', []))) selected @endif>

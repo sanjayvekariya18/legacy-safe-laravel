@@ -128,8 +128,12 @@
                                         </div>
                                         <input type="hidden" name="roles[]"
                                             value="{{ \App\Models\User::ROLE_CLIENT }}">
-                                        <x-primary-button class="large-btn blue-btn w-100 fw-normal">Sign
+                                        <x-primary-button class="large-btn blue-btn w-100 fw-normal mb-3">Sign
                                             up</x-primary-button>
+
+                                            <div class="tk-basic-sans fw-normal font14 leading19 space-0_14 text-white">
+                                                <a href="{{ route('login') }}" class="d-inline-block text-white">Back to sign in</a>
+                                            </div>
                                     </form>
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel"
@@ -162,7 +166,7 @@
                                                 <x-input-error :message="$errors->first('mobile')" />
                                             </div>
                                             <div class="col-6 position-relative dmb-20">
-                                                <select name="professional_type" id="js-select3" class="d-none"
+                                                <select name="professional_type" id="js-select3" class="d-none legacy-select"
                                                     data-placeholder="Professional Type (Please select)">
                                                     <option></option>
                                                     @foreach (\App\Models\User::PROFESSIONAL_TYPES as $professionalType)
@@ -221,8 +225,11 @@
                                         </div>
                                         <input type="hidden" name="roles[]"
                                             value="{{ \App\Models\User::ROLE_PROFESSIONAL }}">
-                                        <x-primary-button class="large-btn blue-btn w-100 fw-normal">Sign
+                                        <x-primary-button class="large-btn blue-btn w-100 fw-normal mb-3">Sign
                                             up</x-primary-button>
+                                            <div class="tk-basic-sans fw-normal font14 leading19 space-0_14 text-white">
+                                                <a href="{{ route('login') }}" class="d-inline-block text-white">Back to sign in</a>
+                                            </div>
                                     </form>
                                 </div>
                             </div>

@@ -23,6 +23,10 @@
     border-spacing: 0 0;
     border: 0px solid transparent;
 
+    td{
+        align-content:center;
+    }
+
     tr {
       outline: 1px solid #dee2e6;
       border-radius: $radius5;

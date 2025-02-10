@@ -13,7 +13,7 @@
                         <div
                             class="checkbox-container position-relative  d-inline-flex align-items-center tk-basic-sans fw-normal font16 leading29 space-0_16 text-black">
                             <input type="checkbox" wire:model="selectedPermissions" value="{{ $permission->id }}" class="opacity-0 position-absolute top-0 start-0">
-                            <span class="check-box black-checkbox radius5 position-relative me-3"></span>
+                            <span class="check-box black-checkbox radius5 position-relative me-3 text-capitalize"></span>
                             {{ $permission->name }}
                         </div>
                     </div>

@@ -83,7 +83,7 @@
                             <input type="checkbox" name="roles[]" value="{{ $role->name }}"
                                 {{ $user->hasRole($role->name) ? 'checked' : '' }}
                                 class="opacity-0 position-absolute top-0 start-0">
-                            <span class="check-box black-checkbox radius5 position-relative me-3"></span>
+                            <span class="check-box black-checkbox radius5 position-relative me-3 text-capitalize"></span>
                             {{ $role->name }}
                         </div>
                         <a href="#solicitor-modal" data-role="{{ $role->name }}"

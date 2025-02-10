@@ -65,7 +65,7 @@
                                     </div>
                                     @if ($invite->role == \App\Models\User::ROLE_PROFESSIONAL)
                                         <div class="col-6 position-relative dmb-20">
-                                            <select name="professional_type" id="js-select3" class="d-none"
+                                            <select name="professional_type" id="js-select3" class="d-none legacy-select"
                                                 data-placeholder="Professional Type (Please select)" disabled>
                                                 <option></option>
                                                 @foreach (\App\Models\User::PROFESSIONAL_TYPES as $professionalType)

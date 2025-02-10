@@ -80,7 +80,7 @@
                         <div
                             class="checkbox-container black-checkbox-container position-relative  d-inline-flex align-items-center tk-basic-sans fw-normal font16 leading30 space-0_16 text-black">
                             <input name="roles[]" value="{{ $role->name }}" type="checkbox" class="opacity-0 position-absolute top-0 start-0">
-                            <span class="check-box black-checkbox radius5 position-relative me-3"></span>
+                            <span class="check-box black-checkbox radius5 position-relative me-3 text-capitalize"></span>
                             {{ $role->name }}
                         </div>
                         <a href="#solicitor-modal" data-role="{{ $role->name }}" data-permissions="{{ json_encode($role->permissions->pluck('name')) }}"
