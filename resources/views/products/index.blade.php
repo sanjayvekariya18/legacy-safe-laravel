@@ -70,7 +70,7 @@
                             <div class="upgrade-cards bg-white radius5 dpt-35 dpb-45">
                                 <div class="d-flex align-items-center dmb-15">
                                     <a href="{{ route('products.edit', ['product' => $product->id]) }}"
-                                        class="text-center flex-fill text-decoration-none border-0 bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 me-1">View</a>
+                                        class="text-center flex-fill text-decoration-none border-0 bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 bg-224598-btn me-1">View</a>
                                     <a href="#remove-user-modal" data-product-id="{{ $product->id }}"
                                         data-product-name="{{ $product->name }}" data-bs-toggle="modal"
                                         data-bs-target="#remove-user-modal"
@@ -106,7 +106,7 @@
                             <div class="upgrade-cards bg-white radius5 dpt-35 dpb-45">
                                 <div class="d-flex align-items-center dmb-15">
                                     <a href="{{ route('products.edit', ['product' => $product->id]) }}"
-                                        class="text-center flex-fill text-decoration-none border-0 bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 me-1">View</a>
+                                        class="text-center flex-fill text-decoration-none border-0 bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 bg-224598-btn me-1">View</a>
                                     <a href="#remove-user-modal" data-product-id="{{ $product->id }}"
                                         data-product-name="{{ $product->name }}" data-bs-toggle="modal"
                                         data-bs-target="#remove-user-modal"

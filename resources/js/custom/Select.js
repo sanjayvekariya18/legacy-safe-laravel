@@ -7,38 +7,37 @@ export class Select {
         this.PlaceHolderColor();
     }
     SelectOne() {
-        $("#js-select1").select2({
-            closeOnSelect: true,
-            allowClear: false,
-            minimumResultsForSearch: Infinity,
-            dropdownCssClass: "manager-select2"
+        $(document).ready(function () {
+            $("#js-select1").select2({
+                closeOnSelect: true,
+                placeholder: "Client Name (Please select)",
+                allowClear: false,
+                minimumResultsForSearch: Infinity,
+                dropdownCssClass: "manager-select2"
+            });
+
+            $("#js-select1").on("select2:select", function () {
+                if ($(".select2-selection__choice").length > 0) {
+                    $(".select2-container--open .select2-search__field").val("");
+                    $(".select2-container--open .select2-search__field").attr("placeholder", "");
+                }
+            });
+
+            $("#js-select1").on("select2:open", function () {
+                if ($(".select2-selection__choice").length > 0) {
+                    $(".select2-container--open .select2-search__field").val("");
+                } else {
+                    $(".select2-container--open .select2-search__field").attr("placeholder", "Start typing...");
+                }
+            });
+
+            $("#js-select1").on("select2:close", function () {
+                if ($(".select2-selection__choice").length === 0) {
+                    $(".select2-search__field").attr("placeholder", "Client Name (Please select)");
+                }
+            });
         });
 
-        $(".select2-search").append('<span class="custom-span-placeholder">(Please select)</span>');
-
-        $("#js-select1").on("select2:select", function () {
-            if ($(".select2-selection__choice").length > 0) {
-                $(".select2-container--open .select2-search__field").val("");
-                $(".select2-container--open .select2-search__field").attr("placeholder", "");
-                $(".custom-span-placeholder").text('');
-            }
-        });
-
-        $("#js-select1").on("select2:open", function () {
-            if ($(".select2-selection__choice").length > 0) {
-                $(".select2-container--open .select2-search__field").val("");
-            } else {
-                $(".select2-container--open .select2-search__field").attr("placeholder", "Start typing...");
-                $(".custom-span-placeholder").text('');
-            }
-        });
-
-        $("#js-select1").on("select2:close", function () {
-            if ($(".select2-selection__choice").length === 0) {
-                $(".select2-search__field").attr("placeholder", "Client Name (Please select)");
-                $(".custom-span-placeholder").text('(Please select)');
-            }
-        });
     }
     SelectTwo() {
         $(document).ready(function () {
@@ -99,16 +98,18 @@ export class Select {
             dropdownParent: $('#invite-user')
         });
 
-        $("#js-select5").select2({
-            closeOnSelect: true,
-            placeholder: "Select a state",
-            allowClear: false,
-            minimumResultsForSearch: Infinity,
-            dropdownCssClass: "user-select2",
-            dropdownParent: $('#invite-user-modal')
+        $(document).ready(function () {
+            $("#js-select5").select2({
+                closeOnSelect: true,
+                placeholder: "Select a state",
+                allowClear: false,
+                minimumResultsForSearch: Infinity,
+                dropdownCssClass: "user-select2",
+                dropdownParent: $("#invite-user-modal") // Ensure this is correct
+            });
         });
-    }
 
+    }
     PlaceHolderColor() {
         $('.legacy-select').each(function () {
             let placeholderText = $(this).attr('data-placeholder');
@@ -126,12 +127,8 @@ export class Select {
                         let modifiedText = text.replace(/\((.*?)\)/, '<span class="placeholder-color">$&</span>');
                         $(this).html(modifiedText).addClass('placeholder-custom');
                     });
-            }, 10);
+            }, 1);
         }
-
-
-
-
         $('.legacy-select').on('select2:open select2:clear', function () { stylePlaceholders(); }); stylePlaceholders();
     }
 }

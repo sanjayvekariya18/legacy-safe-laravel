@@ -26,7 +26,7 @@
             <div class="col-6 dmt-15">
                 <div class="manager-select d-inline-flex w-100">
                     <select name="user_id" id="js-select1" class="d-none legacy-select"
-                        data-placeholder="Client Name">
+                        data-placeholder="Client Name (Please select)">
                         <option></option>
                         @foreach ($professionalUsers as $user)
                             <option value="{{ $user->id }}" {{ $user == old('user_id') ? 'selected' : '' }}>
