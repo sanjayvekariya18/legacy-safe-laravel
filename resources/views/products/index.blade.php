@@ -54,7 +54,7 @@
                         You do not have a product.
                     </div>
                     <div class="transition">
-                            <a href="{{ route('products.create') }}" class="notify-btn text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-5 radius5 ms-3">Add new product</a>
+                            <a href="{{ route('products.create') }}" class="notify-btn text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-5 radius5 ms-3 bg-224598-btn">Add new product</a>
                     </div>
                 </div>
             </div>

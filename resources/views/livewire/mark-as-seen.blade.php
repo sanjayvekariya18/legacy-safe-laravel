@@ -13,7 +13,7 @@
                         class="notify-btn text-decoration-none bg-DEDEDE tk-basic-sans font14 leading14 space-0_14 text-808080 py-2 px-5 radius5 ms-3 cursor-not-allowed">Mark as seen</a>
                     @else
                         <a href="#mark-as-seen" data-bs-toggle="modal" data-bs-target="#mark-as-seen"
-                        class="notify-btn text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-5 radius5 ms-3">Mark as seen</a>
+                        class="notify-btn text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-5 radius5 ms-3 bg-224598-btn">Mark as seen</a>
                     @endif
                 </div>
             </div>

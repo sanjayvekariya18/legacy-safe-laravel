@@ -65,13 +65,13 @@
                                 @else
                                     @if (Auth::user()->hasRole(\App\Models\User::ROLE_ADMIN))
                                         <div
-                                            class="text-decoration-none d-flex align-items-center justify-content-center bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-1 radius5 small-btn">
+                                            class="text-decoration-none d-flex align-items-center justify-content-center bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-1 radius5 small-btn bg-224598-btn">
                                             Not Paid
                                         </div>
                                     @endif
                                     @if (Auth::user()->hasRole(\App\Models\User::ROLE_PROFESSIONAL))
                                         <a href="{{ route("invoices.pay", ['invoice' => $invoice]) }}"
-                                            class="text-decoration-none d-flex align-items-center justify-content-center bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-1 radius5 small-btn">
+                                            class="text-decoration-none d-flex align-items-center justify-content-center bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-1 radius5 small-btn bg-224598-btn">
                                             Pay Invoice
                                         </a>
                                     @endif
