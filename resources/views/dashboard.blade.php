@@ -40,10 +40,10 @@
                                 <div class="d-flex justify-content-end">
                                     @if (Auth::user()->hasRole(\App\Models\User::ROLE_CLIENT))
                                         <a href="{{ route('documents.show', ['document' => $document]) }}"
-                                            class="text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
+                                            class="text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 bg-224598-btn">View</a>
                                     @else
                                         <a href="{{ route('shared.documents.show', ['document' => $document]) }}"
-                                            class="text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5">View</a>
+                                            class="text-decoration-none bg-224598 tk-basic-sans font14 leading14 space-0_14 text-white py-2 px-4 radius5 bg-224598-btn">View</a>
                                     @endif
                                 </div>
                             </td>
