@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDocumentRequest;
+use App\Services\FileUploadService;
 use App\Notifications\DocumentNotification;
 use Illuminate\Http\Request;
 use App\Models\Document;
@@ -21,10 +22,12 @@ class DocumentController extends Controller implements HasMiddleware
 {
     use AuthorizesRequests;
     protected $breadcrumbs;
+    protected $fileUploadService;
 
-    public function __construct(BreadcrumbsService $breadcrumbs)
+    public function __construct(BreadcrumbsService $breadcrumbs, FileUploadService $fileUploadService)
     {
         $this->breadcrumbs = $breadcrumbs;
+        $this->fileUploadService = $fileUploadService;
     }
 
     /**
@@ -139,6 +142,7 @@ class DocumentController extends Controller implements HasMiddleware
                 // Redirect to the documents index page with a success message
                 return redirect()->route('documents.index')->with('success', 'Document saved and file moved to S3 successfully!');
             } catch (\Throwable $th) {
+                DB::rollBack();
                 // Log the error for debugging
                 Log::error('Error storing document: ' . $th->getMessage());
 
@@ -146,6 +150,7 @@ class DocumentController extends Controller implements HasMiddleware
                 return redirect()->back()->with('error', 'An error occurred while storing the document.');
             }
         } else {
+            DB::rollBack();
             // Redirect back with an error message if the file is not found
             return redirect()->back()->with('error', 'Uploaded document not found.');
         }
@@ -207,15 +212,24 @@ class DocumentController extends Controller implements HasMiddleware
             // Store the file
             if ($request->hasFile('document')) {
                 $file = $request->file('document');
-                $fileName = $file->getClientOriginalName();
-                $path = $file->storeAs("uploads/{$userId}", $fileName, 'local');
-                return response()->json(['message' => 'File uploaded successfully!', 'filePath' => $path]);
+                $response = $this->fileUploadService->uploadFile($file, "uploads/{$userId}");
+                return response()->json(['message' => 'File uploaded successfully!', 'filePath' => $response['path']]);
             }
+
             return response()->json(['message' => 'File upload failed.'], 500);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([
                 'message' => 'Validation failed',
                 'errors' => $e->errors() // JSON object of validation errors
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Validation failed',
+                'errors' => [
+                    'document' => [
+                        $e->getMessage()
+                    ]
+                ]
             ], 422);
         }
 

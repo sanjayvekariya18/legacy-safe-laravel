@@ -28,7 +28,7 @@ Route::get('dashboard', [DashboardController::class, 'index'])
 
 // In routes/web.php or routes/api.php
 //** Admin Routes */
-Route::group(['middleware' => ['auth', 'role:' . User::ROLE_ADMIN]], function () {
+Route::group(['middleware' => ['security', 'auth', 'role:' . User::ROLE_ADMIN]], function () {
     Route::resource('users', UserController::class)->names([
         'index' => 'users.index',
         'create' => 'users.create',

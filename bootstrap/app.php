@@ -17,6 +17,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+            'security' => \App\Http\Middleware\SecurityMiddleware::class,
+            'secure_files' => \App\Http\Middleware\SecureFileAccessMiddleware::class,
         ]);
         $middleware->validateCsrfTokens(except: [
             'stripe/*',
